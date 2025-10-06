@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Core Space: Quick Reference Hub</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>⚡ CORE SPACE ⚡</h1>
+            <div class="tagline">Quick Reference Hub - Click Any Section for Details</div>
+        </header>
+
+        <!-- Navigation Menu -->
+        <div class="nav-menu">
+            <a href="actions.html" class="nav-card">
+                <div class="nav-card-title">🚶 Actions</div>
+                <div class="nav-card-desc">All 17+ actions with full rules</div>
+            </a>
+            <a href="phases.html" class="nav-card">
+                <div class="nav-card-title">🔄 Game Phases</div>
+                <div class="nav-card-desc">5 phases deep dive</div>
+            </a>
+            <a href="combat.html" class="nav-card">
+                <div class="nav-card-title">⚔️ Combat</div>
+                <div class="nav-card-desc">Complete combat mechanics</div>
+            </a>
+            <a href="hostility.html" class="nav-card">
+                <div class="nav-card-title">⚠️ Hostility</div>
+                <div class="nav-card-desc">Tracker & event system</div>
+            </a>
+            <a href="enemies.html" class="nav-card">
+                <div class="nav-card-title">👾 Enemies</div>
+                <div class="nav-card-desc">First Born & NPCs</div>
+            </a>
+            <a href="advancement.html" class="nav-card">
+                <div class="nav-card-title">📈 Advancement</div>
+                <div class="nav-card-desc">Skills, equipment & campaign</div>
+            </a>
+            <a href="tables.html" class="nav-card">
+                <div class="nav-card-title">📊 Quick Tables</div>
+                <div class="nav-card-desc">All reference tables</div>
+            </a>
+        </div>
+
+        <!-- Quick Overview -->
+        <div class="section">
+            <div class="section-title">At-a-Glance Overview</div>
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-label icon-move">Movement</div>
+                    <div class="stat-value">4" per action, 11" max/round</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label icon-shoot">Combat</div>
+                    <div class="stat-value">Roll → Modifiers → Damage</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label icon-danger">Hostility</div>
+                    <div class="stat-value">Rises each round</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label icon-health">Objective</div>
+                    <div class="stat-value">Complete & escape alive</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Round Flow -->
+        <div class="section">
+            <div class="section-title"><a href="phases.html">Round Sequence</a></div>
+            <div class="flow-chart">
+                <div class="flow-step"><strong>1. HOSTILITY:</strong> +1 peg, draw event card</div>
+                <div class="flow-step"><strong>2. TRADER:</strong> Players activate traders (take actions)</div>
+                <div class="flow-step"><strong>3. FIRST BORN:</strong> Enemies arrive & attack</div>
+                <div class="flow-step"><strong>4. NPC:</strong> Other characters activate</div>
+                <div class="flow-step"><strong>5. ASSESSMENT:</strong> Clean up, pass turn counter</div>
+                <div style="text-align: center; margin-top: 10px; color: #53a8b6; font-size: 1.5em;">↻ REPEAT</div>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="section">
+            <div class="section-title"><a href="actions.html">Common Actions</a></div>
+            <table>
+                <tr>
+                    <th>Action</th>
+                    <th>Cost</th>
+                    <th>Key Info</th>
+                </tr>
+                <tr>
+                    <td>Move</td>
+                    <td>1</td>
+                    <td>Up to 4", max 11"/round</td>
+                </tr>
+                <tr>
+                    <td>Ranged Assault</td>
+                    <td>1</td>
+                    <td>LoS, not engaged, use ammo</td>
+                </tr>
+                <tr>
+                    <td>Close Assault</td>
+                    <td>1</td>
+                    <td>In base contact only</td>
+                </tr>
+                <tr>
+                    <td>Search</td>
+                    <td>1</td>
+                    <td>Crate or room, not engaged</td>
+                </tr>
+                <tr>
+                    <td>Persuade</td>
+                    <td>1</td>
+                    <td>Roll skill vs persuade value</td>
+                </tr>
+                <tr>
+                    <td>Effortless Actions</td>
+                    <td>FREE</td>
+                    <td>1 per turn (move 1", use item, swap)</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Combat Quick Ref -->
+        <div class="section">
+            <div class="section-title"><a href="combat.html">Combat Quick Reference</a></div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                <div>
+                    <h3>Attack Flow</h3>
+                    <ol style="font-size: 0.9em;">
+                        <li>Roll combat dice</li>
+                        <li>Count ⚔️ hits</li>
+                        <li>Apply cover (-1 if partial)</li>
+                        <li>Apply armour (reduce hits)</li>
+                        <li>Remaining = damage</li>
+                        <li>Check misfire (2+ 💥)</li>
+                    </ol>
+                </div>
+                <div>
+                    <h3>Range Bands</h3>
+                    <table style="font-size: 0.85em;">
+                        <tr><td><strong>Short</strong></td><td>0-5"</td></tr>
+                        <tr><td><strong>Medium</strong></td><td>5-13"</td></tr>
+                        <tr><td><strong>Long</strong></td><td>13"+</td></tr>
+                    </table>
+                    <h3 style="margin-top: 10px;">Cover</h3>
+                    <div style="font-size: 0.85em;">
+                        25-90% obscured = -1 hit<br>
+                        &gt;90% = No LoS
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hostility Levels -->
+        <div class="section">
+            <div class="section-title"><a href="hostility.html">Hostility Levels</a></div>
+            <table>
+                <tr>
+                    <th>Level</th>
+                    <th>Pegs</th>
+                    <th>Threat</th>
+                </tr>
+                <tr style="border-left: 4px solid #2ecc71;">
+                    <td>Relaxed</td>
+                    <td>0-4</td>
+                    <td>No enemies</td>
+                </tr>
+                <tr style="border-left: 4px solid #f39c12;">
+                    <td>Patrol</td>
+                    <td>5-9</td>
+                    <td>Light forces</td>
+                </tr>
+                <tr style="border-left: 4px solid #e67e22;">
+                    <td>Inspection</td>
+                    <td>10-14</td>
+                    <td>Moderate</td>
+                </tr>
+                <tr style="border-left: 4px solid #e74c3c;">
+                    <td>Wake Protocols</td>
+                    <td>15-19</td>
+                    <td>Heavy</td>
+                </tr>
+                <tr style="border-left: 4px solid #c0392b;">
+                    <td>Threat Defence</td>
+                    <td>20-24</td>
+                    <td>Maximum</td>
+                </tr>
+                <tr style="border-left: 4px solid #8b0000;">
+                    <td><strong>CLEANSE</strong></td>
+                    <td>25+</td>
+                    <td><strong>CHARGED!</strong></td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Key Rules -->
+        <div class="section">
+            <div class="section-title">Essential Rules</div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <div class="highlight-box">
+                    <div class="highlight-title">Attack of Opportunity</div>
+                    Leave enemy contact = they get free Close Assault
+                </div>
+                <div class="highlight-box">
+                    <div class="highlight-title">Engaged</div>
+                    Orthogonally adjacent to enemy (not diagonal)
+                </div>
+                <div class="highlight-box">
+                    <div class="highlight-title">Defeated</div>
+                    Health = 0, lay on side, can revive or drag
+                </div>
+                <div class="highlight-box">
+                    <div class="highlight-title">Misfire</div>
+                    2+ 💥 = ranged jams (clear jam action), close breaks (heavy hit only)
+                </div>
+                <div class="highlight-box">
+                    <div class="highlight-title">First Shot Each Round</div>
+                    First ranged assault: ammo peg → hostility tracker
+                </div>
+                <div class="highlight-box">
+                    <div class="highlight-title">Armour</div>
+                    Physical: Permanent | Shield: Overloads if damage through
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <div style="margin-bottom: 10px; color: #53a8b6;">
+                📖 For complete rules and learning guides:
+            </div>
+            <div class="guide-links">
+                <a href="Player_Flow_Guide.md" class="guide-link">📘 Player Flow Guide</a>
+                <a href="LLM_Rules_Reference.md" class="guide-link">📕 Complete Rules Reference</a>
+            </div>
+            <div style="margin-top: 15px; font-size: 0.75em; color: #888;">
+                Core Space © Battle Systems Ltd | Quick Reference Hub v2.0 | 2025-10-05
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

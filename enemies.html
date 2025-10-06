@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Core Space: Enemies Reference</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><a href="index.html">⚡ CORE SPACE ⚡</a></h1>
+            <div class="tagline">First Born & NPCs - Complete Reference</div>
+        </header>
+        <div class="breadcrumb"><a href="index.html">Home</a> <span>›</span> <span>Enemies</span></div>
+        <a href="index.html" class="back-btn">← Back to Hub</a>
+
+        <div class="section">
+            <h2>First Born Types</h2>
+            <div class="enemy-grid">
+                <div class="enemy-card">
+                    <div class="enemy-name">Harvester</div>
+                    <div class="enemy-rank">Rank 1</div>
+                    <div class="enemy-stats">Basic First Born<br>Numerous<br>Standard AI</div>
+                </div>
+                <div class="enemy-card">
+                    <div class="enemy-name">Drone</div>
+                    <div class="enemy-rank">Rank 1</div>
+                    <div class="enemy-stats">Scout units<br>Arrive at patrol points<br>Use Knowledge Die</div>
+                </div>
+                <div class="enemy-card">
+                    <div class="enemy-name">Devastator</div>
+                    <div class="enemy-rank">Rank 2</div>
+                    <div class="enemy-stats">Heavy weapons<br>Dangerous at range</div>
+                </div>
+                <div class="enemy-card">
+                    <div class="enemy-name">Assassin</div>
+                    <div class="enemy-rank">Rank 3</div>
+                    <div class="enemy-stats">Elite killers<br>ALWAYS target Captains<br>Ignore other targets</div>
+                </div>
+                <div class="enemy-card">
+                    <div class="enemy-name">Liege</div>
+                    <div class="enemy-rank">Rank 4</div>
+                    <div class="enemy-stats">Commanders<br>Awaken True Born<br>Once per game</div>
+                </div>
+                <div class="enemy-card">
+                    <div class="enemy-name">Iconoclast</div>
+                    <div class="enemy-rank">Rank 5</div>
+                    <div class="enemy-stats">Advanced warriors<br>Warp shift ability<br>Once per game</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>First Born AI</h2>
+            <h3>Targeting Priority</h3>
+            <ol>
+                <li>Closest non-First Born in LoS, not in cover</li>
+                <li>If all in cover: Closest visible</li>
+                <li>If none visible: Closest (around walls)</li>
+                <li><strong>Assassins:</strong> Always Captain if visible</li>
+            </ol>
+            <h3>Action Decision (Each Action)</h3>
+            <div class="flow-chart">
+                <div class="flow-step">Engaged? → Close Assault</div>
+                <div class="flow-step">No LoS? → Move</div>
+                <div class="flow-step">No ranged? → Move</div>
+                <div class="flow-step">Can reach this turn? → Move</div>
+                <div class="flow-step">Moved already? → Ranged</div>
+                <div class="flow-step">Shoot > Close? → Ranged</div>
+                <div class="flow-step">Else → Move</div>
+            </div>
+            <div class="info-box">
+                <strong>Unlimited Range</strong> for ranged attacks<br>
+                <strong>Move as far as possible</strong> each Move action
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>NPC Types</h2>
+            <h3>Civilians</h3>
+            <p><strong>Activation:</strong> Roll chance die each turn</p>
+            <ul>
+                <li>⬆️ Move in direction</li>
+                <li>⚔️ Attack closest then panic</li>
+                <li>🛡️ Hide (move to cover)</li>
+                <li>👍 Join nearest trader</li>
+                <li>💰 Trade with nearest trader</li>
+                <li>💀 Transform to Live One (if valid)</li>
+            </ul>
+            <div class="info-box">
+                <strong>Flee from First Born:</strong> Won't move within 4"<br>
+                <strong>Target:</strong> First Born > Gangers/Traders (closest)
+            </div>
+
+            <h3>Game Hunters</h3>
+            <p><strong>Target Priority:</strong> Beasts > First Born > Others</p>
+            <ul>
+                <li>Hunt Rock Worms and beasts</li>
+                <li>Collect trophy tokens from defeated beasts</li>
+                <li>Leave once all trophies collected</li>
+            </ul>
+
+            <h3>Rock Worms</h3>
+            <p><strong>Rank 3 Beast - Special Rules</strong></p>
+            <ul>
+                <li>Don't move, stay on worm hole</li>
+                <li>Attack range: 2 squares from hole</li>
+                <li>React instantly to ANY action in range</li>
+                <li>Cannot be knocked prone</li>
+                <li>Immune to Fire and Poison</li>
+                <li>Don't alert Drones</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>True Born (Boss Enemy)</h2>
+            <h3>States</h3>
+            <p><strong>Somnambulant:</strong> Sleepwalking, scatter only<br>
+            <strong>Awake:</strong> Full combat, 4 health inserts</p>
+            <h3>Waking Up</h3>
+            <ul>
+                <li>Closest Liege must move to True Born</li>
+                <li>Spend action in contact to wake</li>
+                <li>Flip to Awake side, insert #1</li>
+            </ul>
+            <h3>Forced Awakening (at CLEANSE)</h3>
+            <ul>
+                <li>Flip to Awake, insert #2</li>
+                <li>Place Fear Counter</li>
+                <li>Targets closest (friend or foe)</li>
+                <li>Gains 2 equipment tokens</li>
+            </ul>
+            <h3>Attacking Somnambulant</h3>
+            <p>Don't apply damage - roll Knowledge Die instead:</p>
+            <ul>
+                <li>1: Reality Shift (scatter twice)</li>
+                <li>2: Matter Mirror (reflect attack)</li>
+                <li>3: No effect</li>
+                <li>4: Instinctive Reflexes (moves & attacks)</li>
+                <li>5: Scryer Overload (1 damage, knock all prone)</li>
+                <li>6: Reboot (2 damage, summon 3 First Born)</li>
+            </ul>
+        </div>
+
+        <footer>
+            <div class="guide-links">
+                <a href="index.html" class="guide-link">← Back to Hub</a>
+                <a href="advancement.html" class="guide-link">Advancement →</a>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

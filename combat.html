@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Core Space: Combat Mechanics</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><a href="index.html">⚡ CORE SPACE ⚡</a></h1>
+            <div class="tagline">Combat Mechanics - Complete Reference</div>
+        </header>
+
+        <div class="breadcrumb">
+            <a href="index.html">Home</a>
+            <span>›</span>
+            <span>Combat</span>
+        </div>
+
+        <a href="index.html" class="back-btn">← Back to Hub</a>
+
+        <div class="section">
+            <h2>Attack Resolution Flow</h2>
+            <div class="flow-chart">
+                <div class="flow-step">1. Choose weapon (or unarmed)</div>
+                <div class="flow-step">2. Roll combat dice (1 blue + red dice as shown)</div>
+                <div class="flow-step">3. Count ⚔️ symbols = hits</div>
+                <div class="flow-step">4. Apply COVER (ranged only): Partial = -1 hit</div>
+                <div class="flow-step">5. Apply ARMOUR: Reduce hits by armour value</div>
+                <div class="flow-step">6. Remaining hits = DAMAGE</div>
+                <div class="flow-step">7. Check MISFIRE: 2+ 💥 = jam/break</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Combat Dice</h2>
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-label">Dice Types</div>
+                    <div class="stat-value" style="font-size: 1em;">1 Blue (always) + Red dice (weapon)</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">⚔️ Hit</div>
+                    <div class="stat-value" style="font-size: 1em;">Counts as 1 hit</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Blank</div>
+                    <div class="stat-value" style="font-size: 1em;">Miss (no effect)</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">💥 Misfire</div>
+                    <div class="stat-value" style="font-size: 1em;">2+ = jam/break weapon</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Range Bands</h2>
+            <table>
+                <tr>
+                    <th>Range</th>
+                    <th>Distance</th>
+                    <th>Weapon Dice</th>
+                    <th>Notes</th>
+                </tr>
+                <tr>
+                    <td><strong>Short</strong></td>
+                    <td>0-5"</td>
+                    <td>First #</td>
+                    <td>Can pick targets in melee</td>
+                </tr>
+                <tr>
+                    <td><strong>Medium</strong></td>
+                    <td>5-13"</td>
+                    <td>Second #</td>
+                    <td>Most weapons effective</td>
+                </tr>
+                <tr>
+                    <td><strong>Long</strong></td>
+                    <td>13"+</td>
+                    <td>Third #</td>
+                    <td>Few weapons work</td>
+                </tr>
+            </table>
+
+            <div class="info-box">
+                <strong>Example:</strong> Machine Pistol 3-2-0<br>
+                Short: 3 dice | Medium: 2 dice | Long: Cannot fire
+            </div>
+
+            <div class="warning-box">
+                <strong>First Born Exception:</strong> Unlimited range (ignore distance)<br>
+                <strong>Other NPCs:</strong> Max medium range (13")
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Line of Sight (LoS)</h2>
+            <h3>Drawing LoS</h3>
+            <p>Draw straight line from center of your base to <strong>any part</strong> of target</p>
+
+            <h3>Can Draw LoS If:</h3>
+            <ul>
+                <li>✓ Not completely blocked by wall</li>
+                <li>✓ Not completely blocked by terrain as tall as target</li>
+                <li>✓ Not completely blocked by another character</li>
+            </ul>
+
+            <h3>Character Height</h3>
+            <div class="info-box">
+                <ul>
+                    <li>All characters considered same height</li>
+                    <li>Entire area above base blocks LoS</li>
+                    <li><strong>Exception:</strong> Massive 🏔️ characters can be seen past smaller ones</li>
+                </ul>
+            </div>
+
+            <h3>Friendly LoS Assistance</h3>
+            <div class="info-box">
+                If in base contact with terrain shorter than you:
+                <ul>
+                    <li>Can ignore that terrain for LoS</li>
+                    <li>Applies to friendly crew in base contact with you too</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Cover System</h2>
+            <h3>Determining Cover</h3>
+            <p>Measure how much of target is obscured by terrain/walls:</p>
+
+            <table>
+                <tr>
+                    <th>Obscured</th>
+                    <th>Cover Level</th>
+                    <th>Effect</th>
+                </tr>
+                <tr>
+                    <td>&lt; 25%</td>
+                    <td>No Cover</td>
+                    <td>No modifier</td>
+                </tr>
+                <tr style="background: rgba(241, 196, 15, 0.2);">
+                    <td>25-90%</td>
+                    <td><strong>Partial Cover</strong></td>
+                    <td><strong>-1 hit</strong></td>
+                </tr>
+                <tr>
+                    <td>&gt; 90%</td>
+                    <td>Full Cover</td>
+                    <td>Cannot draw LoS</td>
+                </tr>
+            </table>
+
+            <h3>Cover Rules</h3>
+            <ul>
+                <li>Only applies to <strong>ranged</strong> attacks</li>
+                <li>Does NOT apply to close assault</li>
+                <li>Does NOT apply to attacks without origin (card effects, etc.)</li>
+                <li>Applied <strong>before</strong> armour</li>
+                <li>Prone characters still affected by cover normally</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Armour</h2>
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-label icon-armor">Physical Armour 🛡️</div>
+                    <div class="stat-value" style="font-size: 0.9em;">Permanent, reduces hits every attack</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label icon-armor">Shield Armour ⚡</div>
+                    <div class="stat-value" style="font-size: 0.9em;">Overloads if damage gets through</div>
+                </div>
+            </div>
+
+            <h3>Physical Armour</h3>
+            <ul>
+                <li>Reduces hits by value shown</li>
+                <li>Works on EVERY attack</li>
+                <li>Never depletes</li>
+                <li>Example: Armour 1 + 3 hits = 2 damage</li>
+            </ul>
+
+            <h3>Shield Armour</h3>
+            <ul>
+                <li>Reduces hits by value shown</li>
+                <li>If hits ≤ shield value: Blocks all, shield stays active</li>
+                <li>If hits > shield value: Blocks some, remaining damage, <strong>shield OVERLOADS</strong></li>
+                <li>Overloaded: Flip facedown, inactive rest of mission</li>
+                <li>Recharges between missions (campaign)</li>
+            </ul>
+
+            <h3>Multiple Armour</h3>
+            <div class="info-box">
+                If have both physical and shield:
+                <ul>
+                    <li>Use <strong>highest value</strong></li>
+                    <li>If equal: Shield takes priority</li>
+                </ul>
+            </div>
+
+            <h3>Combat Armour</h3>
+            <div class="info-box">
+                Some armour has unarmed combat icon:
+                <ul>
+                    <li>Can use as Close Assault weapon</li>
+                    <li>Roll dice shown</li>
+                    <li>Icons don't stack (use one or the other)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Damage Application</h2>
+            <h3>Against Traders</h3>
+            <ul>
+                <li>Lose 1 Health peg per damage</li>
+                <li>If Health reaches 0: <strong>Defeated</strong></li>
+                <li>Lay figure on side</li>
+                <li>Place assistance counter</li>
+                <li>Cannot be targeted by enemies</li>
+                <li>Can be revived or dragged</li>
+            </ul>
+
+            <h3>Against NPCs</h3>
+            <ul>
+                <li>Unless stated otherwise: Instantly defeated if take any damage</li>
+                <li>Remove from play</li>
+                <li>Items drop on floor</li>
+            </ul>
+
+            <h3>Exceptions</h3>
+            <div class="info-box">
+                <strong>True Born:</strong> Has 4 health inserts, not instantly defeated<br>
+                <strong>Some NPCs:</strong> May have health track (check board)
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Special Combat Situations</h2>
+
+            <h3>Shooting at Engaged Characters</h3>
+            <div class="warning-box">
+                <strong>Short range:</strong> Pick target freely (close enough to aim)<br>
+                <strong>Med/Long range:</strong> After rolling hits, roll chance die to determine who you hit<br>
+                Apply modifiers (cover, armour) for actual target hit
+            </div>
+
+            <h3>Engaged While Shooting</h3>
+            <div class="warning-box">
+                <strong>Cannot shoot target you're engaged with</strong><br>
+                <strong>Can shoot other targets</strong>, but engaged enemy makes free Close Assault first
+            </div>
+
+            <h3>Blast Weapons</h3>
+            <div class="info-box">
+                <strong>Targeting:</strong> Can target character OR point on floor<br>
+                <strong>Roll:</strong> Blue die only
+                <ul>
+                    <li>⚔️ = On target</li>
+                    <li>Blank = Miss 1" (your choice)</li>
+                    <li>💥 = Miss up to 2" (target player's choice, or first player if NPC)</li>
+                </ul>
+                <strong>Intervening terrain:</strong> -1 hit<br>
+                <strong>Area effect:</strong> Hit all partially within 1" and 2" of blast origin<br>
+                <strong>Roll damage:</strong> Large # for target, top right for 1", bottom right for 1-2"<br>
+                <strong>Cannot pass through walls</strong> but passes through windows/over terrain
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Misfires & Jams</h2>
+            <table>
+                <tr>
+                    <th>Weapon Type</th>
+                    <th>Trigger</th>
+                    <th>Effect</th>
+                    <th>Fix</th>
+                </tr>
+                <tr>
+                    <td>Ranged</td>
+                    <td>2+ 💥</td>
+                    <td>Jammed (rotate 180°), no damage</td>
+                    <td>Clear Jam action</td>
+                </tr>
+                <tr>
+                    <td>Close (Heavy Hit)</td>
+                    <td>2+ 💥</td>
+                    <td>Broken (flip facedown), no damage</td>
+                    <td>Unusable this mission</td>
+                </tr>
+                <tr>
+                    <td>Close (Standard Hit)</td>
+                    <td>-</td>
+                    <td>Ignore 💥</td>
+                    <td>N/A</td>
+                </tr>
+                <tr>
+                    <td>Unarmed</td>
+                    <td>-</td>
+                    <td>💥 has no effect</td>
+                    <td>N/A</td>
+                </tr>
+                <tr>
+                    <td>Reliable 🔧</td>
+                    <td>-</td>
+                    <td>Ignore 💥</td>
+                    <td>N/A</td>
+                </tr>
+                <tr>
+                    <td>First Born</td>
+                    <td>-</td>
+                    <td>Ignore ALL 💥</td>
+                    <td>Never jam/break</td>
+                </tr>
+            </table>
+
+            <h3>Accelerant Ammo</h3>
+            <div class="warning-box">
+                <strong>More powerful but more dangerous:</strong>
+                <ul>
+                    <li>+1 die per peg spent</li>
+                    <li>Single 💥 jams (vs normal 2+)</li>
+                    <li>Three 💥 breaks weapon</li>
+                    <li>Reliable requires 🔧🔧 (2 icons)</li>
+                    <li>With Fire/Poison: Single 💥 breaks AND deals 1 damage to user</li>
+                </ul>
+            </div>
+        </div>
+
+        <footer>
+            <div class="guide-links">
+                <a href="index.html" class="guide-link">← Back to Hub</a>
+                <a href="actions.html" class="guide-link">Actions</a>
+                <a href="phases.html" class="guide-link">Game Phases</a>
+                <a href="hostility.html" class="guide-link">Hostility →</a>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

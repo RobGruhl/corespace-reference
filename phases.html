@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Core Space: Game Phases</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><a href="index.html">⚡ CORE SPACE ⚡</a></h1>
+            <div class="tagline">Game Phases - Deep Dive</div>
+        </header>
+
+        <div class="breadcrumb">
+            <a href="index.html">Home</a>
+            <span>›</span>
+            <span>Game Phases</span>
+        </div>
+
+        <a href="index.html" class="back-btn">← Back to Hub</a>
+
+        <div class="section">
+            <h2>Round Structure Overview</h2>
+            <p>Each round consists of 5 phases in strict order. All characters act each round, then the round repeats until mission ends.</p>
+            <div class="flow-chart">
+                <div class="flow-step"><strong>1. HOSTILITY PHASE</strong> - Danger escalates</div>
+                <div class="flow-step"><strong>2. TRADER PHASE</strong> - Players take actions</div>
+                <div class="flow-step"><strong>3. FIRST BORN PHASE</strong> - Enemies arrive & attack</div>
+                <div class="flow-step"><strong>4. NPC PHASE</strong> - Other characters activate</div>
+                <div class="flow-step"><strong>5. ASSESSMENT PHASE</strong> - Clean up & reset</div>
+                <div style="text-align: center; margin-top: 10px; color: #53a8b6; font-size: 1.5em;">↻ REPEAT UNTIL MISSION ENDS</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>1. Hostility Phase</h2>
+            <div class="highlight-box">
+                <strong>Purpose:</strong> Escalate danger, introduce random events
+            </div>
+
+            <h3>Step 1: Add Hostility Peg</h3>
+            <ul>
+                <li><strong>Solo / 2-3 crews:</strong> Add 1 black peg</li>
+                <li><strong>4-6 crews:</strong> Add 2 black pegs (1 per 3 crews, rounded up)</li>
+                <li>Place in first empty space on tracker</li>
+            </ul>
+
+            <h3>Step 2: Draw Event Card</h3>
+            <ul>
+                <li>First player draws from event deck</li>
+                <li>Look at current hostility level on tracker</li>
+                <li>Resolve effects for that level ONLY</li>
+            </ul>
+
+            <h3>Step 3: Resolve Event</h3>
+            <div class="info-box">
+                <strong>Assistance Card (👍)?</strong>
+                <ul>
+                    <li>Keep it secret (don't show other players)</li>
+                    <li>Can use later during your turn</li>
+                    <li>Provides special benefit</li>
+                </ul>
+            </div>
+
+            <div class="info-box">
+                <strong>Can't Fully Resolve?</strong>
+                <ul>
+                    <li>Resolve as much as possible</li>
+                    <li>If completely unresolvable + has NPC icon: Place NPC instead</li>
+                    <li>Shuffle card back into deck</li>
+                    <li>Draw another card</li>
+                </ul>
+            </div>
+
+            <h3>Step 4: Discard Card</h3>
+            <ul>
+                <li>Place in faceup discard pile</li>
+                <li>If deck runs out: Shuffle discards to make new deck</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>2. Trader Phase</h2>
+            <div class="highlight-box">
+                <strong>Purpose:</strong> Players control their traders
+            </div>
+
+            <h3>Turn Order</h3>
+            <ol>
+                <li>Player with turn counter goes first</li>
+                <li>Proceed clockwise around table</li>
+                <li>Each player activates ONE trader</li>
+                <li>Continue until all traders activated</li>
+            </ol>
+
+            <h3>Activating a Trader</h3>
+            <div class="flow-chart">
+                <div class="flow-step">Choose unactivated trader (no activation counter)</div>
+                <div class="flow-step">Declare which trader you're activating</div>
+                <div class="flow-step">Take actions (number = ACTION stat)</div>
+                <div class="flow-step">Place activation counter on dashboard</div>
+                <div class="flow-step">Pass to next player clockwise</div>
+            </div>
+
+            <h3>Available Actions</h3>
+            <p>See <a href="actions.html" style="color: #53a8b6;">Actions page</a> for complete list. Common actions:</p>
+            <table>
+                <tr><th>Action</th><th>Cost</th></tr>
+                <tr><td>Move</td><td>1</td></tr>
+                <tr><td>Ranged Assault</td><td>1</td></tr>
+                <tr><td>Close Assault</td><td>1</td></tr>
+                <tr><td>Search</td><td>1</td></tr>
+                <tr><td>Effortless Actions</td><td>Free (1 per turn)</td></tr>
+            </table>
+
+            <h3>Special Cases</h3>
+            <div class="warning-box">
+                <strong>Prone Characters:</strong> Can only Stand Up (then act normally)<br>
+                <strong>Defeated Characters:</strong> Cannot act at all (need revival)
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>3. First Born Phase</h2>
+            <div class="highlight-box">
+                <strong>Purpose:</strong> Enemies arrive and attack using AI
+            </div>
+
+            <h3>Part 1: Arrival</h3>
+            <div class="flow-chart">
+                <div class="flow-step">Check current hostility level</div>
+                <div class="flow-step">For each icon in that level (top to bottom):</div>
+                <div class="flow-step" style="margin-left: 20px;">Number shown = that many arrive</div>
+                <div class="flow-step" style="margin-left: 20px;">Die icon = roll die for quantity</div>
+                <div class="flow-step">Roll chance die for entry point</div>
+                <div class="flow-step">Place in contact with entry point</div>
+            </div>
+
+            <div class="info-box">
+                <strong>Rank 4+ First Born:</strong> Once per game only (Live One, Gatherer, Annihilator, True Born)<br>
+                <strong>At CLEANSE:</strong> Use "Charged" side of First Born board<br>
+                <strong>No units available?:</strong> Use next lowest rank
+            </div>
+
+            <h3>Part 2: Activation</h3>
+            <p><strong>Order:</strong> Activate all First Born, highest rank first</p>
+
+            <h4>Targeting (Before Activation)</h4>
+            <div class="flow-chart">
+                <div class="flow-step">Closest non-First Born in LoS, not in cover</div>
+                <div class="flow-step">If all in cover: Closest visible</div>
+                <div class="flow-step">If none visible: Closest (measure around walls)</div>
+                <div class="flow-step"><strong>Exception - Assassins:</strong> Always target Captain if visible</div>
+                <div class="flow-step">Target LOCKS for entire activation (unless defeated)</div>
+            </div>
+
+            <h4>AI Decision Tree (Each Action)</h4>
+            <div class="flow-chart">
+                <div class="flow-step">Target engaged? → Close Assault</div>
+                <div class="flow-step">Target not in LoS? → Move toward target</div>
+                <div class="flow-step">No shooting stat? → Move toward target</div>
+                <div class="flow-step">Can reach & attack this turn? → Move toward target</div>
+                <div class="flow-step">Already moved? → Ranged Assault</div>
+                <div class="flow-step">Shooting > Close stat? → Ranged Assault</div>
+                <div class="flow-step">Otherwise → Move toward target</div>
+            </div>
+
+            <div class="info-box">
+                <strong>First Born Special Rules:</strong>
+                <ul>
+                    <li>Move as far as possible (stop if reach target)</li>
+                    <li>Ranged assault: <strong>UNLIMITED</strong> range</li>
+                    <li>Unaffected by 💥 results</li>
+                    <li>Knocked prone: Must Stand Up first action</li>
+                </ul>
+            </div>
+
+            <h4>Knowledge Die</h4>
+            <p>Drones and some First Born roll Knowledge Die after attack:</p>
+            <ul>
+                <li>Apply special effect based on result</li>
+                <li>When CLEANSE: May use multiple times per round (icon shows "2")</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>4. NPC Phase</h2>
+            <div class="highlight-box">
+                <strong>Purpose:</strong> Other characters (non-First Born) activate
+            </div>
+
+            <h3>Activation Order</h3>
+            <ol>
+                <li>Galactic Corps</li>
+                <li>Security</li>
+                <li>Gangers</li>
+                <li>Civilians</li>
+            </ol>
+            <p>Within each type: Highest rank first</p>
+
+            <h3>Arrival</h3>
+            <ol>
+                <li>Check hostility tracker for NPC icons</li>
+                <li>Roll chance die for entry point</li>
+                <li>Place in contact with entry point</li>
+                <li>Activate all of current type before placing next type</li>
+            </ol>
+
+            <h3>NPC Behavior</h3>
+            <p>Each NPC type has specific rules (see <a href="enemies.html" style="color: #53a8b6;">Enemies page</a>), but general rules:</p>
+            <ul>
+                <li>Knocked prone: Stand Up first</li>
+                <li>Move up to 4" per Move action (move as far as possible)</li>
+                <li>Fire at up to medium range</li>
+                <li>Follow target priorities</li>
+                <li>Cannot use items (but can carry them)</li>
+            </ul>
+
+            <h3>Joining Crews</h3>
+            <div class="info-box">
+                <strong>If Persuaded or Event:</strong>
+                <ul>
+                    <li>NPC joins crew for rest of mission</li>
+                    <li>Activated in Trader Phase by that player</li>
+                    <li>Keep NPC stats (don't flip board)</li>
+                    <li>If defeated: Removed, cannot revive</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>5. Assessment Phase</h2>
+            <div class="highlight-box">
+                <strong>Purpose:</strong> Clean up and prepare for next round
+            </div>
+
+            <h3>Steps</h3>
+            <ol>
+                <li><strong>Remove all activation counters</strong></li>
+                <li><strong>Resolve end-of-round effects</strong>
+                    <ul>
+                        <li>Any abilities triggering "at end of round"</li>
+                        <li>Rotate timed equipment tokens</li>
+                        <li>Check mission-specific conditions</li>
+                    </ul>
+                </li>
+                <li><strong>Pass turn counter clockwise</strong>
+                    <ul>
+                        <li>Next player becomes first player</li>
+                        <li>They go first in next round's Hostility Phase</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <div class="info-box">
+                <strong>That's it!</strong> Start next round with Hostility Phase
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Mission End Conditions</h2>
+            <p><strong>Mission ends immediately when:</strong></p>
+            <ul>
+                <li>All traders defeated, OR</li>
+                <li>All traders back on ships (exited board)</li>
+            </ul>
+
+            <h3>Winning</h3>
+            <ul>
+                <li>If entire crew defeated: Automatic loss</li>
+                <li>If primary objective completed: Winner</li>
+                <li>If nobody completed: All players lost</li>
+            </ul>
+
+            <h3>Tiebreakers (Multiplayer)</h3>
+            <ol>
+                <li>Most traders alive</li>
+                <li>Most valuable equipment (token sell values)</li>
+            </ol>
+        </div>
+
+        <footer>
+            <div class="guide-links">
+                <a href="index.html" class="guide-link">← Back to Hub</a>
+                <a href="actions.html" class="guide-link">Actions Details</a>
+                <a href="combat.html" class="guide-link">Combat Mechanics →</a>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

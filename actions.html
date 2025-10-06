@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Core Space: Actions Reference</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><a href="index.html">⚡ CORE SPACE ⚡</a></h1>
+            <div class="tagline">Actions - Complete Reference</div>
+        </header>
+
+        <div class="breadcrumb">
+            <a href="index.html">Home</a>
+            <span>›</span>
+            <span>Actions</span>
+        </div>
+
+        <a href="index.html" class="back-btn">← Back to Hub</a>
+
+        <!-- Overview -->
+        <div class="section">
+            <h2>Actions Overview</h2>
+            <p>Traders can take a number of actions equal to their ACTION stat (usually 2-4). Choose from the actions below. Some actions are "effortless" and don't count toward this limit.</p>
+            <div class="warning-box">
+                <strong>Restrictions:</strong> Prone characters can only Stand Up. Defeated characters cannot act at all.
+            </div>
+        </div>
+
+        <!-- Movement Actions -->
+        <div class="section">
+            <h2>Movement Actions</h2>
+
+            <div class="action-card">
+                <div class="action-card-title icon-move">Move</div>
+                <span class="action-cost">1 Action</span>
+                <div class="action-requirements"><strong>Requirements:</strong> None</div>
+                <div class="action-steps">
+                    <strong>Effect:</strong> Move up to 4" (or 4 squares if gridded)<br>
+                    <strong>Rules:</strong>
+                    <ul>
+                        <li>Measure from edge of base</li>
+                        <li>Can move any direction</li>
+                        <li>Can move through friendly characters</li>
+                        <li>Cannot move through enemies without permission</li>
+                        <li>Cannot move through/over terrain (unless Scramble ability)</li>
+                        <li><strong>MAX 11" per round</strong> across all moves</li>
+                    </ul>
+                </div>
+                <div class="warning-box">
+                    <strong>⚠️ Attack of Opportunity:</strong> Leaving base contact with enemy = they get free Close Assault
+                </div>
+            </div>
+
+            <div class="action-card">
+                <div class="action-card-title">Proximity Move</div>
+                <span class="action-cost free">Effortless</span>
+                <div class="action-requirements"><strong>Requirements:</strong> None</div>
+                <div class="action-steps">
+                    <strong>Effect:</strong> Move up to 1"<br>
+                    <strong>Note:</strong> Still counts toward 11" maximum per round
+                </div>
+            </div>
+        </div>
+
+        <!-- Combat Actions -->
+        <div class="section">
+            <h2>Combat Actions</h2>
+
+            <div class="action-card">
+                <div class="action-card-title icon-shoot">Ranged Assault</div>
+                <span class="action-cost">1 Action</span>
+                <div class="action-requirements"><strong>Requirements:</strong> Target in LoS & range, not engaged with target, have ammo</div>
+                <div class="action-steps">
+                    <strong>Steps:</strong>
+                    <ol>
+                        <li>Choose ranged weapon</li>
+                        <li>Measure range (Short 0-5" / Medium 5-13" / Long 13"+)</li>
+                        <li>Roll dice for that range (weapon shows 3 numbers)</li>
+                        <li>Count ⚔️ symbols = hits</li>
+                        <li>Apply cover: Partial = -1 hit</li>
+                        <li>Apply armour: Reduce hits</li>
+                        <li>Remaining hits = damage</li>
+                        <li>Remove 1 ammo peg</li>
+                    </ol>
+                </div>
+                <div class="info-box">
+                    <strong>First Shot Each Round:</strong> Place ammo peg in hostility tracker (not discard pile)
+                </div>
+                <div class="warning-box">
+                    <strong>Engaged with Different Enemy?</strong> Can shoot, but engaged enemy makes free Close Assault first<br>
+                    <strong>Shooting into Melee:</strong> Short range = pick target | Med/Long = roll chance die after hits<br>
+                    <strong>Misfire:</strong> 2+ 💥 = jammed (rotate 180°, need Clear Jam action)
+                </div>
+            </div>
+
+            <div class="action-card">
+                <div class="action-card-title icon-melee">Close Assault</div>
+                <span class="action-cost">1 Action</span>
+                <div class="action-requirements"><strong>Requirements:</strong> Target in base contact (engaged)</div>
+                <div class="action-steps">
+                    <strong>Steps:</strong>
+                    <ol>
+                        <li>Choose weapon or unarmed</li>
+                        <li>If weapon: Choose standard hit (ignore 💥) or heavy hit (more dice, 💥 may break)</li>
+                        <li>Roll dice shown</li>
+                        <li>Count ⚔️ symbols = hits</li>
+                        <li>Apply armour (cover doesn't apply)</li>
+                        <li>Remaining hits = damage</li>
+                    </ol>
+                </div>
+                <div class="warning-box">
+                    <strong>Misfire (Heavy Hit Only):</strong> 2+ 💥 = broken (flip facedown, unusable)
+                </div>
+            </div>
+
+            <div class="action-card">
+                <div class="action-card-title">Knock Back</div>
+                <span class="action-cost">1 Action</span>
+                <div class="action-requirements"><strong>Requirements:</strong> Target in base contact</div>
+                <div class="action-steps">
+                    <strong>Steps:</strong>
+                    <ol>
+                        <li>Roll dice = unarmed combat value (or 1 if none)</li>
+                        <li>Each ⚔️ = push target 1" directly away</li>
+                        <li>3+ hits = target knocked prone</li>
+                        <li>Can follow to stay adjacent (optional)</li>
+                    </ol>
+                </div>
+                <div class="info-box">
+                    <strong>Armour has no effect</strong><br>
+                    <strong>Massive enemies:</strong> Reduce hits by 🏔️ number, add that many to their Knock Backs<br>
+                    <strong>Roll 💥?</strong> Stumble, no effect, target makes free Knock Back against you
+                </div>
+            </div>
+        </div>
+
+        <!-- Utility Actions -->
+        <div class="section">
+            <h2>Utility Actions</h2>
+
+            <div class="action-card">
+                <div class="action-card-title icon-search">Search</div>
+                <span class="action-cost">1 Action</span>
+                <div class="action-requirements"><strong>Requirements:</strong> See types below, not engaged</div>
+                <div class="action-steps">
+                    <strong>Search Terrain:</strong>
+                    <ul>
+                        <li>In base contact with searchable terrain (crate, ark, stasis pod)</li>
+                        <li>Open, take contents (keep secret)</li>
+                        <li>Add items to dashboard or discard back</li>
+                        <li>Can search same terrain multiple times</li>
+                    </ul>
+                    <strong>General Search:</strong>
+                    <ul>
+                        <li>In a room (enclosed by walls/board edge)</li>
+                        <li>No enemies in room</li>
+                        <li>Draw 1 random standard item from token pouch</li>
+                        <li>Place Search Counter (once per room only)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="action-card">
+                <div class="action-card-title">Mine</div>
+                <span class="action-cost">1 Action</span>
+                <div class="action-requirements"><strong>Requirements:</strong> Have mining tool, adjacent to solid wall, not engaged</div>
+                <div class="action-steps">
+                    <strong>Steps:</strong>
+                    <ol>
+                        <li>Place Mine Counter in room</li>
+                        <li>Draw 1 random <strong>small</strong> token</li>
+                        <li>Add to dashboard or discard</li>
+                    </ol>
+                </div>
+                <div class="warning-box">
+                    <strong>Rock Worm Larvae:</strong> May draw larvae, suffer hits shown (ignore physical armour)
+                </div>
+            </div>
+
+            <div class="action-card">
+                <div class="action-card-title icon-persuade">Persuade</div>
+                <span class="action-cost">1 Action</span>
+                <div class="action-requirements"><strong>Requirements:</strong> In base contact with NPC, not engaged, NPC has 🗣️ value</div>
+                <div class="action-steps">
+                    <strong>Options (choose before rolling):</strong>
+                    <ul>
+                        <li><strong>Trade item:</strong> Swap items (small only)</li>
+                        <li><strong>Join crew:</strong> NPC becomes ally for mission</li>
+                        <li><strong>Mission-specific:</strong> As defined in briefing</li>
+                    </ul>
+                    <strong>Resolution:</strong>
+                    <ol>
+                        <li>Roll dice = your SKILL stat</li>
+                        <li>NPC's 🗣️ value reduces hits (like armour)</li>
+                        <li>If still score hit = success</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="action-card">
+                <div class="action-card-title icon-ammo">Reload</div>
+                <span class="action-cost">1 Action</span>
+                <div class="action-requirements"><strong>Requirements:</strong> Holding ammo token, not engaged</div>
+                <div class="action-steps">
+                    <strong>Effect:</strong> Add ammo pegs shown on token (up to max), then flip 🔄 or discard 🗑️ token
+                </div>
+            </div>
+
+            <div class="action-card">
+                <div class="action-card-title">Interact</div>
+                <span class="action-cost">1 Action</span>
+                <div class="action-requirements"><strong>Requirements:</strong> Mission/terrain-specific</div>
+                <div class="action-steps">
+                    <strong>Effect:</strong> Follow mission or terrain rules (usually requires base contact, not engaged)
+                </div>
+            </div>
+        </div>
+
+        <!-- Maintenance Actions -->
+        <div class="section">
+            <h2>Maintenance Actions</h2>
+
+            <div class="action-card">
+                <div class="action-card-title">Clear Jam</div>
+                <span class="action-cost">1 Action</span>
+                <div class="action-requirements"><strong>Requirements:</strong> Have jammed weapon, not engaged</div>
+                <div class="action-steps">
+                    <strong>Effect:</strong> Rotate jammed weapon 180°, weapon functions normally
+                </div>
+            </div>
+
+            <div class="action-card">
+                <div class="action-card-title">Don/Remove Armour</div>
+                <span class="action-cost">1 Action</span>
+                <div class="action-requirements"><strong>Requirements:</strong> Not engaged</div>
+                <div class="action-steps">
+                    <strong>Effect:</strong> Move armour between item tray and armour slot (only armour in slot provides protection)
+                </div>
+            </div>
+
+            <div class="action-card">
+                <div class="action-card-title">Stand Up</div>
+                <span class="action-cost">1 Action</span>
+                <div class="action-requirements"><strong>Requirements:</strong> Character is prone</div>
+                <div class="action-steps">
+                    <strong>Effect:</strong> Stand figure upright, acts normally from then on
+                </div>
+            </div>
+
+            <div class="action-card">
+                <div class="action-card-title">Repair</div>
+                <span class="action-cost">1 Action</span>
+                <div class="action-requirements"><strong>Requirements:</strong> Machine or Tech Class, base contact with target, not engaged</div>
+                <div class="action-steps">
+                    <strong>Repair Costs:</strong> Equipment 1 RP | Consoles 3 RP | Defeated Machine 5 RP | Damaged Machine 1 RP/health<br>
+                    <strong>Steps:</strong>
+                    <ol>
+                        <li>Roll 1 combat die</li>
+                        <li>Each ⚔️ = 1 Repair Point</li>
+                        <li>Apply RPs, place Reminder Counter if not done</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <!-- Effortless Actions -->
+        <div class="section">
+            <h2>Effortless Actions</h2>
+            <div class="highlight-box">
+                <div class="highlight-title">Limit: ONE Free Effortless Action Per Turn</div>
+                Can spend 1 skill peg for 2nd effortless action (counts as skill use)
+            </div>
+
+            <div class="action-grid">
+                <div class="action-card">
+                    <div class="action-card-title">Use ✓ Item</div>
+                    <span class="action-cost free">Effortless</span>
+                    <div class="action-steps">Use any item with effortless icon</div>
+                </div>
+
+                <div class="action-card">
+                    <div class="action-card-title">Throw Item</div>
+                    <span class="action-cost free">Effortless</span>
+                    <div class="action-requirements">Item has 🎯 icon, LoS to target</div>
+                    <div class="action-steps">Range: Short (or M/L if marked)</div>
+                </div>
+
+                <div class="action-card">
+                    <div class="action-card-title">Pick Up / Drop Item</div>
+                    <span class="action-cost free">Effortless</span>
+                    <div class="action-requirements">Base contact with item</div>
+                </div>
+
+                <div class="action-card">
+                    <div class="action-card-title">Give / Take / Swap Items</div>
+                    <span class="action-cost free">Effortless</span>
+                    <div class="action-requirements">Base contact with character (owner allows)</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Special Mechanics -->
+        <div class="section">
+            <h2>Special Mechanics</h2>
+
+            <h3>Attacks of Opportunity</h3>
+            <div class="warning-box">
+                <strong>Trigger:</strong> Character leaves base contact with 1+ standing enemies<br>
+                <strong>Effect:</strong> ALL engaged standing enemies make free Close Assault<br>
+                <strong>Timing:</strong> Resolves immediately (interrupts movement)<br>
+                <strong>Note:</strong> Doesn't use attacker's actions, can be done even if already activated
+            </div>
+
+            <h3>Misfires</h3>
+            <div class="info-box">
+                <strong>Ranged Weapons (2+ 💥):</strong>
+                <ul>
+                    <li>Jammed: Rotate 180°, no damage, requires Clear Jam</li>
+                </ul>
+                <strong>Close Weapons Heavy Hit (2+ 💥):</strong>
+                <ul>
+                    <li>Broken: Flip facedown, no damage, unusable rest of mission</li>
+                </ul>
+                <strong>Exceptions:</strong>
+                <ul>
+                    <li>Unarmed: 💥 has no effect</li>
+                    <li>Reliable 🔧 weapons: Ignore 💥</li>
+                    <li>First Born weapons: Ignore all 💥</li>
+                </ul>
+            </div>
+
+            <h3>Entering/Leaving Ship</h3>
+            <div class="info-box">
+                <strong>First action of game:</strong> Must be Move to enter board from airlock<br>
+                <strong>Return to ship:</strong> Move to airlock (need 1" remaining to enter)<br>
+                <strong>Once left board:</strong> Out of game, cannot return<br>
+                <strong>Enemy access:</strong> Cannot enter your ship without permission
+            </div>
+        </div>
+
+        <footer>
+            <div class="guide-links">
+                <a href="index.html" class="guide-link">← Back to Hub</a>
+                <a href="phases.html" class="guide-link">Game Phases →</a>
+                <a href="combat.html" class="guide-link">Combat Details →</a>
+            </div>
+            <div style="margin-top: 15px; font-size: 0.75em; color: #888;">
+                Core Space Actions Reference | <a href="Player_Flow_Guide.md" style="color: #53a8b6;">Full Player Guide</a>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
