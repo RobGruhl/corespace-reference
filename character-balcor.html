@@ -6,37 +6,55 @@
     <title>Balcor - Character Tracker</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        .level-controls {
+        .skill-controls {
             background: rgba(83, 168, 182, 0.1);
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 15px;
             display: flex;
-            gap: 10px;
+            gap: 15px;
             flex-wrap: wrap;
             align-items: center;
         }
 
-        .level-btn {
-            background: rgba(83, 168, 182, 0.2);
-            border: 2px solid #53a8b6;
-            color: #53a8b6;
-            padding: 8px 16px;
+        .reset-btn {
+            background: rgba(231, 76, 60, 0.3);
+            border: 2px solid #e74c3c;
+            color: #e74c3c;
+            padding: 6px 12px;
             border-radius: 5px;
             cursor: pointer;
+            font-size: 0.85em;
             transition: all 0.3s;
+        }
+
+        .reset-btn:hover {
+            background: rgba(231, 76, 60, 0.5);
+        }
+
+        .skill-select {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid #53a8b6;
+            color: #eee;
+            padding: 4px 8px;
+            border-radius: 4px;
             font-size: 0.9em;
-            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 8px;
         }
 
-        .level-btn:hover {
-            background: rgba(83, 168, 182, 0.4);
-            transform: translateY(-2px);
+        .skill-select option {
+            background: #1a1a2e;
+            color: #eee;
         }
 
-        .level-btn.active {
-            background: #53a8b6;
-            color: #1a1a2e;
+        .action-card.not-learned {
+            opacity: 0.3;
+            filter: grayscale(0.8);
+        }
+
+        .action-card.not-learned .action-card-title {
+            text-decoration: line-through;
         }
 
         .skill-level {
@@ -81,7 +99,8 @@
         .level-label[data-level="passive"] { color: #9b59b6; }
 
         @media print {
-            .level-controls, .back-btn, .breadcrumb { display: none; }
+            .skill-controls, .back-btn, .breadcrumb, .skill-select { display: none; }
+            .action-card.not-learned { display: none; }
         }
     </style>
 </head>
@@ -101,28 +120,25 @@
         <a href="index.html" class="back-btn">← Back to Hub</a>
 
         <div class="section">
-            <h2>Skill Level View</h2>
-            <div class="level-controls">
-                <span style="color: #53a8b6; margin-right: 10px;">Show:</span>
-                <button class="level-btn" onclick="showLevel('all')">All Levels</button>
-                <button class="level-btn active" onclick="showLevel('1')">Level 1 Only</button>
-                <button class="level-btn" onclick="showLevel('2')">Level 2 Only</button>
-                <button class="level-btn" onclick="showLevel('3')">Level 3 Only</button>
-                <button class="level-btn" onclick="showLevel('12')">Levels 1 & 2</button>
-                <button class="level-btn" onclick="showLevel('123')">Levels 1-3</button>
-            </div>
-            <div class="info-box">
-                <strong>How to use:</strong> Click buttons above to show only the skill levels you've unlocked. Your choice is saved automatically!
+            <h2>Campaign Tracker</h2>
+            <div class="skill-controls">
+                <div class="info-box" style="margin: 0; flex: 1;">
+                    <strong>How to use:</strong> Use the dropdown on each skill card to set your current level. Cards update automatically and your progress is saved!
+                </div>
+                <button class="reset-btn" onclick="resetAll()">Reset All Skills</button>
             </div>
         </div>
 
         <div class="section">
-            <h2>All Skills</h2>
-            <p>Skills organized by class. Use the toggles above to filter by your current progression.</p>
-
-            <h3>Tech Class</h3>
+            <h2>Tech Class</h2>
             <div class="action-grid">
-                <div class="action-card">
+                <div class="action-card" data-skill="accelerate">
+                    <select class="skill-select" onchange="updateSkill('accelerate', this.value)">
+                        <option value="0">Not Learned</option>
+                        <option value="1">Level 1</option>
+                        <option value="2">Level 2</option>
+                        <option value="3">Level 3</option>
+                    </select>
                     <div class="action-card-title">Accelerate</div>
                     <div class="action-requirements">Active skill</div>
                     <div>
@@ -141,7 +157,13 @@
                     </div>
                 </div>
 
-                <div class="action-card">
+                <div class="action-card" data-skill="regulate">
+                    <select class="skill-select" onchange="updateSkill('regulate', this.value)">
+                        <option value="0">Not Learned</option>
+                        <option value="1">Level 1</option>
+                        <option value="2">Level 2</option>
+                        <option value="3">Level 3</option>
+                    </select>
                     <div class="action-card-title">Regulate</div>
                     <div class="action-requirements">Active skill - hostility control</div>
                     <div>
@@ -160,7 +182,13 @@
                     </div>
                 </div>
 
-                <div class="action-card">
+                <div class="action-card" data-skill="hack">
+                    <select class="skill-select" onchange="updateSkill('hack', this.value)">
+                        <option value="0">Not Learned</option>
+                        <option value="1">Level 1</option>
+                        <option value="2">Level 2</option>
+                        <option value="3">Level 3</option>
+                    </select>
                     <div class="action-card-title">Hack</div>
                     <div class="action-requirements">Active skill - tech warfare</div>
                     <div>
@@ -179,7 +207,13 @@
                     </div>
                 </div>
 
-                <div class="action-card">
+                <div class="action-card" data-skill="assist">
+                    <select class="skill-select" onchange="updateSkill('assist', this.value)">
+                        <option value="0">Not Learned</option>
+                        <option value="1">Level 1</option>
+                        <option value="2">Level 2</option>
+                        <option value="3">Level 3</option>
+                    </select>
                     <div class="action-card-title">Assist</div>
                     <div class="action-requirements">Active skill - team support</div>
                     <div>
@@ -201,7 +235,13 @@
 
             <h3>Ranged Class</h3>
             <div class="action-grid">
-                <div class="action-card">
+                <div class="action-card" data-skill="sureshot">
+                    <select class="skill-select" onchange="updateSkill('sureshot', this.value)">
+                        <option value="0">Not Learned</option>
+                        <option value="1">Level 1</option>
+                        <option value="2">Level 2</option>
+                        <option value="3">Level 3</option>
+                    </select>
                     <div class="action-card-title">Sure Shot</div>
                     <div class="action-requirements">Active skill</div>
                     <div>
@@ -220,7 +260,13 @@
                     </div>
                 </div>
 
-                <div class="action-card">
+                <div class="action-card" data-skill="marksman">
+                    <select class="skill-select" onchange="updateSkill('marksman', this.value)">
+                        <option value="0">Not Learned</option>
+                        <option value="1">Level 1</option>
+                        <option value="2">Level 2</option>
+                        <option value="3">Level 3</option>
+                    </select>
                     <div class="action-card-title">Marksman</div>
                     <div class="action-requirements">Active skill - multi-target</div>
                     <div>
@@ -239,7 +285,13 @@
                     </div>
                 </div>
 
-                <div class="action-card">
+                <div class="action-card" data-skill="countershot">
+                    <select class="skill-select" onchange="updateSkill('countershot', this.value)">
+                        <option value="0">Not Learned</option>
+                        <option value="1">Level 1</option>
+                        <option value="2">Level 2</option>
+                        <option value="3">Level 3</option>
+                    </select>
                     <div class="action-card-title">Counter Shot</div>
                     <div class="action-requirements">Reaction skill</div>
                     <div>
@@ -262,7 +314,13 @@
                     </div>
                 </div>
 
-                <div class="action-card">
+                <div class="action-card" data-skill="weaponsexpert">
+                    <select class="skill-select" onchange="updateSkill('weaponsexpert', this.value)">
+                        <option value="0">Not Learned</option>
+                        <option value="1">Level 1</option>
+                        <option value="2">Level 2</option>
+                        <option value="3">Level 3</option>
+                    </select>
                     <div class="action-card-title">Weapons Expert</div>
                     <div class="action-requirements">Passive + Active</div>
                     <div>
@@ -289,7 +347,13 @@
                     </div>
                 </div>
 
-                <div class="action-card">
+                <div class="action-card" data-skill="disarm">
+                    <select class="skill-select" onchange="updateSkill('disarm', this.value)">
+                        <option value="0">Not Learned</option>
+                        <option value="1">Level 1</option>
+                        <option value="2">Level 2</option>
+                        <option value="3">Level 3</option>
+                    </select>
                     <div class="action-card-title">Disarm</div>
                     <div class="action-requirements">Reaction skill</div>
                     <div>
@@ -312,7 +376,13 @@
                     </div>
                 </div>
 
-                <div class="action-card">
+                <div class="action-card" data-skill="evade">
+                    <select class="skill-select" onchange="updateSkill('evade', this.value)">
+                        <option value="0">Not Learned</option>
+                        <option value="1">Level 1</option>
+                        <option value="2">Level 2</option>
+                        <option value="3">Level 3</option>
+                    </select>
                     <div class="action-card-title">Evade</div>
                     <div class="action-requirements">Reaction skill</div>
                     <div>
@@ -338,7 +408,13 @@
 
             <h3>Close Combat Class</h3>
             <div class="action-grid">
-                <div class="action-card">
+                <div class="action-card" data-skill="onslaught">
+                    <select class="skill-select" onchange="updateSkill('onslaught', this.value)">
+                        <option value="0">Not Learned</option>
+                        <option value="1">Level 1</option>
+                        <option value="2">Level 2</option>
+                        <option value="3">Level 3</option>
+                    </select>
                     <div class="action-card-title">Onslaught</div>
                     <div class="action-requirements">Active skill - pure damage</div>
                     <div>
@@ -357,7 +433,13 @@
                     </div>
                 </div>
 
-                <div class="action-card">
+                <div class="action-card" data-skill="reflexes">
+                    <select class="skill-select" onchange="updateSkill('reflexes', this.value)">
+                        <option value="0">Not Learned</option>
+                        <option value="1">Level 1</option>
+                        <option value="2">Level 2</option>
+                        <option value="3">Level 3</option>
+                    </select>
                     <div class="action-card-title">Reflexes</div>
                     <div class="action-requirements">Reaction skill - defense</div>
                     <div>
@@ -380,7 +462,13 @@
                     </div>
                 </div>
 
-                <div class="action-card">
+                <div class="action-card" data-skill="precision">
+                    <select class="skill-select" onchange="updateSkill('precision', this.value)">
+                        <option value="0">Not Learned</option>
+                        <option value="1">Level 1</option>
+                        <option value="2">Level 2</option>
+                        <option value="3">Level 3</option>
+                    </select>
                     <div class="action-card-title">Precision</div>
                     <div class="action-requirements">Passive + Reaction</div>
                     <div>
@@ -407,7 +495,13 @@
                     </div>
                 </div>
 
-                <div class="action-card">
+                <div class="action-card" data-skill="brutalassault">
+                    <select class="skill-select" onchange="updateSkill('brutalassault', this.value)">
+                        <option value="0">Not Learned</option>
+                        <option value="1">Level 1</option>
+                        <option value="2">Level 2</option>
+                        <option value="3">Level 3</option>
+                    </select>
                     <div class="action-card-title">Brutal Assault</div>
                     <div class="action-requirements">Active skill - multi-attack</div>
                     <div>
@@ -437,58 +531,69 @@
     </div>
 
     <script>
-        // Load saved level preference
-        let currentLevel = localStorage.getItem('balcor-skill-level') || '1';
+        const CHARACTER = 'balcor';
 
-        function showLevel(level) {
-            currentLevel = level;
-            localStorage.setItem('balcor-skill-level', level);
+        function updateSkill(skillName, level) {
+            level = parseInt(level);
+            localStorage.setItem(`${CHARACTER}-${skillName}`, level);
 
-            // Update button states
-            document.querySelectorAll('.level-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            event.target.classList.add('active');
+            const card = document.querySelector(`[data-skill="${skillName}"]`);
+            const skillLevels = card.querySelectorAll('.skill-level');
 
-            // Show/hide skill levels
-            const allLevels = document.querySelectorAll('.skill-level');
-            allLevels.forEach(skillDiv => {
-                const skillLevel = skillDiv.getAttribute('data-level');
+            // Update card appearance
+            if (level === 0) {
+                card.classList.add('not-learned');
+            } else {
+                card.classList.remove('not-learned');
+            }
 
-                if (level === 'all' || skillLevel === 'passive') {
-                    skillDiv.classList.remove('hidden');
-                } else if (level === '123') {
-                    skillDiv.classList.remove('hidden');
-                } else if (level === '12') {
-                    if (skillLevel === '1' || skillLevel === '2') {
-                        skillDiv.classList.remove('hidden');
+            // Show/hide levels
+            skillLevels.forEach(levelDiv => {
+                const divLevel = levelDiv.getAttribute('data-level');
+
+                // Always show passive/trigger info if skill is learned
+                if (divLevel === 'passive') {
+                    if (level > 0) {
+                        levelDiv.classList.remove('hidden');
                     } else {
-                        skillDiv.classList.add('hidden');
+                        levelDiv.classList.add('hidden');
                     }
                 } else {
-                    if (skillLevel === level) {
-                        skillDiv.classList.remove('hidden');
+                    // Show levels 1 through current level
+                    const divLevelNum = parseInt(divLevel);
+                    if (divLevelNum <= level) {
+                        levelDiv.classList.remove('hidden');
                     } else {
-                        skillDiv.classList.add('hidden');
+                        levelDiv.classList.add('hidden');
                     }
                 }
             });
         }
 
-        // Apply saved level on page load
+        function resetAll() {
+            if (!confirm('Reset all skills to "Not Learned"? This cannot be undone.')) {
+                return;
+            }
+
+            // Get all skill cards
+            const cards = document.querySelectorAll('[data-skill]');
+            cards.forEach(card => {
+                const skillName = card.getAttribute('data-skill');
+                const select = card.querySelector('select');
+                select.value = '0';
+                updateSkill(skillName, 0);
+            });
+        }
+
+        // Load saved states on page load
         window.addEventListener('DOMContentLoaded', () => {
-            // Find and activate the correct button
-            const buttons = document.querySelectorAll('.level-btn');
-            buttons.forEach(btn => {
-                if (btn.textContent.includes(currentLevel) ||
-                    (currentLevel === '1' && btn.textContent === 'Level 1 Only') ||
-                    (currentLevel === '2' && btn.textContent === 'Level 2 Only') ||
-                    (currentLevel === '3' && btn.textContent === 'Level 3 Only') ||
-                    (currentLevel === '12' && btn.textContent === 'Levels 1 & 2') ||
-                    (currentLevel === '123' && btn.textContent === 'Levels 1-3') ||
-                    (currentLevel === 'all' && btn.textContent === 'All Levels')) {
-                    btn.click();
-                }
+            const cards = document.querySelectorAll('[data-skill]');
+            cards.forEach(card => {
+                const skillName = card.getAttribute('data-skill');
+                const savedLevel = localStorage.getItem(`${CHARACTER}-${skillName}`) || '0';
+                const select = card.querySelector('select');
+                select.value = savedLevel;
+                updateSkill(skillName, savedLevel);
             });
         });
     </script>
