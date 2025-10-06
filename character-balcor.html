@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Balcor - Character Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .level-controls {
+            background: rgba(83, 168, 182, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .level-btn {
+            background: rgba(83, 168, 182, 0.2);
+            border: 2px solid #53a8b6;
+            color: #53a8b6;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+
+        .level-btn:hover {
+            background: rgba(83, 168, 182, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .level-btn.active {
+            background: #53a8b6;
+            color: #1a1a2e;
+        }
+
+        .skill-level {
+            padding: 8px 12px;
+            margin: 5px 0;
+            border-radius: 4px;
+            border-left: 4px solid;
+        }
+
+        .skill-level[data-level="1"] {
+            border-left-color: #2ecc71;
+            background: rgba(46, 204, 113, 0.1);
+        }
+
+        .skill-level[data-level="2"] {
+            border-left-color: #f39c12;
+            background: rgba(243, 156, 18, 0.1);
+        }
+
+        .skill-level[data-level="3"] {
+            border-left-color: #e74c3c;
+            background: rgba(231, 76, 60, 0.1);
+        }
+
+        .skill-level[data-level="passive"] {
+            border-left-color: #9b59b6;
+            background: rgba(155, 89, 182, 0.1);
+        }
+
+        .skill-level.hidden {
+            display: none;
+        }
+
+        .level-label {
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .level-label[data-level="1"] { color: #2ecc71; }
+        .level-label[data-level="2"] { color: #f39c12; }
+        .level-label[data-level="3"] { color: #e74c3c; }
+        .level-label[data-level="passive"] { color: #9b59b6; }
+
+        @media print {
+            .level-controls, .back-btn, .breadcrumb { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><a href="index.html">⚡ CORE SPACE ⚡</a></h1>
+            <div class="tagline">Balcor - Character Progression Tracker</div>
+        </header>
+
+        <div class="breadcrumb">
+            <a href="index.html">Home</a>
+            <span>›</span>
+            <span>Balcor</span>
+        </div>
+
+        <a href="index.html" class="back-btn">← Back to Hub</a>
+
+        <div class="section">
+            <h2>Skill Level View</h2>
+            <div class="level-controls">
+                <span style="color: #53a8b6; margin-right: 10px;">Show:</span>
+                <button class="level-btn" onclick="showLevel('all')">All Levels</button>
+                <button class="level-btn active" onclick="showLevel('1')">Level 1 Only</button>
+                <button class="level-btn" onclick="showLevel('2')">Level 2 Only</button>
+                <button class="level-btn" onclick="showLevel('3')">Level 3 Only</button>
+                <button class="level-btn" onclick="showLevel('12')">Levels 1 & 2</button>
+                <button class="level-btn" onclick="showLevel('123')">Levels 1-3</button>
+            </div>
+            <div class="info-box">
+                <strong>How to use:</strong> Click buttons above to show only the skill levels you've unlocked. Your choice is saved automatically!
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>All Skills</h2>
+            <p>Skills organized by class. Use the toggles above to filter by your current progression.</p>
+
+            <h3>Tech Class</h3>
+            <div class="action-grid">
+                <div class="action-card">
+                    <div class="action-card-title">Accelerate</div>
+                    <div class="action-requirements">Active skill</div>
+                    <div>
+                        <div class="skill-level" data-level="1">
+                            <span class="level-label" data-level="1">Level 1:</span>
+                            Make Move action
+                        </div>
+                        <div class="skill-level" data-level="2">
+                            <span class="level-label" data-level="2">Level 2:</span>
+                            2 extra Move/Assault actions
+                        </div>
+                        <div class="skill-level" data-level="3">
+                            <span class="level-label" data-level="3">Level 3:</span>
+                            3 extra Move/Assault actions
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-card">
+                    <div class="action-card-title">Regulate</div>
+                    <div class="action-requirements">Active skill - hostility control</div>
+                    <div>
+                        <div class="skill-level" data-level="1">
+                            <span class="level-label" data-level="1">Level 1:</span>
+                            Remove hostility peg OR 1 repair point
+                        </div>
+                        <div class="skill-level" data-level="2">
+                            <span class="level-label" data-level="2">Level 2:</span>
+                            Turn over entry point (First Born won't use)
+                        </div>
+                        <div class="skill-level" data-level="3">
+                            <span class="level-label" data-level="3">Level 3:</span>
+                            Choose point, all First Born in medium range move there, don't act
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-card">
+                    <div class="action-card-title">Hack</div>
+                    <div class="action-requirements">Active skill - tech warfare</div>
+                    <div>
+                        <div class="skill-level" data-level="1">
+                            <span class="level-label" data-level="1">Level 1:</span>
+                            Shut down rank 1-2 First Born OR lock/unlock door
+                        </div>
+                        <div class="skill-level" data-level="2">
+                            <span class="level-label" data-level="2">Level 2:</span>
+                            Shut down 2 rank 1-2 First Born
+                        </div>
+                        <div class="skill-level" data-level="3">
+                            <span class="level-label" data-level="3">Level 3:</span>
+                            As level 2 OR control rank 1-3 OR lock/unlock any door
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-card">
+                    <div class="action-card-title">Assist</div>
+                    <div class="action-requirements">Active skill - team support</div>
+                    <div>
+                        <div class="skill-level" data-level="1">
+                            <span class="level-label" data-level="1">Level 1:</span>
+                            Target can't be harmed by ranged this round
+                        </div>
+                        <div class="skill-level" data-level="2">
+                            <span class="level-label" data-level="2">Level 2:</span>
+                            Target restores 2 health
+                        </div>
+                        <div class="skill-level" data-level="3">
+                            <span class="level-label" data-level="3">Level 3:</span>
+                            3 characters each make 1 action
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Ranged Class</h3>
+            <div class="action-grid">
+                <div class="action-card">
+                    <div class="action-card-title">Sure Shot</div>
+                    <div class="action-requirements">Active skill</div>
+                    <div>
+                        <div class="skill-level" data-level="1">
+                            <span class="level-label" data-level="1">Level 1:</span>
+                            Ranged at short, 1 auto-hit (ignore cover), can't move
+                        </div>
+                        <div class="skill-level" data-level="2">
+                            <span class="level-label" data-level="2">Level 2:</span>
+                            Ranged at medium even after moving, 1 auto-hit
+                        </div>
+                        <div class="skill-level" data-level="3">
+                            <span class="level-label" data-level="3">Level 3:</span>
+                            Medium range after moving, 1 auto-hit (ignore cover AND armour)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-card">
+                    <div class="action-card-title">Marksman</div>
+                    <div class="action-requirements">Active skill - multi-target</div>
+                    <div>
+                        <div class="skill-level" data-level="1">
+                            <span class="level-label" data-level="1">Level 1:</span>
+                            Ranged attack
+                        </div>
+                        <div class="skill-level" data-level="2">
+                            <span class="level-label" data-level="2">Level 2:</span>
+                            +1 die, split hits between 2 targets in short range
+                        </div>
+                        <div class="skill-level" data-level="3">
+                            <span class="level-label" data-level="3">Level 3:</span>
+                            +2 dice, split hits between any targets in short range
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-card">
+                    <div class="action-card-title">Counter Shot</div>
+                    <div class="action-requirements">Reaction skill</div>
+                    <div>
+                        <div class="skill-level" data-level="passive">
+                            <span class="level-label" data-level="passive">Trigger:</span>
+                            After being targeted with ranged attack
+                        </div>
+                        <div class="skill-level" data-level="1">
+                            <span class="level-label" data-level="1">Level 1:</span>
+                            Ranged attack against attacker
+                        </div>
+                        <div class="skill-level" data-level="2">
+                            <span class="level-label" data-level="2">Level 2:</span>
+                            At any time after enemy's 1st action, ranged attack
+                        </div>
+                        <div class="skill-level" data-level="3">
+                            <span class="level-label" data-level="3">Level 3:</span>
+                            At any time, ranged (+1 die) + move
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-card">
+                    <div class="action-card-title">Weapons Expert</div>
+                    <div class="action-requirements">Passive + Active</div>
+                    <div>
+                        <div class="skill-level" data-level="passive">
+                            <span class="level-label" data-level="passive">Passive 1:</span>
+                            Reload as effortless
+                        </div>
+                        <div class="skill-level" data-level="1">
+                            <span class="level-label" data-level="1">Level 1:</span>
+                            Ranged +2 dice, can't move
+                        </div>
+                        <div class="skill-level" data-level="passive">
+                            <span class="level-label" data-level="passive">Passive 2:</span>
+                            Pistol assault as effortless
+                        </div>
+                        <div class="skill-level" data-level="2">
+                            <span class="level-label" data-level="2">Level 2:</span>
+                            Fire 2 pistols as 1 action (add dice -1)
+                        </div>
+                        <div class="skill-level" data-level="3">
+                            <span class="level-label" data-level="3">Level 3:</span>
+                            Shoot weapon from enemy's hand (2 dice, no damage, scatter)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-card">
+                    <div class="action-card-title">Disarm</div>
+                    <div class="action-requirements">Reaction skill</div>
+                    <div>
+                        <div class="skill-level" data-level="passive">
+                            <span class="level-label" data-level="passive">Trigger:</span>
+                            After enemy close assault where you took no damage
+                        </div>
+                        <div class="skill-level" data-level="1">
+                            <span class="level-label" data-level="1">Level 1:</span>
+                            Remove/scatter their weapon
+                        </div>
+                        <div class="skill-level" data-level="2">
+                            <span class="level-label" data-level="2">Level 2:</span>
+                            Steal their weapon
+                        </div>
+                        <div class="skill-level" data-level="3">
+                            <span class="level-label" data-level="3">Level 3:</span>
+                            As level 2 + close assault + move (no attacks of opportunity)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-card">
+                    <div class="action-card-title">Evade</div>
+                    <div class="action-requirements">Reaction skill</div>
+                    <div>
+                        <div class="skill-level" data-level="passive">
+                            <span class="level-label" data-level="passive">Trigger:</span>
+                            Enemy moves into base contact
+                        </div>
+                        <div class="skill-level" data-level="1">
+                            <span class="level-label" data-level="1">Level 1:</span>
+                            Make Move action, ignore attacks of opportunity
+                        </div>
+                        <div class="skill-level" data-level="2">
+                            <span class="level-label" data-level="2">Level 2:</span>
+                            As level 1 + ranged attack
+                        </div>
+                        <div class="skill-level" data-level="3">
+                            <span class="level-label" data-level="3">Level 3:</span>
+                            Move, ranged, move again (ignore attacks of opportunity)
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Close Combat Class</h3>
+            <div class="action-grid">
+                <div class="action-card">
+                    <div class="action-card-title">Onslaught</div>
+                    <div class="action-requirements">Active skill - pure damage</div>
+                    <div>
+                        <div class="skill-level" data-level="1">
+                            <span class="level-label" data-level="1">Level 1:</span>
+                            Close assault +2 dice
+                        </div>
+                        <div class="skill-level" data-level="2">
+                            <span class="level-label" data-level="2">Level 2:</span>
+                            Close assault +3 dice
+                        </div>
+                        <div class="skill-level" data-level="3">
+                            <span class="level-label" data-level="3">Level 3:</span>
+                            Close assault +4 dice, split hits between engaged enemies
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-card">
+                    <div class="action-card-title">Reflexes</div>
+                    <div class="action-requirements">Reaction skill - defense</div>
+                    <div>
+                        <div class="skill-level" data-level="passive">
+                            <span class="level-label" data-level="passive">Trigger:</span>
+                            After targeted with close assault
+                        </div>
+                        <div class="skill-level" data-level="1">
+                            <span class="level-label" data-level="1">Level 1:</span>
+                            Ignore all hits
+                        </div>
+                        <div class="skill-level" data-level="2">
+                            <span class="level-label" data-level="2">Level 2:</span>
+                            Ignore all hits + close assault attacker
+                        </div>
+                        <div class="skill-level" data-level="3">
+                            <span class="level-label" data-level="3">Level 3:</span>
+                            Ignore hits, close assault attacker, move away (no attacks of opportunity)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-card">
+                    <div class="action-card-title">Precision</div>
+                    <div class="action-requirements">Passive + Reaction</div>
+                    <div>
+                        <div class="skill-level" data-level="passive">
+                            <span class="level-label" data-level="passive">Passive 1:</span>
+                            Ignore 1 hit in attacks of opportunity
+                        </div>
+                        <div class="skill-level" data-level="1">
+                            <span class="level-label" data-level="1">Level 1:</span>
+                            Sweep enemy prone
+                        </div>
+                        <div class="skill-level" data-level="passive">
+                            <span class="level-label" data-level="passive">Passive 2:</span>
+                            Close assault as effortless
+                        </div>
+                        <div class="skill-level" data-level="2">
+                            <span class="level-label" data-level="2">Level 2:</span>
+                            Use pistol/rifle in close assault (+2 dice)
+                        </div>
+                        <div class="skill-level" data-level="3">
+                            <span class="level-label" data-level="3">Level 3:</span>
+                            Push all engaged 2" away (2 dice each), then move
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-card">
+                    <div class="action-card-title">Brutal Assault</div>
+                    <div class="action-requirements">Active skill - multi-attack</div>
+                    <div>
+                        <div class="skill-level" data-level="1">
+                            <span class="level-label" data-level="1">Level 1:</span>
+                            Make close assault action
+                        </div>
+                        <div class="skill-level" data-level="2">
+                            <span class="level-label" data-level="2">Level 2:</span>
+                            2 close assault actions, move
+                        </div>
+                        <div class="skill-level" data-level="3">
+                            <span class="level-label" data-level="3">Level 3:</span>
+                            3 close assault actions, move (attacks can be different targets)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="guide-links">
+                <a href="index.html" class="guide-link">← Back to Hub</a>
+                <a href="advancement.html" class="guide-link">View All Skills</a>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Load saved level preference
+        let currentLevel = localStorage.getItem('balcor-skill-level') || '1';
+
+        function showLevel(level) {
+            currentLevel = level;
+            localStorage.setItem('balcor-skill-level', level);
+
+            // Update button states
+            document.querySelectorAll('.level-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Show/hide skill levels
+            const allLevels = document.querySelectorAll('.skill-level');
+            allLevels.forEach(skillDiv => {
+                const skillLevel = skillDiv.getAttribute('data-level');
+
+                if (level === 'all' || skillLevel === 'passive') {
+                    skillDiv.classList.remove('hidden');
+                } else if (level === '123') {
+                    skillDiv.classList.remove('hidden');
+                } else if (level === '12') {
+                    if (skillLevel === '1' || skillLevel === '2') {
+                        skillDiv.classList.remove('hidden');
+                    } else {
+                        skillDiv.classList.add('hidden');
+                    }
+                } else {
+                    if (skillLevel === level) {
+                        skillDiv.classList.remove('hidden');
+                    } else {
+                        skillDiv.classList.add('hidden');
+                    }
+                }
+            });
+        }
+
+        // Apply saved level on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            // Find and activate the correct button
+            const buttons = document.querySelectorAll('.level-btn');
+            buttons.forEach(btn => {
+                if (btn.textContent.includes(currentLevel) ||
+                    (currentLevel === '1' && btn.textContent === 'Level 1 Only') ||
+                    (currentLevel === '2' && btn.textContent === 'Level 2 Only') ||
+                    (currentLevel === '3' && btn.textContent === 'Level 3 Only') ||
+                    (currentLevel === '12' && btn.textContent === 'Levels 1 & 2') ||
+                    (currentLevel === '123' && btn.textContent === 'Levels 1-3') ||
+                    (currentLevel === 'all' && btn.textContent === 'All Levels')) {
+                    btn.click();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
