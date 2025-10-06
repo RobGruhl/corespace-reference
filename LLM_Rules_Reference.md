@@ -490,7 +490,7 @@ Notes:
 
 1. **Proximity Move:** Move up to 1" (still counts toward 11" max)
 2. **Use ✓ Item:** Use item with effortless icon
-3. **Throw Item:** Throw item with throw icon (see Throwing)
+3. **Throw Item:** Throw item with 🎯 icon + damage number (✓ icon NOT required - see Throwing)
 4. **Pick Up Item:** From adjacent square
 5. **Drop Item:** Into adjacent square
 6. **Give/Take/Swap Item:** With character in base contact (if owner allows)
@@ -629,6 +629,17 @@ Notes:
 - Some armour has unarmed combat icon
 - Can be used as Close Assault weapon
 - Icons don't stack
+
+**Dyson Equipment vs Shield Armour:**
+- **CRITICAL:** Dyson equipment does NOT work if wearing ANY shield armour (even if inactive/overloaded)
+- **Damage Priority from First Born Energy** (ranged attacks from First Born or green equipment):
+  1. Deflection items (Ecco Orb) - reflects attack back
+  2. Cover (partial = -1 hit)
+  3. Armour (physical OR shield - use highest value only)
+  4. Dyson equipment (-1 hit, +1 energy counter) - **ONLY if NOT wearing shield armour**
+  5. Shield pegs (from utility equipment)
+  6. Remaining hits = damage to health
+- Deflection and Dyson only affect "First Born energy" attacks, not regular attacks
 
 **Armour vs Effects:**
 - Physical armour: Blocks damage but not secondary effects
@@ -857,6 +868,9 @@ Effect:
 - Scout units
 - Arrive at patrol points (not entry points)
 - Low threat but alert others
+- **SPECIAL:** Have 2 actions BUT consult AI Chart only ONCE per activation
+- Possible combinations: Move+Move, Move+Shoot, or Shoot only (cannot shoot twice)
+- Only alert in Patrol level when they spot you during their activation
 
 **Harvesters (Rank 1):**
 - Basic First Born
@@ -2050,14 +2064,21 @@ If would take damage (after armor):
 **Triggers:**
 
 When any character (any type) within range:
-- Enters range: Immediate close assault (interrupts movement)
-- Takes any action while in range: Immediate close assault (after action resolves)
+- Enters range from outside: Immediate close assault (interrupts movement)
+- Takes any **action** while already in range: Close assault AFTER action completes
+- **Does NOT trigger on:** Skills or effortless actions
 - Does nothing (wastes action): Immediate close assault
 - Defeats worm: Worm still attacks (death throes)
+
+**Attack Timing Clarification:**
+- If entering range: Attack interrupts movement
+- If already in range and taking action: Complete the action first, THEN worm attacks
+- Example: Moving within their area - complete full move, then resolve attack
 
 **Special Rules:**
 
 - Don't alert Drones
+- **First Born ignore Rock Worms** (won't attack them, avoid their attack range)
 - Cannot be knocked prone
 - Immune to Fire and Poison tokens
 - Take all other effects normally

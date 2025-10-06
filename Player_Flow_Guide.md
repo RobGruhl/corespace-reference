@@ -276,7 +276,7 @@ These don't count toward your action limit:
 
 - **Proximity Move:** Move up to 1" (still counts toward 11" max)
 - **Use ✓ Item:** Use any item with effortless icon
-- **Throw Item:** Throw item with throw icon
+- **Throw Item:** Throw item with 🎯 icon + damage number (✓ icon NOT required)
 - **Pick Up/Drop Item:** In base contact
 - **Give/Take/Swap Item:** With character in base contact
 
@@ -365,6 +365,12 @@ Is my shooting stat > close assault stat?
 - Roll after determining hits
 - Apply special effect based on result
 - When using "Cleanse" side: may use multiple times
+
+**Drone Special Rules:**
+- Have 2 actions BUT consult AI Chart only ONCE per activation
+- Possible combinations: Move+Move, Move+Shoot, or Shoot only
+- **Cannot shoot twice** (even though they have 2 actions)
+- Only alert in Patrol level when they spot you during their activation (not during Trader Phase)
 
 ---
 
