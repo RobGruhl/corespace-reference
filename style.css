@@ -224,6 +224,16 @@ li {
     padding: 12px;
     margin: 12px 0;
     font-size: 0.9em;
+    transition: all 0.3s;
+}
+
+a .highlight-box:hover {
+    background: rgba(233, 69, 96, 0.3);
+    border-color: #ff6b81;
+    border-style: solid;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 20px rgba(233, 69, 96, 0.3);
+    cursor: pointer;
 }
 
 .highlight-title {
@@ -371,6 +381,15 @@ li {
     border-left: 4px solid #53a8b6;
     padding: 12px 15px;
     border-radius: 6px;
+    transition: all 0.3s;
+}
+
+a .stat-box:hover {
+    background: rgba(83, 168, 182, 0.2);
+    border-left-width: 6px;
+    transform: translateX(5px);
+    box-shadow: 0 3px 15px rgba(83, 168, 182, 0.3);
+    cursor: pointer;
 }
 
 .stat-label {

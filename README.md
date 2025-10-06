@@ -52,10 +52,11 @@ Core Space Quick Reference
 ### 1. Index (Hub)
 - Complete at-a-glance game overview
 - 7 clickable navigation cards
-- Quick stats summary
+- Quick stats summary (all 4 stat boxes are clickable!)
 - Round sequence flowchart
-- Essential rules highlights
+- Essential rules highlights (all 6 boxes are clickable!)
 - Links to all detail pages
+- **Interactive:** Hover over any stat box or rule box to see it light up
 
 ### 2. Actions Page
 **17+ actions organized by category:**
@@ -175,9 +176,12 @@ Home › Current Page
 ### Interactive Elements
 - Hover effects on all cards and tables
 - Clickable section headers
+- **Clickable stat boxes** - All 4 "At-a-Glance Overview" boxes link to relevant pages
+- **Clickable rule boxes** - All 6 "Essential Rules" boxes link to detail pages
 - Animated hostility levels
 - Color-coded phases
 - Visual flowcharts
+- Smooth transitions and hover animations throughout
 
 ### Accessibility
 - High contrast
