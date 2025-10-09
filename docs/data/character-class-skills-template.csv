@@ -1,0 +1,48 @@
+Character,Skill Name,Inherent Level,Marine,Smuggler,Techie,Scout,Medic,Engineer
+Cassie,Marksman,1,3,0,0,2,0,0
+Cassie,Reflexes,1,3,0,0,0,0,0
+Cassie,Counter Shot,0,3,0,0,2,0,0
+Cassie,Weapons Expert,0,3,0,0,0,0,0
+Cassie,Combat Expert,0,3,0,2,0,0,0
+Cassie,Walk It Off,0,3,0,0,2,0,0
+Cassie,Stubborn,0,3,0,0,0,0,0
+Cassie,Evade,0,0,3,0,3,0,0
+Cassie,Slippery,0,0,3,0,3,0,0
+Cassie,Light Fingers,0,0,3,0,0,0,0
+Cassie,Ambush,0,0,3,0,3,0,0
+Cassie,Camouflage,0,0,3,0,3,0,0
+Cassie,Fade to Black,0,0,3,0,0,0,0
+Cassie,Persuasion,0,0,0,0,0,0,0
+Cassie,Distraction,0,0,0,0,2,0,0
+Cassie,Hard To Hit,0,0,3,0,3,0,0
+Cassie,Kata,0,0,0,0,0,0,0
+Cassie,Disarm,0,0,0,2,0,0,0
+Cassie,Brutal Assault,0,0,0,0,0,0,0
+Cassie,Onslaught,0,3,0,0,0,0,0
+Cassie,Impervious,0,0,0,0,0,0,3
+Cassie,Assist,0,0,0,3,0,3,0
+Cassie,Regulate,0,0,0,0,0,0,3
+Wade,Marksman,0,0,0,0,3,0,0
+Wade,Counter Shot,0,0,0,0,3,0,0
+Wade,Evade,0,0,3,0,3,0,0
+Wade,Light Fingers,0,0,3,0,0,0,0
+Wade,Persuasion,0,0,3,2,0,0,0
+Wade,Distraction,0,0,3,0,3,0,0
+Wade,Slippery,0,0,3,0,3,0,0
+Wade,Ambush,0,0,3,0,3,0,0
+Wade,Walk It Off,0,3,0,0,2,0,0
+Balcor,Kata,0,3,0,0,0,0,0
+Balcor,Brutal Assault,0,3,0,0,0,0,0
+Balcor,Walk It Off,0,3,0,0,2,0,0
+Balcor,Onslaught,0,3,0,0,0,0,0
+Balcor,Stubborn,0,3,0,0,0,0,0
+Balcor,Impervious,0,3,0,0,0,0,3
+Balcor,Training,0,0,0,0,0,0,2
+Balcor,Energize,0,0,0,0,0,0,0
+Hopper,Reroute,0,0,0,0,0,0,3
+Hopper,Overdrive,0,0,0,0,0,0,3
+Hopper,Repair,0,0,0,0,0,0,3
+Hopper,Bodyguard Protocol,0,3,0,0,0,0,3
+Hopper,Reflexes,0,3,0,0,0,0,0
+Hopper,Accelerate,0,0,0,0,0,0,2
+Hopper,Barter,0,0,0,0,0,0,0

@@ -1,0 +1,759 @@
+{
+  "_comment": "Core Space First Born - Character Builder Data",
+  "_version": "1.0",
+  "_lastUpdated": "2025-10-08",
+
+  "characters": [
+    {
+      "id": "cassie",
+      "name": "Cassie",
+      "description": "Former marine sniper and expert marksman",
+      "baseStats": {
+        "health": 6,
+        "action": 2,
+        "skill": 3
+      },
+      "startingSkillPoints": 4,
+      "maxLevelUpBonus": 3,
+      "inherentSkills": [
+        {
+          "skillId": "evade",
+          "level": 1,
+          "note": "FREE - Character Card skill"
+        },
+        {
+          "skillId": "weaponsExpert",
+          "level": 2,
+          "note": "FREE - Character Card skill (2 levels!)"
+        },
+        {
+          "skillId": "slippery",
+          "level": 1,
+          "note": "FREE - Character Card skill"
+        }
+      ],
+      "notes": "Cassie starts with 4 inherent skill points (Evade 1 + Weapons Expert 2 + Slippery 1). She has 4 spendable points + up to 3 level-up bonuses (max 7 total spendable)."
+    }
+  ],
+
+  "classes": [
+    {
+      "id": "marine",
+      "name": "Marine",
+      "description": "Combat specialist with expertise in ranged and close combat",
+      "flavorText": "Military training and weapons mastery",
+      "availableSkills": [
+        {
+          "skillId": "marksman",
+          "maxLevel": 3
+        },
+        {
+          "skillId": "counterShot",
+          "maxLevel": 3
+        },
+        {
+          "skillId": "weaponsExpert",
+          "maxLevel": 3,
+          "notes": "Cassie has inherent level 2, can only invest 1 more point (max 3 total)"
+        },
+        {
+          "skillId": "combatExpert",
+          "maxLevel": 3
+        },
+        {
+          "skillId": "reflexes",
+          "maxLevel": 3
+        },
+        {
+          "skillId": "walkItOff",
+          "maxLevel": 3
+        },
+        {
+          "skillId": "stubborn",
+          "maxLevel": 2
+        }
+      ]
+    },
+    {
+      "id": "crewman",
+      "name": "Crewman",
+      "description": "Versatile crew member with social and stealth skills",
+      "flavorText": "Jack of all trades, adaptable in any situation",
+      "availableSkills": [
+        {
+          "skillId": "counterShot",
+          "maxLevel": 3
+        },
+        {
+          "skillId": "walkItOff",
+          "maxLevel": 3
+        },
+        {
+          "skillId": "lightFingers",
+          "maxLevel": 3
+        },
+        {
+          "skillId": "evade",
+          "maxLevel": 2,
+          "notes": "Cassie has inherent level 1, can only invest 1 more point (max 2 total)"
+        },
+        {
+          "skillId": "persuasion",
+          "maxLevel": 3
+        },
+        {
+          "skillId": "ambush",
+          "maxLevel": 2
+        },
+        {
+          "skillId": "slippery",
+          "maxLevel": 2,
+          "notes": "Cassie has inherent level 1, can only invest 1 more point (max 2 total)"
+        }
+      ]
+    },
+    {
+      "id": "hunter",
+      "name": "Hunter",
+      "description": "Stealth assassin with ranged and close combat prowess",
+      "flavorText": "Silent predator who strikes from the shadows",
+      "availableSkills": [
+        {
+          "skillId": "marksman",
+          "maxLevel": 3
+        },
+        {
+          "skillId": "weaponsExpert",
+          "maxLevel": 3,
+          "notes": "Cassie has inherent level 2, can only invest 1 more point (max 3 total)"
+        },
+        {
+          "skillId": "combatExpert",
+          "maxLevel": 3
+        },
+        {
+          "skillId": "disarm",
+          "maxLevel": 3
+        },
+        {
+          "skillId": "evade",
+          "maxLevel": 3,
+          "notes": "Cassie has inherent level 1, can invest 2 more points (max 3 total)"
+        },
+        {
+          "skillId": "fadeToBlack",
+          "maxLevel": 3
+        },
+        {
+          "skillId": "ambush",
+          "maxLevel": 3
+        }
+      ]
+    },
+    {
+      "id": "support",
+      "name": "Support",
+      "description": "Heavy combat specialist with endurance and leadership",
+      "flavorText": "Front-line fighter who bolsters the team",
+      "availableSkills": [
+        {
+          "skillId": "kata",
+          "maxLevel": 2
+        },
+        {
+          "skillId": "walkItOff",
+          "maxLevel": 3
+        },
+        {
+          "skillId": "onslaught",
+          "maxLevel": 3
+        },
+        {
+          "skillId": "burn",
+          "maxLevel": 3
+        },
+        {
+          "skillId": "impervious",
+          "maxLevel": 3
+        },
+        {
+          "skillId": "training",
+          "maxLevel": 3
+        },
+        {
+          "skillId": "energize",
+          "maxLevel": 1
+        }
+      ]
+    },
+    {
+      "id": "tech",
+      "name": "Tech",
+      "description": "Technical specialist with gadgets and support abilities",
+      "flavorText": "Master of technology and tactical support",
+      "availableSkills": [
+        {
+          "skillId": "distraction",
+          "maxLevel": 2
+        },
+        {
+          "skillId": "camouflage",
+          "maxLevel": 2
+        },
+        {
+          "skillId": "hardToHit",
+          "maxLevel": 3
+        },
+        {
+          "skillId": "hackAndGrab",
+          "maxLevel": 3
+        },
+        {
+          "skillId": "engineering",
+          "maxLevel": 3
+        },
+        {
+          "skillId": "regulate",
+          "maxLevel": 2
+        },
+        {
+          "skillId": "assist",
+          "maxLevel": 3
+        }
+      ]
+    },
+    {
+      "id": "machine",
+      "name": "Machine",
+      "description": "Robotic specialist with self-repair and combat protocols",
+      "flavorText": "Advanced AI with mechanical advantages",
+      "availableSkills": [
+        {
+          "skillId": "reroute",
+          "maxLevel": 3
+        },
+        {
+          "skillId": "overdrive",
+          "maxLevel": 3
+        },
+        {
+          "skillId": "repair",
+          "maxLevel": 3
+        },
+        {
+          "skillId": "bodyguardProtocol",
+          "maxLevel": 3
+        },
+        {
+          "skillId": "accelerate",
+          "maxLevel": 2
+        },
+        {
+          "skillId": "reflexes",
+          "maxLevel": 3
+        }
+      ]
+    }
+  ],
+
+  "skills": [
+    {
+      "id": "marksman",
+      "name": "Marksman",
+      "category": "Ranged Skills",
+      "type": "standard",
+      "levels": [
+        {
+          "level": 1,
+          "isPassive": false,
+          "isReaction": false,
+          "isBetweenGame": false,
+          "pegCost": 1,
+          "description": "Make a ranged attack."
+        },
+        {
+          "level": 2,
+          "isPassive": false,
+          "isReaction": false,
+          "isBetweenGame": false,
+          "pegCost": 1,
+          "description": "Make a ranged attack with one extra combat die. After rolling the dice, you can split the hits scored between up to two eligible targets within range of your weapon and within short range of each other."
+        },
+        {
+          "level": 3,
+          "isPassive": false,
+          "isReaction": false,
+          "isBetweenGame": false,
+          "pegCost": 1,
+          "description": "Make a ranged attack with two extra combat dice. After rolling the dice, you can split the hits scored between any number of eligible targets within range of your weapon and within short range of each other."
+        }
+      ]
+    },
+    {
+      "id": "counterShot",
+      "name": "Counter Shot",
+      "category": "Ranged Skills",
+      "type": "reaction",
+      "levels": [
+        {
+          "level": 1,
+          "isPassive": false,
+          "isReaction": true,
+          "isBetweenGame": false,
+          "trigger": "After being targeted with a ranged attack",
+          "effect": "Make a ranged attack against the attacker.",
+          "pegCost": 1
+        },
+        {
+          "level": 2,
+          "isPassive": false,
+          "isReaction": true,
+          "isBetweenGame": false,
+          "trigger": "At any time after a target enemy has taken its first action in the current round",
+          "effect": "Make a ranged attack against the target.",
+          "pegCost": 1
+        },
+        {
+          "level": 3,
+          "isPassive": false,
+          "isReaction": true,
+          "isBetweenGame": false,
+          "trigger": "At any time",
+          "effect": "Make a ranged attack against an enemy with one extra combat die, and then make a Move action.",
+          "pegCost": 1
+        }
+      ]
+    },
+    {
+      "id": "weaponsExpert",
+      "name": "Weapons Expert",
+      "category": "Ranged Skills",
+      "type": "mixed",
+      "levels": [
+        {
+          "level": 1,
+          "variant": "passive",
+          "isPassive": true,
+          "isReaction": false,
+          "isBetweenGame": false,
+          "passiveEffect": "You may Reload as an effortless action.",
+          "pegCost": 0
+        },
+        {
+          "level": 1,
+          "variant": "active",
+          "isPassive": false,
+          "isReaction": false,
+          "isBetweenGame": false,
+          "description": "Make a ranged attack, rolling 2 additional dice. You cannot Move in the same round that you use this Skill.",
+          "pegCost": 1
+        },
+        {
+          "level": 2,
+          "variant": "passive",
+          "isPassive": true,
+          "isReaction": false,
+          "isBetweenGame": false,
+          "passiveEffect": "You may make a Ranged Assault action with a pistol as an effortless action.",
+          "pegCost": 0
+        },
+        {
+          "level": 2,
+          "variant": "active",
+          "isPassive": false,
+          "isReaction": false,
+          "isBetweenGame": false,
+          "description": "Use when making a ranged attack. You may fire two different pistols as a single action – add their dice together and subtract one die.",
+          "pegCost": 1
+        },
+        {
+          "level": 3,
+          "variant": "active",
+          "isPassive": false,
+          "isReaction": false,
+          "isBetweenGame": false,
+          "description": "You can shoot a weapon from an enemy's hand. Make a ranged attack. This rolls two dice regardless of the weapon's statistics but must be within range and LoS as normal. If at least one hit is scored, no damage is done, but a weapon of your choice is removed from their dashboard and scattered. The weapon is broken but can be Repaired as normal.",
+          "pegCost": 1
+        }
+      ]
+    },
+    {
+      "id": "reflexes",
+      "name": "Reflexes",
+      "category": "Close Assault Skills",
+      "type": "reaction",
+      "levels": [
+        {
+          "level": 1,
+          "isPassive": false,
+          "isReaction": true,
+          "isBetweenGame": false,
+          "trigger": "After being targeted with a close assault attack",
+          "effect": "Ignore all hits scored.",
+          "pegCost": 1
+        },
+        {
+          "level": 2,
+          "isPassive": false,
+          "isReaction": true,
+          "isBetweenGame": false,
+          "trigger": "After being targeted with a close assault attack",
+          "effect": "Ignore all hits scored. Then, make an immediate Close Assault action against the attacker, rolling 1 additional die.",
+          "pegCost": 1
+        },
+        {
+          "level": 3,
+          "isPassive": false,
+          "isReaction": true,
+          "isBetweenGame": false,
+          "trigger": "After being targeted with a close assault attack",
+          "effect": "Ignore all hits scored. Then, make an immediate Close Assault action against the attacker, rolling 2 additional dice, followed by a Move action with no attacks of opportunity allowed.",
+          "pegCost": 1
+        }
+      ]
+    },
+    {
+      "id": "combatExpert",
+      "name": "Combat Expert",
+      "category": "Close Assault Skills",
+      "type": "mixed",
+      "levels": [
+        {
+          "level": 1,
+          "variant": "passive",
+          "isPassive": true,
+          "isReaction": false,
+          "isBetweenGame": false,
+          "passiveEffect": "Ignore one hit scored against you during any attack of opportunity.",
+          "pegCost": 0
+        },
+        {
+          "level": 1,
+          "variant": "active",
+          "isPassive": false,
+          "isReaction": false,
+          "isBetweenGame": false,
+          "description": "You sweep your enemy's feet from under them. A target enemy in base contact is knocked prone.",
+          "pegCost": 1
+        },
+        {
+          "level": 2,
+          "variant": "passive",
+          "isPassive": true,
+          "isReaction": false,
+          "isBetweenGame": false,
+          "passiveEffect": "You may make a Close Assault action as an effortless action.",
+          "pegCost": 0
+        },
+        {
+          "level": 2,
+          "variant": "active",
+          "isPassive": false,
+          "isReaction": false,
+          "isBetweenGame": false,
+          "description": "Use when making a close assault attack to use a pistol or rifle instead of a close assault weapon. Roll to hit as normal using the weapon's short range statistic, and add 2 dice to the attack. This uses ammo as normal.",
+          "pegCost": 1
+        },
+        {
+          "level": 3,
+          "variant": "active",
+          "isPassive": false,
+          "isReaction": false,
+          "isBetweenGame": false,
+          "description": "You burst out of combat. All enemies engaged with your character can be pushed up to 2 inches away in a direction of your choice, stopping if they hit a wall or other obstruction. No attacks of opportunity are made, but each enemy pushed back suffers an attack with 2 dice (armour applies as normal). Then, you may make a Move action.",
+          "pegCost": 1
+        }
+      ]
+    },
+    {
+      "id": "walkItOff",
+      "name": "Walk It Off",
+      "category": "Endurance Skills",
+      "type": "mixed",
+      "levels": [
+        {
+          "level": 1,
+          "variant": "active",
+          "isPassive": false,
+          "isReaction": false,
+          "isBetweenGame": false,
+          "description": "Restore 1 Health.",
+          "pegCost": 1
+        },
+        {
+          "level": 2,
+          "variant": "reaction",
+          "isPassive": false,
+          "isReaction": true,
+          "isBetweenGame": false,
+          "trigger": "After being targeted with an attack",
+          "effect": "Reduce damage sustained by 2.",
+          "pegCost": 1
+        },
+        {
+          "level": 3,
+          "variant": "reaction",
+          "isPassive": false,
+          "isReaction": true,
+          "isBetweenGame": false,
+          "trigger": "After being defeated",
+          "effect": "You are no longer defeated – restore 1 Health, Stand Up, and you may then make a Move action.",
+          "pegCost": 1
+        }
+      ]
+    },
+    {
+      "id": "stubborn",
+      "name": "Stubborn",
+      "category": "Endurance Skills",
+      "type": "mixed",
+      "levels": [
+        {
+          "level": 1,
+          "variant": "active",
+          "isPassive": false,
+          "isReaction": false,
+          "isBetweenGame": false,
+          "description": "Make a Move action.",
+          "pegCost": 1
+        },
+        {
+          "level": 2,
+          "variant": "active",
+          "isPassive": false,
+          "isReaction": false,
+          "isBetweenGame": false,
+          "description": "Make a Move action followed by an Assault action.",
+          "pegCost": 1
+        }
+      ]
+    },
+    {
+      "id": "evade",
+      "name": "Evade",
+      "category": "Cunning Skills",
+      "type": "reaction",
+      "levels": [
+        {
+          "level": 1,
+          "isPassive": false,
+          "isReaction": true,
+          "isBetweenGame": false,
+          "trigger": "When an enemy moves into base contact with you",
+          "effect": "Make a Move action, ignoring attacks of opportunity.",
+          "pegCost": 1
+        },
+        {
+          "level": 2,
+          "isPassive": false,
+          "isReaction": true,
+          "isBetweenGame": false,
+          "trigger": "When an enemy moves into base contact with you",
+          "effect": "In any order, make a Move action, ignoring attacks of opportunity, and an Assault action.",
+          "pegCost": 1
+        },
+        {
+          "level": 3,
+          "isPassive": false,
+          "isReaction": true,
+          "isBetweenGame": false,
+          "trigger": "When an enemy moves into base contact with you",
+          "effect": "In any order, make two Move actions, ignoring attacks of opportunity, and an Assault action. The attacker cannot do anything further this round, including using Skills.",
+          "pegCost": 1
+        }
+      ]
+    },
+    {
+      "id": "slippery",
+      "name": "Slippery",
+      "category": "Vocational Skills",
+      "type": "mixed",
+      "levels": [
+        {
+          "level": 1,
+          "variant": "active",
+          "isPassive": false,
+          "isReaction": false,
+          "isBetweenGame": false,
+          "description": "Make a Move action with Scramble [2,3]",
+          "pegCost": 1,
+          "notes": "Scramble adds +2 to all scramble attempts"
+        },
+        {
+          "level": 2,
+          "variant": "passive",
+          "isPassive": true,
+          "isReaction": false,
+          "isBetweenGame": false,
+          "passiveEffect": "You may use an effortless action to ignore an attack of opportunity.",
+          "pegCost": 0
+        },
+        {
+          "level": 3,
+          "variant": "active",
+          "isPassive": false,
+          "isReaction": false,
+          "isBetweenGame": false,
+          "description": "Make a Move action. This and all of your other Move actions in this turn ignore attacks of opportunity. Make an attack with one die against each enemy contacted during your moves. Any hits will also knock them prone, even if no damage is caused.",
+          "pegCost": 1
+        }
+      ]
+    },
+    {
+      "id": "lightFingers",
+      "name": "Light Fingers",
+      "category": "Cunning Skills",
+      "type": "reaction",
+      "levels": [
+        {
+          "level": 1,
+          "isPassive": false,
+          "isReaction": true,
+          "isBetweenGame": false,
+          "trigger": "After being attacked with a close assault action in which you took no damage",
+          "effect": "Take any item from the attacker's item tray other than the one they attacked with. If you do not have space for it, it or another item you are holding must be dropped.",
+          "pegCost": 1
+        },
+        {
+          "level": 2,
+          "isPassive": false,
+          "isReaction": true,
+          "isBetweenGame": false,
+          "trigger": "After being attacked in close assault",
+          "effect": "Take any item from the attacker's item tray other than the one they attacked with. Items with the [check] icon can be used immediately. Otherwise, if you do not have space for it, it or another item you are holding must be dropped.",
+          "pegCost": 1
+        },
+        {
+          "level": 3,
+          "isPassive": false,
+          "isReaction": true,
+          "isBetweenGame": false,
+          "trigger": "After being targeted with a close assault attack",
+          "effect": "Take any item from the attacker's item tray. Items with the [check] icon can be used immediately. Otherwise, if you do not have space for it, it or another item you are holding must be dropped. Then make an immediate Move or Assault action, ignoring attacks of opportunity.",
+          "pegCost": 1
+        }
+      ]
+    },
+    {
+      "id": "persuasion",
+      "name": "Persuasion",
+      "category": "Cunning Skills",
+      "type": "standard",
+      "levels": [
+        {
+          "level": 1,
+          "isPassive": false,
+          "isReaction": false,
+          "isBetweenGame": false,
+          "pegCost": 1,
+          "description": "Make a Persuade action against an enemy Trader (with their own default (not current) Skill statistic counting as their Persuade value) within short range and LoS, to try to dissuade them from their mission. If successful, they miss their next turn."
+        },
+        {
+          "level": 2,
+          "isPassive": false,
+          "isReaction": false,
+          "isBetweenGame": false,
+          "pegCost": 1,
+          "description": "Make a Persuade action against a non-Purge enemy within short range and LoS, with 1 additional die. Targeted Traders use their Skill statistic as above. The normal options apply (although enemy Traders will not join you), and in addition you can Persuade a character to miss their next turn."
+        },
+        {
+          "level": 3,
+          "isPassive": false,
+          "isReaction": false,
+          "isBetweenGame": false,
+          "pegCost": 1,
+          "description": "Make a Persuade action against a non-Purge enemy within short range and LoS, with 2 additional dice. Targeted Traders use their Skill statistic as above. The same options apply as above, except that Trader crew (not captains) can be persuaded to join you, for the rest of this mission only. They will never attack their old crew members. Like Civilians, you must roll the Chance Die each round before activating them. On a result they will return to their old crew."
+        }
+      ]
+    },
+    {
+      "id": "ambush",
+      "name": "Ambush",
+      "category": "Stealth Skills",
+      "type": "reaction",
+      "levels": [
+        {
+          "level": 1,
+          "isPassive": false,
+          "isReaction": true,
+          "isBetweenGame": false,
+          "trigger": "When an enemy ends a move within 4 inches of you and you are in full or partial cover",
+          "effect": "Make a Ranged Assault action against that enemy. You may make a Proximity Move before or after this action.",
+          "pegCost": 1
+        },
+        {
+          "level": 2,
+          "isPassive": false,
+          "isReaction": true,
+          "isBetweenGame": false,
+          "trigger": "When an enemy ends a move within 4 inches of you and you are in full or partial cover",
+          "effect": "Make a Move action and then an Assault action against that enemy. You may make a Proximity Move before or after these actions.",
+          "pegCost": 1
+        },
+        {
+          "level": 3,
+          "isPassive": false,
+          "isReaction": true,
+          "isBetweenGame": false,
+          "trigger": "When an enemy ends a move within 4 inches of you and you are in full or partial cover",
+          "effect": "Make a Move action, an Assault action against any enemy, and then another Move action. You may make a Proximity Move before, during or after these actions.",
+          "pegCost": 1
+        }
+      ]
+    },
+    {
+      "id": "fadeToBlack",
+      "name": "Fade to Black",
+      "category": "Stealth Skills",
+      "type": "reaction",
+      "levels": [
+        {
+          "level": 1,
+          "isPassive": false,
+          "isReaction": true,
+          "isBetweenGame": false,
+          "trigger": "After being targeted with a ranged attack if you are within 4 inches of cover",
+          "effect": "Move into cover.",
+          "pegCost": 1
+        },
+        {
+          "level": 2,
+          "isPassive": false,
+          "isReaction": true,
+          "isBetweenGame": false,
+          "trigger": "After being targeted with a ranged attack if you are within 4 inches of cover",
+          "effect": "Move into cover, and ignore all hits scored in that attack.",
+          "pegCost": 1
+        },
+        {
+          "level": 3,
+          "isPassive": false,
+          "isReaction": true,
+          "isBetweenGame": false,
+          "trigger": "At any time",
+          "effect": "Make a Move action into cover, ignoring any attacks of opportunity, and make a Ranged Assault action, in any order. You cannot be targeted for the rest of the round.",
+          "pegCost": 1
+        }
+      ]
+    },
+    {
+      "_comment": "Additional skills (Disarm, Kata, Onslaught, Burn, etc.) need full definitions from core-space-skills.csv",
+      "_todo": "Add remaining skill definitions for: disarm, kata, onslaught, burn, impervious, training, energize, distraction, camouflage, hardToHit, hackAndGrab, engineering, regulate, assist, reroute, overdrive, repair, bodyguardProtocol, accelerate"
+    }
+  ],
+
+  "saveDataExample": {
+    "_comment": "Example save data for Cassie as Marine with some investments",
+    "characterId": "cassie",
+    "classId": "marine",
+    "totalSkillPoints": 7,
+    "classSkillInvestments": {
+      "weaponsExpert": 1,
+      "marksman": 3,
+      "reflexes": 2
+    },
+    "spentPoints": 6,
+    "remainingPoints": 1,
+    "lastUpdated": "2025-10-08T14:30:00Z"
+  }
+}

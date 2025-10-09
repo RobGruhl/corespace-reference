@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cassie - Character Builder</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Character Builder Specific Styles */
+        .character-header {
+            background: linear-gradient(135deg, rgba(83, 168, 182, 0.2), rgba(233, 69, 96, 0.2));
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .character-header h1 {
+            margin: 0 0 10px 0;
+            color: #e94560;
+        }
+
+        .character-description {
+            color: #ccc;
+            margin-bottom: 15px;
+        }
+
+        .base-stats {
+            display: flex;
+            gap: 20px;
+            font-size: 1.1em;
+        }
+
+        .stat {
+            background: rgba(83, 168, 182, 0.2);
+            padding: 8px 12px;
+            border-radius: 5px;
+        }
+
+        .class-selector {
+            margin-top: 15px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 5px;
+        }
+
+        .class-selector label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #53a8b6;
+        }
+
+        .class-selector select {
+            width: 100%;
+            max-width: 300px;
+            padding: 8px 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid #53a8b6;
+            border-radius: 5px;
+            color: #eee;
+            font-size: 1em;
+            cursor: pointer;
+        }
+
+        /* Skill Point Budget */
+        .skill-point-budget {
+            background: linear-gradient(135deg, rgba(46, 204, 113, 0.2), rgba(52, 152, 219, 0.2));
+            border: 2px solid #2ecc71;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .budget-display {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .budget-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .budget-label {
+            font-size: 0.85em;
+            color: #aaa;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .budget-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #2ecc71;
+        }
+
+        .budget-value.zero {
+            color: #e74c3c;
+        }
+
+        .budget-separator {
+            font-size: 2em;
+            color: #666;
+        }
+
+        .budget-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn-secondary {
+            background: rgba(52, 152, 219, 0.3);
+            border: 2px solid #3498db;
+            color: #3498db;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: all 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(52, 152, 219, 0.5);
+        }
+
+        .btn-danger {
+            background: rgba(231, 76, 60, 0.3);
+            border: 2px solid #e74c3c;
+            color: #e74c3c;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: all 0.3s;
+        }
+
+        .btn-danger:hover {
+            background: rgba(231, 76, 60, 0.5);
+        }
+
+        /* Summaries */
+        .passive-summary, .reaction-summary {
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .passive-summary {
+            background: rgba(155, 89, 182, 0.15);
+            border: 2px solid #9b59b6;
+        }
+
+        .passive-summary h2 {
+            color: #9b59b6;
+            margin-top: 0;
+        }
+
+        .reaction-summary {
+            background: rgba(230, 126, 34, 0.15);
+            border: 2px solid #e67e22;
+        }
+
+        .reaction-summary h2 {
+            color: #e67e22;
+            margin-top: 0;
+        }
+
+        .passive-item, .reaction-item {
+            padding: 12px;
+            margin-bottom: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 5px;
+            border-left: 4px solid;
+        }
+
+        .passive-item {
+            border-left-color: #9b59b6;
+        }
+
+        .reaction-item {
+            border-left-color: #e67e22;
+        }
+
+        .reaction-trigger {
+            font-style: italic;
+            color: #aaa;
+            margin-bottom: 5px;
+        }
+
+        .trigger-label {
+            text-transform: uppercase;
+            font-size: 0.8em;
+            font-weight: bold;
+            color: #e67e22;
+        }
+
+        .empty-state {
+            color: #888;
+            font-style: italic;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Skill Cards */
+        .skill-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .skill-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid #53a8b6;
+            border-radius: 8px;
+            padding: 20px;
+            transition: all 0.3s;
+        }
+
+        .skill-card.inactive {
+            opacity: 0.4;
+            filter: grayscale(0.7);
+        }
+
+        .skill-card.max-level {
+            border-color: #2ecc71;
+            box-shadow: 0 0 15px rgba(46, 204, 113, 0.3);
+        }
+
+        .skill-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .skill-name {
+            font-size: 1.3em;
+            color: #53a8b6;
+            margin: 0;
+        }
+
+        .skill-category {
+            font-size: 0.8em;
+            color: #888;
+            text-transform: uppercase;
+        }
+
+        .inherent-badge {
+            background: linear-gradient(135deg, #f39c12, #f1c40f);
+            color: #000;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.75em;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .investment-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 15px 0;
+            padding: 15px;
+            background: rgba(83, 168, 182, 0.1);
+            border-radius: 5px;
+        }
+
+        .investment-controls button {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 2px solid #53a8b6;
+            background: rgba(83, 168, 182, 0.2);
+            color: #53a8b6;
+            font-size: 1.5em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .investment-controls button:hover:not(:disabled) {
+            background: rgba(83, 168, 182, 0.4);
+            transform: scale(1.1);
+        }
+
+        .investment-controls button:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .investment-display {
+            flex: 1;
+            text-align: center;
+        }
+
+        .investment-label {
+            display: block;
+            font-size: 0.8em;
+            color: #888;
+            margin-bottom: 5px;
+        }
+
+        .investment-value {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #53a8b6;
+        }
+
+        .investment-max {
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        .effective-level {
+            text-align: center;
+            padding: 10px;
+            background: rgba(46, 204, 113, 0.1);
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+        .effective-label {
+            font-size: 0.8em;
+            color: #aaa;
+        }
+
+        .effective-value {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #2ecc71;
+            margin: 0 5px;
+        }
+
+        .effective-max {
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        .skill-levels {
+            border-top: 1px solid rgba(83, 168, 182, 0.3);
+            padding-top: 15px;
+        }
+
+        .skill-level {
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border-left: 4px solid #53a8b6;
+            background: rgba(83, 168, 182, 0.1);
+            display: none;
+        }
+
+        .skill-level.active {
+            display: block;
+        }
+
+        .level-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            font-weight: bold;
+            margin-bottom: 8px;
+            background: #53a8b6;
+            color: #000;
+        }
+
+        .level-badge.free {
+            background: linear-gradient(135deg, #f39c12, #f1c40f);
+        }
+
+        .level-description {
+            color: #ddd;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .reaction-details {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .reaction-details .trigger {
+            font-style: italic;
+            color: #aaa;
+        }
+
+        .reaction-details .effect {
+            color: #ddd;
+        }
+
+        .peg-cost {
+            font-size: 0.85em;
+            color: #888;
+            margin-top: 5px;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #1a1a2e;
+            border: 2px solid #53a8b6;
+            border-radius: 8px;
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+        }
+
+        .modal-content h2 {
+            margin-top: 0;
+            color: #e94560;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            justify-content: flex-end;
+        }
+
+        @media (max-width: 768px) {
+            .skill-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .base-stats {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .budget-display {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media print {
+            .class-selector, .budget-actions, .investment-controls {
+                display: none;
+            }
+
+            .skill-card.inactive {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><a href="index.html">⚡ CORE SPACE ⚡</a></h1>
+            <div class="tagline">Cassie - Character Builder</div>
+        </header>
+
+        <div class="breadcrumb">
+            <a href="index.html">Home</a>
+            <span>›</span>
+            <span>Cassie Builder</span>
+        </div>
+
+        <a href="index.html" class="back-btn">← Back to Hub</a>
+
+        <!-- Character Header -->
+        <div class="character-header">
+            <h1>Cassie</h1>
+            <p class="character-description">Ex-military captain with enhanced combat suit. Fair leader who doesn't take unnecessary risks.</p>
+            <div class="base-stats">
+                <span class="stat">❤️ Health: 5</span>
+                <span class="stat">⚡ Action: 2</span>
+                <span class="stat">🎯 Skill: 4</span>
+            </div>
+
+            <div class="class-selector">
+                <label for="class-select">Class Card:</label>
+                <select id="class-select" onchange="changeClass()">
+                    <option value="marine">Marine</option>
+                    <option value="crewman">Crewman</option>
+                    <option value="hunter">Hunter</option>
+                    <option value="support">Support</option>
+                    <option value="tech">Tech</option>
+                    <option value="machine">Machine</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Skill Point Budget -->
+        <div class="skill-point-budget">
+            <div class="budget-display">
+                <div class="budget-item">
+                    <span class="budget-label">Available</span>
+                    <span class="budget-value" id="available-points">4</span>
+                </div>
+                <div class="budget-separator">/</div>
+                <div class="budget-item">
+                    <span class="budget-label">Total</span>
+                    <span class="budget-value" id="total-points">4</span>
+                </div>
+                <div class="budget-item">
+                    <span class="budget-label">Spent</span>
+                    <span class="budget-value" id="spent-points">0</span>
+                </div>
+            </div>
+
+            <div class="budget-actions">
+                <button class="btn-secondary" onclick="addSkillPoints()">+Add Points (Level Up)</button>
+                <button class="btn-danger" onclick="resetAllSkills()">⟲ Reset All</button>
+            </div>
+        </div>
+
+        <!-- Passive Skills Summary -->
+        <div class="section">
+            <div class="passive-summary">
+                <h2>🔮 Passive Skills (Always Active)</h2>
+                <div id="passive-list"></div>
+                <div id="passive-empty" class="empty-state">
+                    No passive skills active yet. Passive skills will appear as you invest in skills.
+                </div>
+            </div>
+        </div>
+
+        <!-- Reaction Skills Summary -->
+        <div class="section">
+            <div class="reaction-summary">
+                <h2>⚡ Reaction Skills (Triggered Abilities)</h2>
+                <div id="reaction-list"></div>
+                <div id="reaction-empty" class="empty-state">
+                    No reaction skills active yet. Reaction skills will appear as you invest in skills.
+                </div>
+            </div>
+        </div>
+
+        <!-- Skill Cards -->
+        <div class="section">
+            <h2>Skills</h2>
+            <div class="skill-grid" id="skill-grid"></div>
+        </div>
+
+        <footer>
+            <div class="guide-links">
+                <a href="index.html" class="guide-link">← Back to Hub</a>
+                <a href="character-cassie.html" class="guide-link">View Old Tracker</a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Modals -->
+    <div id="class-change-modal" class="modal">
+        <div class="modal-content">
+            <h2>⚠️ Change Class?</h2>
+            <p id="modal-message"></p>
+            <div class="modal-actions">
+                <button class="btn-secondary" onclick="cancelClassChange()">Cancel</button>
+                <button class="btn-danger" onclick="confirmClassChange()">Change Class</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="add-points-modal" class="modal">
+        <div class="modal-content">
+            <h2>Add Skill Points</h2>
+            <p>Current total: <strong id="current-total"></strong> points</p>
+            <p>How many points to add?</p>
+            <div style="display: flex; gap: 10px; margin: 15px 0;">
+                <button class="btn-secondary" onclick="addPoints(1)">+1</button>
+                <button class="btn-secondary" onclick="addPoints(2)">+2</button>
+                <button class="btn-secondary" onclick="addPoints(3)">+3</button>
+            </div>
+            <div class="modal-actions">
+                <button class="btn-secondary" onclick="closeAddPointsModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Game data (inline for simplicity)
+        const GAME_DATA = {
+            character: {
+                id: 'cassie',
+                name: 'Cassie',
+                startingPoints: 4,
+                inherentSkills: {
+                    'evade': 1,
+                    'weaponsExpert': 2,
+                    'slippery': 1
+                }
+            },
+            classes: {
+                marine: {
+                    name: 'Marine',
+                    skills: {
+                        marksman: 3, counterShot: 3, weaponsExpert: 3, combatExpert: 3,
+                        reflexes: 3, walkItOff: 3, stubborn: 2
+                    }
+                },
+                crewman: {
+                    name: 'Crewman',
+                    skills: {
+                        counterShot: 3, walkItOff: 3, lightFingers: 3, evade: 2,
+                        persuasion: 3, ambush: 2, slippery: 2
+                    }
+                },
+                hunter: {
+                    name: 'Hunter',
+                    skills: {
+                        marksman: 3, weaponsExpert: 3, combatExpert: 3, disarm: 3,
+                        evade: 3, fadeToBlack: 3, ambush: 3
+                    }
+                },
+                support: {
+                    name: 'Support',
+                    skills: {
+                        kata: 2, walkItOff: 3, onslaught: 3, stubborn: 3,
+                        impervious: 3, training: 3, energise: 1
+                    }
+                },
+                tech: {
+                    name: 'Tech',
+                    skills: {
+                        distraction: 2, camouflage: 2, hardToHit: 3, hackAndGrab: 3,
+                        engineering: 3, regulate: 2, assist: 3
+                    }
+                },
+                machine: {
+                    name: 'Machine',
+                    skills: {
+                        reroute: 3, overdrive: 3, repair: 3, bodyguardProtocol: 3,
+                        accelerate: 2, reflexes: 3
+                    }
+                }
+            },
+            // Complete skill definitions from CSV
+            skillInfo: {
+                marksman: {
+                    name: 'Marksman',
+                    category: 'Ranged Skills',
+                    levels: {
+                        1: [{ type: 'active', desc: 'Make a ranged attack.' }],
+                        2: [{ type: 'active', desc: 'Make a ranged attack with one extra combat die. After rolling the dice, you can split the hits scored between up to two eligible targets within range of your weapon and within short range of each other.' }],
+                        3: [{ type: 'active', desc: 'Make a ranged attack with two extra combat dice. After rolling the dice, you can split the hits scored between any number of eligible targets within range of your weapon and within short range of each other.' }]
+                    }
+                },
+                counterShot: {
+                    name: 'Counter Shot',
+                    category: 'Ranged Skills',
+                    levels: {
+                        1: [{ type: 'reaction', trigger: 'After being targeted with a ranged attack', effect: 'Make a ranged attack against the attacker.' }],
+                        2: [{ type: 'reaction', trigger: 'At any time after a target enemy has taken its first action in the current round', effect: 'Make a ranged attack against the target.' }],
+                        3: [{ type: 'reaction', trigger: 'At any time', effect: 'Make a ranged attack against an enemy with one extra combat die, and then make a Move action.' }]
+                    }
+                },
+                weaponsExpert: {
+                    name: 'Weapons Expert',
+                    category: 'Ranged Skills',
+                    levels: {
+                        1: [
+                            { type: 'passive', desc: 'You may Reload as an effortless action.' },
+                            { type: 'active', desc: 'Make a ranged attack, rolling 2 additional dice. You cannot Move in the same round that you use this Skill.' }
+                        ],
+                        2: [
+                            { type: 'passive', desc: 'You may make a Ranged Assault action with a pistol as an effortless action.' },
+                            { type: 'active', desc: 'Use when making a ranged attack. You may fire two different pistols as a single action – add their dice together and subtract one die.' }
+                        ],
+                        3: [{ type: 'active', desc: 'You can shoot a weapon from an enemy\'s hand. Make a ranged attack. This rolls two dice regardless of the weapon\'s statistics but must be within range and LoS as normal. If at least one hit is scored, no damage is done, but a weapon of your choice is removed from their dashboard and scattered. The weapon is broken but can be Repaired as normal.' }]
+                    }
+                },
+                combatExpert: {
+                    name: 'Combat Expert',
+                    category: 'Close Assault Skills',
+                    levels: {
+                        1: [
+                            { type: 'passive', desc: 'Ignore one hit scored against you during any attack of opportunity.' },
+                            { type: 'active', desc: 'You sweep your enemy\'s feet from under them. A target enemy in base contact is knocked prone.' }
+                        ],
+                        2: [
+                            { type: 'passive', desc: 'You may make a Close Assault action as an effortless action.' },
+                            { type: 'active', desc: 'Use when making a close assault attack to use a pistol or rifle instead of a close assault weapon. Roll to hit as normal using the weapon\'s short range statistic, and add 2 dice to the attack. This uses ammo as normal.' }
+                        ],
+                        3: [{ type: 'active', desc: 'You burst out of combat. All enemies engaged with your character can be pushed up to 2 inches away in a direction of your choice, stopping if they hit a wall or other obstruction. No attacks of opportunity are made, but each enemy pushed back suffers an attack with 2 dice (armour applies as normal). Then, you may make a Move action.' }]
+                    }
+                },
+                reflexes: {
+                    name: 'Reflexes',
+                    category: 'Close Assault Skills',
+                    levels: {
+                        1: [{ type: 'reaction', trigger: 'After being targeted with a close assault attack', effect: 'Ignore all hits scored.' }],
+                        2: [{ type: 'reaction', trigger: 'After being targeted with a close assault attack', effect: 'Ignore all hits scored. Then, make an immediate Close Assault action against the attacker, rolling 1 additional die.' }],
+                        3: [{ type: 'reaction', trigger: 'After being targeted with a close assault attack', effect: 'Ignore all hits scored. Then, make an immediate Close Assault action against the attacker, rolling 2 additional dice, followed by a Move action with no attacks of opportunity allowed.' }]
+                    }
+                },
+                walkItOff: {
+                    name: 'Walk It Off',
+                    category: 'Endurance Skills',
+                    levels: {
+                        1: [{ type: 'active', desc: 'Restore 1 Health.' }],
+                        2: [{ type: 'reaction', trigger: 'After being targeted with an attack', effect: 'Reduce damage sustained by 2.' }],
+                        3: [{ type: 'reaction', trigger: 'After being defeated', effect: 'You are no longer defeated – restore 1 Health, Stand Up, and you may then make a Move action.' }]
+                    }
+                },
+                stubborn: {
+                    name: 'Stubborn',
+                    category: 'Endurance Skills',
+                    levels: {
+                        1: [{ type: 'active', desc: 'Make a Move action.' }],
+                        2: [{ type: 'active', desc: 'Make a Move action followed by an Assault action.' }],
+                        3: [{ type: 'reaction', trigger: 'After being targeted with an attack', effect: 'Ignore all hits scored, and then make a Move action and an Assault action in any order.' }]
+                    }
+                },
+                evade: {
+                    name: 'Evade',
+                    category: 'Cunning Skills',
+                    levels: {
+                        1: [{ type: 'reaction', trigger: 'When an enemy moves into base contact with you', effect: 'Make a Move action, ignoring attacks of opportunity.' }],
+                        2: [{ type: 'reaction', trigger: 'When an enemy moves into base contact with you', effect: 'In any order, make a Move action, ignoring attacks of opportunity, and an Assault action.' }],
+                        3: [{ type: 'reaction', trigger: 'When an enemy moves into base contact with you', effect: 'In any order, make two Move actions, ignoring attacks of opportunity, and an Assault action. The attacker cannot do anything further this round, including using Skills.' }]
+                    }
+                },
+                slippery: {
+                    name: 'Slippery',
+                    category: 'Vocational Skills',
+                    levels: {
+                        1: [{ type: 'active', desc: 'Make a Move action with Scramble [2,3]' }],
+                        2: [{ type: 'passive', desc: 'You may use an effortless action to ignore an attack of opportunity.' }],
+                        3: [{ type: 'active', desc: 'Make a Move action. This and all of your other Move actions in this turn ignore attacks of opportunity. Make an attack with one die against each enemy contacted during your moves. Any hits will also knock them prone, even if no damage is caused.' }]
+                    }
+                },
+                lightFingers: {
+                    name: 'Light Fingers',
+                    category: 'Cunning Skills',
+                    levels: {
+                        1: [{ type: 'reaction', trigger: 'After being attacked with a close assault action in which you took no damage', effect: 'Take any item from the attacker\'s item tray other than the one they attacked with. If you do not have space for it, it or another item you are holding must be dropped.' }],
+                        2: [{ type: 'reaction', trigger: 'After being attacked in close assault', effect: 'Take any item from the attacker\'s item tray other than the one they attacked with. Items with the [check] icon can be used immediately. Otherwise, if you do not have space for it, it or another item you are holding must be dropped.' }],
+                        3: [{ type: 'reaction', trigger: 'After being targeted with a close assault attack', effect: 'Take any item from the attacker\'s item tray. Items with the [check] icon can be used immediately. Otherwise, if you do not have space for it, it or another item you are holding must be dropped. Then make an immediate Move or Assault action, ignoring attacks of opportunity.' }]
+                    }
+                },
+                persuasion: {
+                    name: 'Persuasion',
+                    category: 'Cunning Skills',
+                    levels: {
+                        1: [{ type: 'active', desc: 'Make a Persuade action against an enemy Trader (with their own default (not current) Skill statistic counting as their Persuade value) within short range and LoS, to try to dissuade them from their mission. If successful, they miss their next turn.' }],
+                        2: [{ type: 'active', desc: 'Make a Persuade action against a non-Purge enemy within short range and LoS, with 1 additional die. Targeted Traders use their Skill statistic as above. The normal options apply (although enemy Traders will not join you), and in addition you can Persuade a character to miss their next turn.' }],
+                        3: [{ type: 'active', desc: 'Make a Persuade action against a non-Purge enemy within short range and LoS, with 2 additional dice. Targeted Traders use their Skill statistic as above. The same options apply as above, except that Trader crew (not captains) can be persuaded to join you, for the rest of this mission only. They will never attack their old crew members. Like Civilians, you must roll the Chance Die each round before activating them. On a result they will return to their old crew.' }]
+                    }
+                },
+                ambush: {
+                    name: 'Ambush',
+                    category: 'Stealth Skills',
+                    levels: {
+                        1: [{ type: 'reaction', trigger: 'When an enemy ends a move within 4 inches of you and you are in full or partial cover', effect: 'Make a Ranged Assault action against that enemy. You may make a Proximity Move before or after this action.' }],
+                        2: [{ type: 'reaction', trigger: 'When an enemy ends a move within 4 inches of you and you are in full or partial cover', effect: 'Make a Move action and then an Assault action against that enemy. You may make a Proximity Move before or after these actions.' }],
+                        3: [{ type: 'reaction', trigger: 'When an enemy ends a move within 4 inches of you and you are in full or partial cover', effect: 'Make a Move action, an Assault action against any enemy, and then another Move action. You may make a Proximity Move before, during or after these actions.' }]
+                    }
+                },
+                fadeToBlack: {
+                    name: 'Fade to Black',
+                    category: 'Stealth Skills',
+                    levels: {
+                        1: [{ type: 'reaction', trigger: 'After being targeted with a ranged attack if you are within 4 inches of cover', effect: 'Move into cover.' }],
+                        2: [{ type: 'reaction', trigger: 'After being targeted with a ranged attack if you are within 4 inches of cover', effect: 'Move into cover, and ignore all hits scored in that attack.' }],
+                        3: [{ type: 'reaction', trigger: 'At any time', effect: 'Make a Move action into cover, ignoring any attacks of opportunity, and make a Ranged Assault action, in any order. You cannot be targeted for the rest of the round.' }]
+                    }
+                },
+                kata: {
+                    name: 'Kata',
+                    category: 'Close Assault Skills',
+                    levels: {
+                        1: [{ type: 'active', desc: 'Use when making a close assault attack. Add 2 dice to the attack.' }],
+                        2: [{ type: 'active', desc: 'Use when making a close assault attack. Add 3 dice to the attack.' }]
+                    }
+                },
+                disarm: {
+                    name: 'Disarm',
+                    category: 'Close Assault Skills',
+                    levels: {
+                        1: [{ type: 'reaction', trigger: 'After being attacked with a Close Assault action in which you took no damage', effect: 'The weapon that the attacker used is removed from their dashboard and scattered.' }],
+                        2: [{ type: 'reaction', trigger: 'After being attacked with a Close Assault action in which you took no damage', effect: 'The weapon that the attacker used is removed from their dashboard and added to yours. If you do not have space for it you may place it on top of your current items and use it until you are no longer engaged with that enemy, at which point it must be dropped or swapped with your items.' }],
+                        3: [{ type: 'reaction', trigger: 'After being attacked with a Close Assault action in which you took no damage', effect: 'As level 2. In addition you can make an immediate Close Assault action with the stolen weapon, followed by a Move action with no attacks of opportunity allowed.' }]
+                    }
+                },
+                onslaught: {
+                    name: 'Onslaught',
+                    category: 'Endurance Skills',
+                    levels: {
+                        1: [{ type: 'reaction', trigger: 'After scoring one or more hits on an enemy in close assault', effect: 'Make another Close Assault action.' }],
+                        2: [{ type: 'reaction', trigger: 'After scoring one or more hits on an enemy with any attack', effect: 'Make a Move if you wish, and then make another Close Assault action.' }],
+                        3: [{ type: 'active', desc: 'Use during a Move action. You may ignore attacks of opportunity during this Move, and you may make a close assault attack against each enemy you come into contact with while moving.' }]
+                    }
+                },
+                impervious: {
+                    name: 'Impervious',
+                    category: 'Endurance Skills',
+                    levels: {
+                        1: [{ type: 'reaction', trigger: 'When another rule or Skill causes you to lose any actions or miss your next turn', effect: 'Ignore the effect.' }],
+                        2: [{ type: 'active', desc: 'Consider your physical armour value to be 2 higher than it currently is until the end of the round.' }],
+                        3: [{ type: 'active', desc: 'Restore 1 Health. This may take you above your starting level as long as there is space on your dashboard, for this game only. In addition, you may not take any damage, be Knocked Back, or be affected by any rule that causes you to lose actions or miss your turn until the end of the round after the current one.' }]
+                    }
+                },
+                training: {
+                    name: 'Training',
+                    category: 'Vocational Skills',
+                    levels: {
+                        1: [{ type: 'active', desc: 'Use after taking an action. Another Trader in your crew within short range and LoS immediately makes the same action for free.' }]
+                    }
+                },
+                energise: {
+                    name: 'Energise',
+                    category: 'Augmented Skills',
+                    levels: {
+                        1: [{ type: 'active', desc: 'Boost your vitality. Make a Move action or Ranged Assault action OR Restore 1 Health.' }]
+                    }
+                },
+                distraction: {
+                    name: 'Distraction',
+                    category: 'Cunning Skills',
+                    levels: {
+                        1: [{ type: 'active', desc: 'Use when making a Ranged Assault action. The target loses 1 action in its next turn in addition to any damage caused.' }],
+                        2: [{ type: 'active', desc: 'Make a Ranged Assault action. Any one enemy within short range of the target misses its entire next turn in addition to any damage caused. Then make a Move action.' }]
+                    }
+                },
+                camouflage: {
+                    name: 'Camouflage',
+                    category: 'Stealth Skills',
+                    levels: {
+                        1: [{ type: 'active', desc: 'While you are in base contact with any wall you cannot be targeted for the rest of the round. Enemies cannot enter base contact with you. You do not block LoS to other characters in any way.' }],
+                        2: [{ type: 'active', desc: 'Make a Ranged Assault action. While you are in base contact with any terrain you cannot be targeted for the rest of the round. Enemies cannot enter base contact with you. You do not block LoS to other characters in any way.' }]
+                    }
+                },
+                hardToHit: {
+                    name: 'Hard To Hit',
+                    category: 'Stealth Skills',
+                    levels: {
+                        1: [{ type: 'active', desc: 'While in cover, you cannot be damaged by ranged attacks until the end of the round, although you can be targeted as normal.' }],
+                        2: [{ type: 'active', desc: 'While in cover or at more than short range, you cannot be damaged by ranged attacks until the end of the round, although you can be targeted as normal.' }],
+                        3: [{ type: 'active', desc: 'Make a Ranged Assault action followed by a Move action. You cannot be damaged by any enemy ranged attacks until the end of the round, although you can be targeted as normal.' }]
+                    }
+                },
+                hackAndGrab: {
+                    name: 'Hack and Grab',
+                    category: 'Vocational Skills',
+                    levels: {
+                        1: [{ type: 'active', desc: 'Make any two of the following actions, in any order, before, after or between your other actions this turn: • Move • Unlock and open a door or Searchable terrain piece in short range • Lock and close a door or Searchable terrain piece in short range (may be the same one).' }],
+                        2: [{ type: 'active', desc: 'Move adjacent to another character and roll a die to attempt to pickpocket them as follows: • [!] You fail. There is no effect. • Blank: One of the target\'s items, chosen at random, is scattered. • 1 Hit: Take a small item of your choice from the target\'s item tray. • 2 Hits: Take any item of your choice from the target\'s item tray and knock them prone. Then make another Move action, with no attack of opportunity.' }],
+                        3: [{ type: 'active', desc: 'You use a homemade miniaturised portal device to inspect the contents of any Searchable terrain piece within medium range. Then roll a combat die: • [!] Return all the items. • Blank: Take or swap a small item of your choice. • 1 Hit: Take or swap any item of your choice. • 2 Hits: Take or swap all items, and distribute them between your own equipment tray and your ship\'s hold. You may then lock the terrain piece if you wish.' }]
+                    }
+                },
+                engineering: {
+                    name: 'Engineering',
+                    category: 'Vocational Skills',
+                    levels: {
+                        1: [{ type: 'active', desc: 'Make a Repair action. Do not roll – apply up to two Repair Points automatically. Additional Repair Points may be applied by spending additional actions.' }]
+                    }
+                },
+                regulate: {
+                    name: 'Regulate',
+                    category: 'Tech Skills',
+                    levels: {
+                        1: [{ type: 'active', desc: 'You can jam enemy sensors to remove a peg from the Hostility Tracker OR you can apply one Repair Point to any item or Machine in base contact.' }],
+                        2: [{ type: 'active', desc: 'Choose an Entry or Patrol Point and turn the counter over. Nothing will enter from this point until the next Hostility level is reached. If this Entry or Patrol Point is rolled, roll again.' }]
+                    }
+                },
+                assist: {
+                    name: 'Assist',
+                    category: 'Tech Skills',
+                    levels: {
+                        1: [{ type: 'active', desc: 'Target yourself or another member of your crew. They cannot be harmed by ranged attacks for the rest of the round.' }],
+                        2: [{ type: 'active', desc: 'Target yourself or another member of your crew. They restore 2 Health.' }],
+                        3: [{ type: 'active', desc: 'You co-ordinate your team with vital intelligence. Target yourself and two other members of your crew. Each character may make 1 action, resolved in any order.' }]
+                    }
+                },
+                reroute: {
+                    name: 'Reroute',
+                    category: 'Machine Skills',
+                    levels: {
+                        1: [{ type: 'active', desc: 'Use after being defeated. You are no longer defeated – restore 2 Health and Stand Up.' }],
+                        2: [{ type: 'active', desc: 'You can activate self-repair systems and restore 2 Health.' }],
+                        3: [{ type: 'active', desc: 'Use when in base contact with a wall that does not contain a door or window. You can patch into the internal substructure to recharge. Restore your Health to its maximum.' }]
+                    }
+                },
+                overdrive: {
+                    name: 'Overdrive',
+                    category: 'Machine Skills',
+                    levels: {
+                        1: [{ type: 'active', desc: 'Take any action.' }],
+                        2: [{ type: 'active', desc: 'Take any two actions and then lose 1 Health.' }],
+                        3: [{ type: 'active', desc: 'You overload your power cells and self-destruct. Make a ranged attack against each character within short range with 5 combat dice. Make a ranged attack against each character in medium range with 2 combat dice. After resolving the attacks roll the Chance Die for consequences (see full rules).' }]
+                    }
+                },
+                repair: {
+                    name: 'Repair',
+                    category: 'Machine Skills',
+                    levels: {
+                        1: [{ type: 'active', desc: 'Make a Repair or Clear Jam action on yourself or any other character or equipment in base contact, with one automatic hit added to the roll.' }],
+                        2: [{ type: 'active', desc: 'You can apply three Repair Points to yourself or any item or machine in base contact.' }],
+                        3: [{ type: 'active', desc: 'Release a cloud of repair nanites. Fully Repair one object/heal any Machine character in short range (including yourself), without rolling. Any other objects, items or Machine characters in short range can apply 1 Repair Point.' }]
+                    }
+                },
+                bodyguardProtocol: {
+                    name: 'Bodyguard Protocol',
+                    category: 'Machine Skills',
+                    levels: {
+                        1: [{ type: 'active', desc: 'Use at any time. Make a Move action.' }],
+                        2: [{ type: 'active', desc: 'Target a friendly character in base contact. They restore 1 Health. While in contact, you may take any or all hits that they suffer on yourself instead until the end of the round.' }],
+                        3: [{ type: 'active', desc: 'Use at any time. Make two Move actions and a Close Assault action, in any order. After the Close Assault action, if the enemy has not been defeated, roll a combat die. If you score one or more hits, the enemy is knocked prone.' }]
+                    }
+                },
+                accelerate: {
+                    name: 'Accelerate',
+                    category: 'Augmented Skills',
+                    levels: {
+                        1: [{ type: 'active', desc: 'Make a Move action.' }],
+                        2: [{ type: 'active', desc: 'Make two extra Move and/or Assault actions this turn. You may make your other actions before, during or after these actions.' }]
+                    }
+                }
+            }
+        };
+
+        // State
+        let currentClass = 'marine';
+        let pendingClass = null;
+        let saveData = {
+            classId: 'marine',
+            totalSkillPoints: 4,
+            investments: {},
+            spentPoints: 0,
+            remainingPoints: 4
+        };
+
+        // Initialize
+        window.addEventListener('DOMContentLoaded', () => {
+            loadSaveData();
+            renderSkillGrid();
+            updateBudgetDisplay();
+            updateSummaries();
+        });
+
+        // Save/Load
+        function loadSaveData() {
+            const saved = localStorage.getItem('corespace-cassie-builder');
+            if (saved) {
+                saveData = JSON.parse(saved);
+                currentClass = saveData.classId;
+                document.getElementById('class-select').value = currentClass;
+            }
+        }
+
+        function saveSaveData() {
+            localStorage.setItem('corespace-cassie-builder', JSON.stringify(saveData));
+        }
+
+        // Class Management
+        function changeClass() {
+            const newClass = document.getElementById('class-select').value;
+            if (newClass === currentClass) return;
+
+            if (saveData.spentPoints > 0) {
+                pendingClass = newClass;
+                const modal = document.getElementById('class-change-modal');
+                const message = document.getElementById('modal-message');
+                message.innerHTML = `
+                    <p>Changing your class will refund all invested skill points.</p>
+                    <p><strong>Current investments:</strong></p>
+                    <ul>
+                        ${Object.entries(saveData.investments)
+                            .map(([skill, level]) => `<li>${GAME_DATA.skillInfo[skill].name}: ${level} points</li>`)
+                            .join('')}
+                    </ul>
+                    <p><strong>Refund:</strong> ${saveData.spentPoints} skill points</p>
+                `;
+                modal.classList.add('show');
+            } else {
+                applyClassChange(newClass);
+            }
+        }
+
+        function confirmClassChange() {
+            applyClassChange(pendingClass);
+            document.getElementById('class-change-modal').classList.remove('show');
+        }
+
+        function cancelClassChange() {
+            document.getElementById('class-select').value = currentClass;
+            pendingClass = null;
+            document.getElementById('class-change-modal').classList.remove('show');
+        }
+
+        function applyClassChange(newClass) {
+            saveData.classId = newClass;
+            saveData.investments = {};
+            saveData.spentPoints = 0;
+            saveData.remainingPoints = saveData.totalSkillPoints;
+            currentClass = newClass;
+            saveSaveData();
+            renderSkillGrid();
+            updateBudgetDisplay();
+            updateSummaries();
+        }
+
+        // Skill Investment
+        function incrementSkill(skillId) {
+            const inherent = GAME_DATA.character.inherentSkills[skillId] || 0;
+            const currentInvestment = saveData.investments[skillId] || 0;
+            const classMax = GAME_DATA.classes[currentClass].skills[skillId];
+            const maxInvestable = Math.min(3, classMax) - inherent;
+
+            if (currentInvestment >= maxInvestable) {
+                alert('Skill at maximum level!');
+                return;
+            }
+
+            if (saveData.remainingPoints < 1) {
+                alert('Not enough skill points!');
+                return;
+            }
+
+            saveData.investments[skillId] = currentInvestment + 1;
+            saveData.spentPoints++;
+            saveData.remainingPoints--;
+            saveSaveData();
+            renderSkillCard(skillId);
+            updateBudgetDisplay();
+            updateSummaries();
+        }
+
+        function decrementSkill(skillId) {
+            const currentInvestment = saveData.investments[skillId] || 0;
+            if (currentInvestment === 0) return;
+
+            saveData.investments[skillId] = currentInvestment - 1;
+            if (saveData.investments[skillId] === 0) {
+                delete saveData.investments[skillId];
+            }
+            saveData.spentPoints--;
+            saveData.remainingPoints++;
+            saveSaveData();
+            renderSkillCard(skillId);
+            updateBudgetDisplay();
+            updateSummaries();
+        }
+
+        // Skill Points Management
+        function addSkillPoints() {
+            document.getElementById('current-total').textContent = saveData.totalSkillPoints;
+            document.getElementById('add-points-modal').classList.add('show');
+        }
+
+        function addPoints(amount) {
+            saveData.totalSkillPoints += amount;
+            saveData.remainingPoints += amount;
+            saveSaveData();
+            updateBudgetDisplay();
+            closeAddPointsModal();
+        }
+
+        function closeAddPointsModal() {
+            document.getElementById('add-points-modal').classList.remove('show');
+        }
+
+        function resetAllSkills() {
+            if (!confirm('Reset all skills to zero? This will refund all spent points. This cannot be undone.')) {
+                return;
+            }
+            saveData.investments = {};
+            saveData.spentPoints = 0;
+            saveData.remainingPoints = saveData.totalSkillPoints;
+            saveSaveData();
+            renderSkillGrid();
+            updateBudgetDisplay();
+            updateSummaries();
+        }
+
+        // Display Updates
+        function updateBudgetDisplay() {
+            const availableEl = document.getElementById('available-points');
+            availableEl.textContent = saveData.remainingPoints;
+            availableEl.className = 'budget-value' + (saveData.remainingPoints === 0 ? ' zero' : '');
+            document.getElementById('total-points').textContent = saveData.totalSkillPoints;
+            document.getElementById('spent-points').textContent = saveData.spentPoints;
+        }
+
+        function updateSummaries() {
+            const passiveList = document.getElementById('passive-list');
+            const reactionList = document.getElementById('reaction-list');
+            passiveList.innerHTML = '';
+            reactionList.innerHTML = '';
+
+            let hasPassive = false;
+            let hasReaction = false;
+
+            // Helper function to add passive/reaction from skill level
+            function processSkillLevel(skillId, level, source) {
+                const skillInfo = GAME_DATA.skillInfo[skillId];
+                if (!skillInfo || !skillInfo.levels || !skillInfo.levels[level]) return;
+
+                const levelData = skillInfo.levels[level];
+                for (const ability of levelData) {
+                    if (ability.type === 'passive') {
+                        const div = document.createElement('div');
+                        div.className = 'passive-item';
+                        div.innerHTML = `<strong>${skillInfo.name} ${level}${source}:</strong> ${ability.desc}`;
+                        passiveList.appendChild(div);
+                        hasPassive = true;
+                    } else if (ability.type === 'reaction') {
+                        const div = document.createElement('div');
+                        div.className = 'reaction-item';
+                        div.innerHTML = `
+                            <div class="reaction-trigger">
+                                <span class="trigger-label">TRIGGER:</span> ${ability.trigger}
+                            </div>
+                            <div class="reaction-effect">
+                                <strong>${skillInfo.name} ${level}${source}:</strong> ${ability.effect}
+                            </div>
+                        `;
+                        reactionList.appendChild(div);
+                        hasReaction = true;
+                    }
+                }
+            }
+
+            // Check inherent skills
+            for (const [skillId, inherentLevel] of Object.entries(GAME_DATA.character.inherentSkills)) {
+                for (let level = 1; level <= inherentLevel; level++) {
+                    processSkillLevel(skillId, level, ' (Inherent)');
+                }
+            }
+
+            // Check invested skills
+            for (const [skillId, investment] of Object.entries(saveData.investments)) {
+                const inherent = GAME_DATA.character.inherentSkills[skillId] || 0;
+                const effectiveLevel = inherent + investment;
+
+                // Only show levels beyond inherent
+                for (let level = inherent + 1; level <= effectiveLevel; level++) {
+                    processSkillLevel(skillId, level, '');
+                }
+            }
+
+            document.getElementById('passive-empty').style.display = hasPassive ? 'none' : 'block';
+            document.getElementById('reaction-empty').style.display = hasReaction ? 'none' : 'block';
+        }
+
+        function renderSkillGrid() {
+            const grid = document.getElementById('skill-grid');
+            grid.innerHTML = '';
+
+            const classSkills = GAME_DATA.classes[currentClass].skills;
+            const renderedSkills = new Set();
+
+            // First render all class skills
+            for (const [skillId, classMax] of Object.entries(classSkills)) {
+                renderSkillCard(skillId);
+                renderedSkills.add(skillId);
+            }
+
+            // Then render any inherent skills that aren't in the class
+            for (const skillId of Object.keys(GAME_DATA.character.inherentSkills)) {
+                if (!renderedSkills.has(skillId)) {
+                    renderSkillCard(skillId);
+                }
+            }
+        }
+
+        function renderSkillCard(skillId) {
+            const grid = document.getElementById('skill-grid');
+            let card = document.getElementById(`card-${skillId}`);
+
+            const inherent = GAME_DATA.character.inherentSkills[skillId] || 0;
+            const investment = saveData.investments[skillId] || 0;
+            const effectiveLevel = inherent + investment;
+            const classMax = GAME_DATA.classes[currentClass].skills[skillId] || 0;
+            const maxInvestable = classMax > 0 ? Math.min(3, classMax) - inherent : 0;
+            const skillInfo = GAME_DATA.skillInfo[skillId];
+
+            if (!card) {
+                card = document.createElement('div');
+                card.id = `card-${skillId}`;
+                card.className = 'skill-card';
+                grid.appendChild(card);
+            }
+
+            const isMaxed = investment >= maxInvestable && maxInvestable > 0;
+            card.className = 'skill-card' + (effectiveLevel === 0 ? ' inactive' : '') + (isMaxed ? ' max-level' : '');
+
+            card.innerHTML = `
+                <div class="skill-header">
+                    <div>
+                        <h3 class="skill-name">${skillInfo.name}</h3>
+                        <div class="skill-category">${skillInfo.category}</div>
+                    </div>
+                    ${inherent > 0 ? `<span class="inherent-badge">Level ${inherent} FREE</span>` : ''}
+                </div>
+
+                ${maxInvestable > 0 ? `
+                    <div class="investment-controls">
+                        <button onclick="decrementSkill('${skillId}')" ${investment === 0 ? 'disabled' : ''}>−</button>
+                        <div class="investment-display">
+                            <span class="investment-label">Invest</span>
+                            <span class="investment-value">${investment}</span>
+                            <span class="investment-max">/ ${maxInvestable} available</span>
+                        </div>
+                        <button onclick="incrementSkill('${skillId}')" ${investment >= maxInvestable ? 'disabled' : ''}>+</button>
+                    </div>
+                ` : ''}
+
+                <div class="effective-level">
+                    <span class="effective-label">Total Level:</span>
+                    <span class="effective-value">${effectiveLevel}</span>
+                    <span class="effective-max">/ ${classMax > 0 ? Math.min(3, classMax) : inherent} max</span>
+                    ${classMax === 0 && inherent > 0 ? '<div style="font-size: 0.8em; color: #888; margin-top: 5px;">Inherent only (current class doesn\'t offer this skill)</div>' : ''}
+                </div>
+
+                <div class="skill-levels">
+                    ${[1, 2, 3].map(level => {
+                        const maxLevelToShow = classMax > 0 ? classMax : inherent;
+                        if (level > maxLevelToShow) return '';
+                        const isActive = level <= effectiveLevel;
+                        const isFree = level <= inherent;
+                        const levelData = skillInfo.levels && skillInfo.levels[level] ? skillInfo.levels[level] : [];
+
+                        return `
+                            <div class="skill-level ${isActive ? 'active' : ''}">
+                                <span class="level-badge ${isFree ? 'free' : ''}">
+                                    Level ${level}${isFree ? ' (FREE)' : ''}
+                                </span>
+                                ${levelData.map(ability => {
+                                    if (ability.type === 'passive') {
+                                        return `<p class="level-description"><strong>🔮 Passive:</strong> ${ability.desc}</p>`;
+                                    } else if (ability.type === 'reaction') {
+                                        return `
+                                            <div class="reaction-details">
+                                                <div class="trigger"><strong>⚡ Trigger:</strong> ${ability.trigger}</div>
+                                                <div class="effect"><strong>Effect:</strong> ${ability.effect}</div>
+                                            </div>
+                                        `;
+                                    } else {
+                                        return `<p class="level-description">${ability.desc}</p>`;
+                                    }
+                                }).join('')}
+                            </div>
+                        `;
+                    }).join('')}
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>
