@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+
+# Project-specific
+test-v2-output/
+enhanced-output/pages/*.png
+enhanced-output/vision-prompts/
+
+# PDFs (large files, not needed in repo)
+*.pdf
+
+# Keep requirements if we add it
+!requirements.txt
