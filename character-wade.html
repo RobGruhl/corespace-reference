@@ -19,6 +19,25 @@
             font-size: 1.1em;
             margin-bottom: 8px;
         }
+        .passive-summary {
+            background: rgba(155, 89, 182, 0.15);
+            border: 2px solid #9b59b6;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .passive-summary h3 {
+            color: #9b59b6;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        .passive-item {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(155, 89, 182, 0.2);
+        }
+        .passive-item:last-child {
+            border-bottom: none;
+        }
         .skill-controls {
             background: rgba(83, 168, 182, 0.1);
             padding: 12px;
@@ -122,6 +141,14 @@
             <div class="character-ability">
                 <div class="ability-title">🏃 Extra Movement</div>
                 <div>When making a Move action, this character can move an additional number of squares equal to the number in the icon. Still limited to 11" maximum.</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Passive Skills Summary</h2>
+            <div class="passive-summary">
+                <h3>🔮 Always Active Abilities</h3>
+                <div class="passive-item"><strong>Slippery 2:</strong> Use effortless action to ignore attack of opportunity</div>
             </div>
         </div>
 
@@ -243,21 +270,17 @@
                     <div class="action-card-title">Light Fingers</div>
                     <div class="action-requirements">Reaction - thievery</div>
                     <div>
-                        <div class="skill-level" data-level="passive">
-                            <span class="level-label" data-level="passive">Trigger:</span>
-                            After enemy close assault where you took no damage
-                        </div>
                         <div class="skill-level" data-level="1">
-                            <span class="level-label" data-level="1">Level 1:</span>
-                            Take item from attacker's tray (not weapon used), must drop if no space
+                            <span class="level-label" data-level="1">Level 1 (Trigger: took no damage):</span>
+                            After enemy close assault where you took NO damage: Take item from attacker's tray (not weapon used), drop if no space
                         </div>
                         <div class="skill-level" data-level="2">
-                            <span class="level-label" data-level="2">Level 2:</span>
-                            As level 1, items with ✓ icon can be used immediately
+                            <span class="level-label" data-level="2">Level 2 (Trigger: any damage OK):</span>
+                            After enemy close assault (damage doesn't matter): Take item (not weapon used). Items with ✓ can be used immediately
                         </div>
                         <div class="skill-level" data-level="3">
-                            <span class="level-label" data-level="3">Level 3:</span>
-                            As level 2 + make Move or Assault (no attacks of opportunity)
+                            <span class="level-label" data-level="3">Level 3 (Trigger: just targeted):</span>
+                            After being TARGETED with close assault attack: Take ANY item (can steal weapon!). Use ✓ items immediately. Then Move or Assault (no AoO)
                         </div>
                     </div>
                 </div>
@@ -315,17 +338,26 @@
                         <option value="0">Not Learned</option>
                         <option value="1">Level 1</option>
                         <option value="2">Level 2</option>
+                        <option value="3">Level 3</option>
                     </select>
                     <div class="action-card-title">Slippery</div>
-                    <div class="action-requirements">Passive - evasion</div>
+                    <div class="action-requirements">Active + Passive + Between Games</div>
                     <div>
                         <div class="skill-level" data-level="1">
                             <span class="level-label" data-level="1">Level 1:</span>
+                            Make Move action with Scramble [2,3] (adds +2 to scramble attempts)
+                        </div>
+                        <div class="skill-level" data-level="passive">
+                            <span class="level-label" data-level="passive">Passive 2:</span>
                             Use effortless action to ignore attack of opportunity
                         </div>
                         <div class="skill-level" data-level="2">
-                            <span class="level-label" data-level="2">Level 2:</span>
-                            Can use while Apprehended (Galactic Corps) to remove Apprehended Board + restore 1 Health
+                            <span class="level-label" data-level="2">Level 2 (Between Games):</span>
+                            While Apprehended (Galactic Corps): remove Apprehended Board + restore 1 Health
+                        </div>
+                        <div class="skill-level" data-level="3">
+                            <span class="level-label" data-level="3">Level 3:</span>
+                            Move action: this and all other Moves this turn ignore AoO. Attack (1 die) each enemy contacted - knocks prone even if no damage
                         </div>
                     </div>
                 </div>

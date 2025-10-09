@@ -6,6 +6,25 @@
     <title>Hopper - Character Tracker</title>
     <link rel="stylesheet" href="style.css">
     <style>
+        .passive-summary {
+            background: rgba(155, 89, 182, 0.15);
+            border: 2px solid #9b59b6;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .passive-summary h3 {
+            color: #9b59b6;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        .passive-item {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(155, 89, 182, 0.2);
+        }
+        .passive-item:last-child {
+            border-bottom: none;
+        }
         .skill-controls {
             background: rgba(83, 168, 182, 0.1);
             padding: 12px;
@@ -16,7 +35,6 @@
             flex-wrap: wrap;
             align-items: center;
         }
-
         .reset-btn {
             background: rgba(231, 76, 60, 0.3);
             border: 2px solid #e74c3c;
@@ -27,11 +45,9 @@
             font-size: 0.85em;
             transition: all 0.3s;
         }
-
         .reset-btn:hover {
             background: rgba(231, 76, 60, 0.5);
         }
-
         .skill-select {
             background: rgba(255, 255, 255, 0.1);
             border: 2px solid #53a8b6;
@@ -42,62 +58,50 @@
             cursor: pointer;
             margin-bottom: 8px;
         }
-
         .skill-select option {
             background: #1a1a2e;
             color: #eee;
         }
-
         .action-card.not-learned {
             opacity: 0.3;
             filter: grayscale(0.8);
         }
-
         .action-card.not-learned .action-card-title {
             text-decoration: line-through;
         }
-
         .skill-level {
             padding: 8px 12px;
             margin: 5px 0;
             border-radius: 4px;
             border-left: 4px solid;
         }
-
         .skill-level[data-level="1"] {
             border-left-color: #2ecc71;
             background: rgba(46, 204, 113, 0.1);
         }
-
         .skill-level[data-level="2"] {
             border-left-color: #f39c12;
             background: rgba(243, 156, 18, 0.1);
         }
-
         .skill-level[data-level="3"] {
             border-left-color: #e74c3c;
             background: rgba(231, 76, 60, 0.1);
         }
-
         .skill-level[data-level="passive"] {
             border-left-color: #9b59b6;
             background: rgba(155, 89, 182, 0.1);
         }
-
         .skill-level.hidden {
             display: none;
         }
-
         .level-label {
             font-weight: bold;
             margin-right: 8px;
         }
-
         .level-label[data-level="1"] { color: #2ecc71; }
         .level-label[data-level="2"] { color: #f39c12; }
         .level-label[data-level="3"] { color: #e74c3c; }
         .level-label[data-level="passive"] { color: #9b59b6; }
-
         @media print {
             .skill-controls, .back-btn, .breadcrumb, .skill-select { display: none; }
             .action-card.not-learned { display: none; }
@@ -120,6 +124,14 @@
         <a href="index.html" class="back-btn">← Back to Hub</a>
 
         <div class="section">
+            <h2>Passive Skills Summary</h2>
+            <div class="passive-summary">
+                <h3>🔮 Always Active Abilities</h3>
+                <div class="passive-item"><em>No passive skills at current level</em></div>
+            </div>
+        </div>
+
+        <div class="section">
             <h2>Campaign Tracker</h2>
             <div class="skill-controls">
                 <div class="info-box" style="margin: 0; flex: 1;">
@@ -130,14 +142,155 @@
         </div>
 
         <div class="section">
-            <h2>Tech Class</h2>
+            <h2>Hopper's Skills</h2>
+
+            <h3>Machine Skills</h3>
             <div class="action-grid">
+
+                <div class="action-card" data-skill="reroute">
+                    <select class="skill-select" onchange="updateSkill('reroute', this.value)">
+                        <option value="0">Not Learned</option>
+                        <option value="1">Level 1</option>
+                        <option value="2">Level 2</option>
+                        <option value="3">Level 3</option>
+                    </select>
+                    <div class="action-card-title">Reroute</div>
+                    <div class="action-requirements">Active + Between Games</div>
+                    <div>
+                        <div class="skill-level" data-level="1">
+                            <span class="level-label" data-level="1">Level 1 (Between Games):</span>
+                            After defeated: no longer defeated - restore 2 Health and Stand Up
+                        </div>
+                        <div class="skill-level" data-level="2">
+                            <span class="level-label" data-level="2">Level 2:</span>
+                            Activate self-repair systems - restore 2 Health
+                        </div>
+                        <div class="skill-level" data-level="3">
+                            <span class="level-label" data-level="3">Level 3:</span>
+                            When in base contact with wall (no door/window), patch into substructure to recharge - restore Health to maximum
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-card" data-skill="overdrive">
+                    <select class="skill-select" onchange="updateSkill('overdrive', this.value)">
+                        <option value="0">Not Learned</option>
+                        <option value="1">Level 1</option>
+                        <option value="2">Level 2</option>
+                        <option value="3">Level 3</option>
+                    </select>
+                    <div class="action-card-title">Overdrive</div>
+                    <div class="action-requirements">Active skill</div>
+                    <div>
+                        <div class="skill-level" data-level="1">
+                            <span class="level-label" data-level="1">Level 1:</span>
+                            Take any action
+                        </div>
+                        <div class="skill-level" data-level="2">
+                            <span class="level-label" data-level="2">Level 2:</span>
+                            Take any two actions, then lose 1 Health
+                        </div>
+                        <div class="skill-level" data-level="3">
+                            <span class="level-label" data-level="3">Level 3:</span>
+                            Self-destruct: Ranged attack 5 dice (short range) or 2 dice (medium range) to all characters. Roll Chance Die: 1-2 = destroyed permanently, 3-4 = destroyed but equipment scatters, 5-6 = AI chip survives as Objective token (can restore in Trade Phase)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-card" data-skill="repair">
+                    <select class="skill-select" onchange="updateSkill('repair', this.value)">
+                        <option value="0">Not Learned</option>
+                        <option value="1">Level 1</option>
+                        <option value="2">Level 2</option>
+                        <option value="3">Level 3</option>
+                    </select>
+                    <div class="action-card-title">Repair</div>
+                    <div class="action-requirements">Active skill</div>
+                    <div>
+                        <div class="skill-level" data-level="1">
+                            <span class="level-label" data-level="1">Level 1:</span>
+                            Repair or Clear Jam action on self or any character/equipment in base contact, with +1 automatic hit
+                        </div>
+                        <div class="skill-level" data-level="2">
+                            <span class="level-label" data-level="2">Level 2:</span>
+                            Apply 3 Repair Points to self or any item/machine in base contact
+                        </div>
+                        <div class="skill-level" data-level="3">
+                            <span class="level-label" data-level="3">Level 3:</span>
+                            Release repair nanites: Fully repair one object/heal any Machine in short range. All other objects/items/Machines in short range apply 1 Repair Point
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-card" data-skill="bodyguardprotocol">
+                    <select class="skill-select" onchange="updateSkill('bodyguardprotocol', this.value)">
+                        <option value="0">Not Learned</option>
+                        <option value="1">Level 1</option>
+                        <option value="2">Level 2</option>
+                        <option value="3">Level 3</option>
+                    </select>
+                    <div class="action-card-title">Bodyguard Protocol</div>
+                    <div class="action-requirements">Active + Between Games</div>
+                    <div>
+                        <div class="skill-level" data-level="1">
+                            <span class="level-label" data-level="1">Level 1 (Between Games):</span>
+                            At any time, make Move action
+                        </div>
+                        <div class="skill-level" data-level="2">
+                            <span class="level-label" data-level="2">Level 2:</span>
+                            Target friendly character in base contact restores 1 Health. While in contact, may take any/all hits they suffer until end of round
+                        </div>
+                        <div class="skill-level" data-level="3">
+                            <span class="level-label" data-level="3">Level 3 (Between Games):</span>
+                            At any time: two Move actions and Close Assault (any order). After Close Assault, if enemy not defeated, roll die - 1+ hits knocks them prone
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <h3>Close Assault Skills</h3>
+            <div class="action-grid">
+
+                <div class="action-card" data-skill="reflexes">
+                    <select class="skill-select" onchange="updateSkill('reflexes', this.value)">
+                        <option value="0">Not Learned</option>
+                        <option value="1">Level 1</option>
+                        <option value="2">Level 2</option>
+                        <option value="3">Level 3</option>
+                    </select>
+                    <div class="action-card-title">Reflexes</div>
+                    <div class="action-requirements">Reaction skill</div>
+                    <div>
+                        <div class="skill-level" data-level="passive">
+                            <span class="level-label" data-level="passive">Trigger:</span>
+                            After targeted with close assault attack
+                        </div>
+                        <div class="skill-level" data-level="1">
+                            <span class="level-label" data-level="1">Level 1:</span>
+                            Ignore all hits scored
+                        </div>
+                        <div class="skill-level" data-level="2">
+                            <span class="level-label" data-level="2">Level 2:</span>
+                            Ignore all hits + immediate Close Assault against attacker (+1 die)
+                        </div>
+                        <div class="skill-level" data-level="3">
+                            <span class="level-label" data-level="3">Level 3:</span>
+                            Ignore all hits + immediate Close Assault (+2 dice) + Move (no attacks of opportunity)
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <h3>Augmented Skills</h3>
+            <div class="action-grid">
+
                 <div class="action-card" data-skill="accelerate">
                     <select class="skill-select" onchange="updateSkill('accelerate', this.value)">
                         <option value="0">Not Learned</option>
                         <option value="1">Level 1</option>
                         <option value="2">Level 2</option>
-                        <option value="3">Level 3</option>
                     </select>
                     <div class="action-card-title">Accelerate</div>
                     <div class="action-requirements">Active skill</div>
@@ -148,377 +301,31 @@
                         </div>
                         <div class="skill-level" data-level="2">
                             <span class="level-label" data-level="2">Level 2:</span>
-                            2 extra Move/Assault actions
-                        </div>
-                        <div class="skill-level" data-level="3">
-                            <span class="level-label" data-level="3">Level 3:</span>
-                            3 extra Move/Assault actions
+                            Make 2 extra Move/Assault actions (may use other actions before/during/after)
                         </div>
                     </div>
                 </div>
 
-                <div class="action-card" data-skill="regulate">
-                    <select class="skill-select" onchange="updateSkill('regulate', this.value)">
-                        <option value="0">Not Learned</option>
-                        <option value="1">Level 1</option>
-                        <option value="2">Level 2</option>
-                        <option value="3">Level 3</option>
-                    </select>
-                    <div class="action-card-title">Regulate</div>
-                    <div class="action-requirements">Active skill - hostility control</div>
-                    <div>
-                        <div class="skill-level" data-level="1">
-                            <span class="level-label" data-level="1">Level 1:</span>
-                            Remove hostility peg OR 1 repair point
-                        </div>
-                        <div class="skill-level" data-level="2">
-                            <span class="level-label" data-level="2">Level 2:</span>
-                            Turn over entry point (First Born won't use)
-                        </div>
-                        <div class="skill-level" data-level="3">
-                            <span class="level-label" data-level="3">Level 3:</span>
-                            Choose point, all First Born in medium range move there, don't act
-                        </div>
-                    </div>
-                </div>
-
-                <div class="action-card" data-skill="hack">
-                    <select class="skill-select" onchange="updateSkill('hack', this.value)">
-                        <option value="0">Not Learned</option>
-                        <option value="1">Level 1</option>
-                        <option value="2">Level 2</option>
-                        <option value="3">Level 3</option>
-                    </select>
-                    <div class="action-card-title">Hack</div>
-                    <div class="action-requirements">Active skill - tech warfare</div>
-                    <div>
-                        <div class="skill-level" data-level="1">
-                            <span class="level-label" data-level="1">Level 1:</span>
-                            Shut down rank 1-2 First Born OR lock/unlock door
-                        </div>
-                        <div class="skill-level" data-level="2">
-                            <span class="level-label" data-level="2">Level 2:</span>
-                            Shut down 2 rank 1-2 First Born
-                        </div>
-                        <div class="skill-level" data-level="3">
-                            <span class="level-label" data-level="3">Level 3:</span>
-                            As level 2 OR control rank 1-3 OR lock/unlock any door
-                        </div>
-                    </div>
-                </div>
-
-                <div class="action-card" data-skill="assist">
-                    <select class="skill-select" onchange="updateSkill('assist', this.value)">
-                        <option value="0">Not Learned</option>
-                        <option value="1">Level 1</option>
-                        <option value="2">Level 2</option>
-                        <option value="3">Level 3</option>
-                    </select>
-                    <div class="action-card-title">Assist</div>
-                    <div class="action-requirements">Active skill - team support</div>
-                    <div>
-                        <div class="skill-level" data-level="1">
-                            <span class="level-label" data-level="1">Level 1:</span>
-                            Target can't be harmed by ranged this round
-                        </div>
-                        <div class="skill-level" data-level="2">
-                            <span class="level-label" data-level="2">Level 2:</span>
-                            Target restores 2 health
-                        </div>
-                        <div class="skill-level" data-level="3">
-                            <span class="level-label" data-level="3">Level 3:</span>
-                            3 characters each make 1 action
-                        </div>
-                    </div>
-                </div>
             </div>
 
-            <h3>Ranged Class</h3>
+            <h3>Vocational Skills</h3>
             <div class="action-grid">
-                <div class="action-card" data-skill="sureshot">
-                    <select class="skill-select" onchange="updateSkill('sureshot', this.value)">
+
+                <div class="action-card" data-skill="barter">
+                    <select class="skill-select" onchange="updateSkill('barter', this.value)">
                         <option value="0">Not Learned</option>
                         <option value="1">Level 1</option>
-                        <option value="2">Level 2</option>
-                        <option value="3">Level 3</option>
                     </select>
-                    <div class="action-card-title">Sure Shot</div>
-                    <div class="action-requirements">Active skill</div>
+                    <div class="action-card-title">Barter</div>
+                    <div class="action-requirements">Between Games</div>
                     <div>
                         <div class="skill-level" data-level="1">
-                            <span class="level-label" data-level="1">Level 1:</span>
-                            Ranged at short, 1 auto-hit (ignore cover), can't move
-                        </div>
-                        <div class="skill-level" data-level="2">
-                            <span class="level-label" data-level="2">Level 2:</span>
-                            Ranged at medium even after moving, 1 auto-hit
-                        </div>
-                        <div class="skill-level" data-level="3">
-                            <span class="level-label" data-level="3">Level 3:</span>
-                            Medium range after moving, 1 auto-hit (ignore cover AND armour)
+                            <span class="level-label" data-level="1">Level 1 (Between Games):</span>
+                            Trade Phase: Re-roll Ship Repair Cost OR re-roll Raw Blue sale price OR sell one item for buy value (max 10UA)
                         </div>
                     </div>
                 </div>
 
-                <div class="action-card" data-skill="marksman">
-                    <select class="skill-select" onchange="updateSkill('marksman', this.value)">
-                        <option value="0">Not Learned</option>
-                        <option value="1">Level 1</option>
-                        <option value="2">Level 2</option>
-                        <option value="3">Level 3</option>
-                    </select>
-                    <div class="action-card-title">Marksman</div>
-                    <div class="action-requirements">Active skill - multi-target</div>
-                    <div>
-                        <div class="skill-level" data-level="1">
-                            <span class="level-label" data-level="1">Level 1:</span>
-                            Ranged attack
-                        </div>
-                        <div class="skill-level" data-level="2">
-                            <span class="level-label" data-level="2">Level 2:</span>
-                            +1 die, split hits between 2 targets in short range
-                        </div>
-                        <div class="skill-level" data-level="3">
-                            <span class="level-label" data-level="3">Level 3:</span>
-                            +2 dice, split hits between any targets in short range
-                        </div>
-                    </div>
-                </div>
-
-                <div class="action-card" data-skill="countershot">
-                    <select class="skill-select" onchange="updateSkill('countershot', this.value)">
-                        <option value="0">Not Learned</option>
-                        <option value="1">Level 1</option>
-                        <option value="2">Level 2</option>
-                        <option value="3">Level 3</option>
-                    </select>
-                    <div class="action-card-title">Counter Shot</div>
-                    <div class="action-requirements">Reaction skill</div>
-                    <div>
-                        <div class="skill-level" data-level="passive">
-                            <span class="level-label" data-level="passive">Trigger:</span>
-                            After being targeted with ranged attack
-                        </div>
-                        <div class="skill-level" data-level="1">
-                            <span class="level-label" data-level="1">Level 1:</span>
-                            Ranged attack against attacker
-                        </div>
-                        <div class="skill-level" data-level="2">
-                            <span class="level-label" data-level="2">Level 2:</span>
-                            At any time after enemy's 1st action, ranged attack
-                        </div>
-                        <div class="skill-level" data-level="3">
-                            <span class="level-label" data-level="3">Level 3:</span>
-                            At any time, ranged (+1 die) + move
-                        </div>
-                    </div>
-                </div>
-
-                <div class="action-card" data-skill="weaponsexpert">
-                    <select class="skill-select" onchange="updateSkill('weaponsexpert', this.value)">
-                        <option value="0">Not Learned</option>
-                        <option value="1">Level 1</option>
-                        <option value="2">Level 2</option>
-                        <option value="3">Level 3</option>
-                    </select>
-                    <div class="action-card-title">Weapons Expert</div>
-                    <div class="action-requirements">Passive + Active</div>
-                    <div>
-                        <div class="skill-level" data-level="passive">
-                            <span class="level-label" data-level="passive">Passive 1:</span>
-                            Reload as effortless
-                        </div>
-                        <div class="skill-level" data-level="1">
-                            <span class="level-label" data-level="1">Level 1:</span>
-                            Ranged +2 dice, can't move
-                        </div>
-                        <div class="skill-level" data-level="passive">
-                            <span class="level-label" data-level="passive">Passive 2:</span>
-                            Pistol assault as effortless
-                        </div>
-                        <div class="skill-level" data-level="2">
-                            <span class="level-label" data-level="2">Level 2:</span>
-                            Fire 2 pistols as 1 action (add dice -1)
-                        </div>
-                        <div class="skill-level" data-level="3">
-                            <span class="level-label" data-level="3">Level 3:</span>
-                            Shoot weapon from enemy's hand (2 dice, no damage, scatter)
-                        </div>
-                    </div>
-                </div>
-
-                <div class="action-card" data-skill="disarm">
-                    <select class="skill-select" onchange="updateSkill('disarm', this.value)">
-                        <option value="0">Not Learned</option>
-                        <option value="1">Level 1</option>
-                        <option value="2">Level 2</option>
-                        <option value="3">Level 3</option>
-                    </select>
-                    <div class="action-card-title">Disarm</div>
-                    <div class="action-requirements">Reaction skill</div>
-                    <div>
-                        <div class="skill-level" data-level="passive">
-                            <span class="level-label" data-level="passive">Trigger:</span>
-                            After enemy close assault where you took no damage
-                        </div>
-                        <div class="skill-level" data-level="1">
-                            <span class="level-label" data-level="1">Level 1:</span>
-                            Remove/scatter their weapon
-                        </div>
-                        <div class="skill-level" data-level="2">
-                            <span class="level-label" data-level="2">Level 2:</span>
-                            Steal their weapon
-                        </div>
-                        <div class="skill-level" data-level="3">
-                            <span class="level-label" data-level="3">Level 3:</span>
-                            As level 2 + close assault + move (no attacks of opportunity)
-                        </div>
-                    </div>
-                </div>
-
-                <div class="action-card" data-skill="evade">
-                    <select class="skill-select" onchange="updateSkill('evade', this.value)">
-                        <option value="0">Not Learned</option>
-                        <option value="1">Level 1</option>
-                        <option value="2">Level 2</option>
-                        <option value="3">Level 3</option>
-                    </select>
-                    <div class="action-card-title">Evade</div>
-                    <div class="action-requirements">Reaction skill</div>
-                    <div>
-                        <div class="skill-level" data-level="passive">
-                            <span class="level-label" data-level="passive">Trigger:</span>
-                            Enemy moves into base contact
-                        </div>
-                        <div class="skill-level" data-level="1">
-                            <span class="level-label" data-level="1">Level 1:</span>
-                            Make Move action, ignore attacks of opportunity
-                        </div>
-                        <div class="skill-level" data-level="2">
-                            <span class="level-label" data-level="2">Level 2:</span>
-                            As level 1 + ranged attack
-                        </div>
-                        <div class="skill-level" data-level="3">
-                            <span class="level-label" data-level="3">Level 3:</span>
-                            Move, ranged, move again (ignore attacks of opportunity)
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <h3>Close Combat Class</h3>
-            <div class="action-grid">
-                <div class="action-card" data-skill="onslaught">
-                    <select class="skill-select" onchange="updateSkill('onslaught', this.value)">
-                        <option value="0">Not Learned</option>
-                        <option value="1">Level 1</option>
-                        <option value="2">Level 2</option>
-                        <option value="3">Level 3</option>
-                    </select>
-                    <div class="action-card-title">Onslaught</div>
-                    <div class="action-requirements">Active skill - pure damage</div>
-                    <div>
-                        <div class="skill-level" data-level="1">
-                            <span class="level-label" data-level="1">Level 1:</span>
-                            Close assault +2 dice
-                        </div>
-                        <div class="skill-level" data-level="2">
-                            <span class="level-label" data-level="2">Level 2:</span>
-                            Close assault +3 dice
-                        </div>
-                        <div class="skill-level" data-level="3">
-                            <span class="level-label" data-level="3">Level 3:</span>
-                            Close assault +4 dice, split hits between engaged enemies
-                        </div>
-                    </div>
-                </div>
-
-                <div class="action-card" data-skill="reflexes">
-                    <select class="skill-select" onchange="updateSkill('reflexes', this.value)">
-                        <option value="0">Not Learned</option>
-                        <option value="1">Level 1</option>
-                        <option value="2">Level 2</option>
-                        <option value="3">Level 3</option>
-                    </select>
-                    <div class="action-card-title">Reflexes</div>
-                    <div class="action-requirements">Reaction skill - defense</div>
-                    <div>
-                        <div class="skill-level" data-level="passive">
-                            <span class="level-label" data-level="passive">Trigger:</span>
-                            After targeted with close assault
-                        </div>
-                        <div class="skill-level" data-level="1">
-                            <span class="level-label" data-level="1">Level 1:</span>
-                            Ignore all hits
-                        </div>
-                        <div class="skill-level" data-level="2">
-                            <span class="level-label" data-level="2">Level 2:</span>
-                            Ignore all hits + close assault attacker
-                        </div>
-                        <div class="skill-level" data-level="3">
-                            <span class="level-label" data-level="3">Level 3:</span>
-                            Ignore hits, close assault attacker, move away (no attacks of opportunity)
-                        </div>
-                    </div>
-                </div>
-
-                <div class="action-card" data-skill="precision">
-                    <select class="skill-select" onchange="updateSkill('precision', this.value)">
-                        <option value="0">Not Learned</option>
-                        <option value="1">Level 1</option>
-                        <option value="2">Level 2</option>
-                        <option value="3">Level 3</option>
-                    </select>
-                    <div class="action-card-title">Precision</div>
-                    <div class="action-requirements">Passive + Reaction</div>
-                    <div>
-                        <div class="skill-level" data-level="passive">
-                            <span class="level-label" data-level="passive">Passive 1:</span>
-                            Ignore 1 hit in attacks of opportunity
-                        </div>
-                        <div class="skill-level" data-level="1">
-                            <span class="level-label" data-level="1">Level 1:</span>
-                            Sweep enemy prone
-                        </div>
-                        <div class="skill-level" data-level="passive">
-                            <span class="level-label" data-level="passive">Passive 2:</span>
-                            Close assault as effortless
-                        </div>
-                        <div class="skill-level" data-level="2">
-                            <span class="level-label" data-level="2">Level 2:</span>
-                            Use pistol/rifle in close assault (+2 dice)
-                        </div>
-                        <div class="skill-level" data-level="3">
-                            <span class="level-label" data-level="3">Level 3:</span>
-                            Push all engaged 2" away (2 dice each), then move
-                        </div>
-                    </div>
-                </div>
-
-                <div class="action-card" data-skill="brutalassault">
-                    <select class="skill-select" onchange="updateSkill('brutalassault', this.value)">
-                        <option value="0">Not Learned</option>
-                        <option value="1">Level 1</option>
-                        <option value="2">Level 2</option>
-                        <option value="3">Level 3</option>
-                    </select>
-                    <div class="action-card-title">Brutal Assault</div>
-                    <div class="action-requirements">Active skill - multi-attack</div>
-                    <div>
-                        <div class="skill-level" data-level="1">
-                            <span class="level-label" data-level="1">Level 1:</span>
-                            Make close assault action
-                        </div>
-                        <div class="skill-level" data-level="2">
-                            <span class="level-label" data-level="2">Level 2:</span>
-                            2 close assault actions, move
-                        </div>
-                        <div class="skill-level" data-level="3">
-                            <span class="level-label" data-level="3">Level 3:</span>
-                            3 close assault actions, move (attacks can be different targets)
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
 
@@ -540,18 +347,15 @@
             const card = document.querySelector(`[data-skill="${skillName}"]`);
             const skillLevels = card.querySelectorAll('.skill-level');
 
-            // Update card appearance
             if (level === 0) {
                 card.classList.add('not-learned');
             } else {
                 card.classList.remove('not-learned');
             }
 
-            // Show/hide levels
             skillLevels.forEach(levelDiv => {
                 const divLevel = levelDiv.getAttribute('data-level');
 
-                // Always show passive/trigger info if skill is learned
                 if (divLevel === 'passive') {
                     if (level > 0) {
                         levelDiv.classList.remove('hidden');
@@ -559,7 +363,6 @@
                         levelDiv.classList.add('hidden');
                     }
                 } else {
-                    // Show levels 1 through current level
                     const divLevelNum = parseInt(divLevel);
                     if (divLevelNum <= level) {
                         levelDiv.classList.remove('hidden');
@@ -575,7 +378,6 @@
                 return;
             }
 
-            // Get all skill cards
             const cards = document.querySelectorAll('[data-skill]');
             cards.forEach(card => {
                 const skillName = card.getAttribute('data-skill');
@@ -585,7 +387,6 @@
             });
         }
 
-        // Load saved states on page load
         window.addEventListener('DOMContentLoaded', () => {
             const cards = document.querySelectorAll('[data-skill]');
             cards.forEach(card => {
