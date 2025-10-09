@@ -6,6 +6,19 @@
     <title>Balcor - Character Tracker</title>
     <link rel="stylesheet" href="style.css">
     <style>
+        .character-ability {
+            background: rgba(83, 168, 182, 0.15);
+            border: 2px solid #53a8b6;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .ability-title {
+            font-weight: bold;
+            color: #53a8b6;
+            font-size: 1.1em;
+            margin-bottom: 8px;
+        }
         .passive-summary {
             background: rgba(155, 89, 182, 0.15);
             border: 2px solid #9b59b6;
@@ -124,10 +137,53 @@
         <a href="index.html" class="back-btn">← Back to Hub</a>
 
         <div class="section">
+            <h2>Character Ability</h2>
+            <div class="character-ability">
+                <div class="ability-title">🛡️ Permanent Physical Armour (1)</div>
+                <div>This character has a permanent physical armour value equal to 1, even when not wearing armour. If they wear armour, use whichever value is highest.</div>
+            </div>
+        </div>
+
+        <div class="section">
             <h2>Passive Skills Summary</h2>
             <div class="passive-summary">
                 <h3>🔮 Always Active Abilities</h3>
-                <div class="passive-item"><strong>Impervious 2:</strong> Physical armour value +2 until end of round</div>
+                <div id="passive-skills-list">
+                    <!-- Balcor has no passive skills at his current skill levels -->
+                </div>
+                <div id="no-passives" style="color: #888; font-style: italic;">
+                    No passive abilities learned yet. Passive abilities will appear here as you learn skills.
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Available Reactions</h2>
+            <div class="passive-summary" style="border-color: #e67e22;">
+                <h3 style="color: #e67e22;">⚡ Triggered Abilities</h3>
+                <div id="reaction-skills-list">
+                    <div class="passive-item" data-skill="walkitoff" data-min-level="2" style="display: none;">
+                        <strong>Walk It Off 2:</strong> After targeted with attack - Reduce damage by 2
+                    </div>
+                    <div class="passive-item" data-skill="walkitoff" data-min-level="3" style="display: none;">
+                        <strong>Walk It Off 3:</strong> After defeated - Restore 1 Health, Stand Up, Move
+                    </div>
+                    <div class="passive-item" data-skill="onslaught" data-min-level="1" style="display: none;">
+                        <strong>Onslaught 1:</strong> After scoring hits in close assault - Another Close Assault
+                    </div>
+                    <div class="passive-item" data-skill="onslaught" data-min-level="2" style="display: none;">
+                        <strong>Onslaught 2:</strong> After scoring hits (any attack) - Move + Close Assault
+                    </div>
+                    <div class="passive-item" data-skill="stubborn" data-min-level="3" style="display: none;">
+                        <strong>Stubborn 3:</strong> After targeted with attack - Ignore hits + Move and Assault
+                    </div>
+                    <div class="passive-item" data-skill="impervious" data-min-level="1" style="display: none;">
+                        <strong>Impervious 1:</strong> When losing actions/turns - Ignore the effect
+                    </div>
+                </div>
+                <div id="no-reactions" style="color: #888; font-style: italic;">
+                    No reaction abilities learned yet. Reaction abilities will appear here as you learn skills.
+                </div>
             </div>
         </div>
 
@@ -391,6 +447,61 @@
                     }
                 }
             });
+
+            // Update passive skills summary
+            updatePassiveSummary();
+            // Update reaction skills summary
+            updateReactionSummary();
+        }
+
+        function updatePassiveSummary() {
+            const passiveItems = document.querySelectorAll('#passive-skills-list .passive-item');
+            let hasAnyPassive = false;
+
+            passiveItems.forEach(item => {
+                const skillName = item.getAttribute('data-skill');
+                const minLevel = parseInt(item.getAttribute('data-min-level'));
+                const currentLevel = parseInt(localStorage.getItem(`${CHARACTER}-${skillName}`) || '0');
+
+                if (currentLevel >= minLevel) {
+                    item.style.display = '';
+                    hasAnyPassive = true;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            const noPassivesMsg = document.getElementById('no-passives');
+            if (hasAnyPassive) {
+                noPassivesMsg.style.display = 'none';
+            } else {
+                noPassivesMsg.style.display = 'block';
+            }
+        }
+
+        function updateReactionSummary() {
+            const reactionItems = document.querySelectorAll('#reaction-skills-list .passive-item');
+            let hasAnyReaction = false;
+
+            reactionItems.forEach(item => {
+                const skillName = item.getAttribute('data-skill');
+                const minLevel = parseInt(item.getAttribute('data-min-level'));
+                const currentLevel = parseInt(localStorage.getItem(`${CHARACTER}-${skillName}`) || '0');
+
+                if (currentLevel >= minLevel) {
+                    item.style.display = '';
+                    hasAnyReaction = true;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            const noReactionsMsg = document.getElementById('no-reactions');
+            if (hasAnyReaction) {
+                noReactionsMsg.style.display = 'none';
+            } else {
+                noReactionsMsg.style.display = 'block';
+            }
         }
 
         function resetAll() {
@@ -416,6 +527,10 @@
                 select.value = savedLevel;
                 updateSkill(skillName, savedLevel);
             });
+
+            // Initial passive and reaction summary updates
+            updatePassiveSummary();
+            updateReactionSummary();
         });
     </script>
 </body>

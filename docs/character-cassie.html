@@ -137,21 +137,65 @@
         <a href="index.html" class="back-btn">← Back to Hub</a>
 
         <div class="section">
-            <h2>Character Ability</h2>
-            <div class="character-ability">
-                <div class="ability-title">🛡️ Permanent Physical Armour (2)</div>
-                <div>This character has a permanent physical armour value equal to 2, even when not wearing armour. If they wear armour, use whichever value is highest.</div>
+            <h2>Passive Skills Summary</h2>
+            <div class="passive-summary">
+                <h3>🔮 Always Active Abilities</h3>
+                <div id="passive-skills-list">
+                    <div class="passive-item" data-skill="weaponsexpert" data-min-level="1" style="display: none;">
+                        <strong>Weapons Expert 1:</strong> Reload as effortless action
+                    </div>
+                    <div class="passive-item" data-skill="weaponsexpert" data-min-level="2" style="display: none;">
+                        <strong>Weapons Expert 2:</strong> Ranged Assault with pistol as effortless action
+                    </div>
+                    <div class="passive-item" data-skill="combatexpert" data-min-level="1" style="display: none;">
+                        <strong>Combat Expert 1:</strong> Ignore 1 hit in attacks of opportunity
+                    </div>
+                    <div class="passive-item" data-skill="combatexpert" data-min-level="2" style="display: none;">
+                        <strong>Combat Expert 2:</strong> Close Assault as effortless action
+                    </div>
+                </div>
+                <div id="no-passives" style="color: #888; font-style: italic;">
+                    No passive abilities learned yet. Passive abilities will appear here as you learn skills.
+                </div>
             </div>
         </div>
 
         <div class="section">
-            <h2>Passive Skills Summary</h2>
-            <div class="passive-summary">
-                <h3>🔮 Always Active Abilities</h3>
-                <div class="passive-item"><strong>Weapons Expert 1:</strong> Reload as effortless action</div>
-                <div class="passive-item"><strong>Weapons Expert 2:</strong> Ranged Assault with pistol as effortless action</div>
-                <div class="passive-item"><strong>Combat Expert 1:</strong> Ignore 1 hit in attacks of opportunity</div>
-                <div class="passive-item"><strong>Combat Expert 2:</strong> Close Assault as effortless action</div>
+            <h2>Available Reactions</h2>
+            <div class="passive-summary" style="border-color: #e67e22;">
+                <h3 style="color: #e67e22;">⚡ Triggered Abilities</h3>
+                <div id="reaction-skills-list">
+                    <div class="passive-item" data-skill="evade" data-min-level="1" style="display: none;">
+                        <strong>Evade 1:</strong> When enemy moves into base contact - Move action
+                    </div>
+                    <div class="passive-item" data-skill="countershot" data-min-level="1" style="display: none;">
+                        <strong>Counter Shot 1:</strong> After targeted with ranged attack - Ranged attack vs attacker
+                    </div>
+                    <div class="passive-item" data-skill="countershot" data-min-level="2" style="display: none;">
+                        <strong>Counter Shot 2:</strong> After enemy's first action - Ranged attack vs that enemy
+                    </div>
+                    <div class="passive-item" data-skill="countershot" data-min-level="3" style="display: none;">
+                        <strong>Counter Shot 3:</strong> At any time - Ranged attack +1 die + Move
+                    </div>
+                    <div class="passive-item" data-skill="reflexes" data-min-level="1" style="display: none;">
+                        <strong>Reflexes 1:</strong> After close assault attack - Ignore all hits
+                    </div>
+                    <div class="passive-item" data-skill="reflexes" data-min-level="2" style="display: none;">
+                        <strong>Reflexes 2:</strong> After close assault attack - Ignore hits + Close Assault +1 die
+                    </div>
+                    <div class="passive-item" data-skill="reflexes" data-min-level="3" style="display: none;">
+                        <strong>Reflexes 3:</strong> After close assault attack - Ignore hits + Close Assault +2 dice + Move
+                    </div>
+                    <div class="passive-item" data-skill="walkitoff" data-min-level="2" style="display: none;">
+                        <strong>Walk It Off 2:</strong> After targeted with attack - Reduce damage by 2
+                    </div>
+                    <div class="passive-item" data-skill="walkitoff" data-min-level="3" style="display: none;">
+                        <strong>Walk It Off 3:</strong> After defeated - Restore 1 Health, Stand Up, Move
+                    </div>
+                </div>
+                <div id="no-reactions" style="color: #888; font-style: italic;">
+                    No reaction abilities learned yet. Reaction abilities will appear here as you learn skills.
+                </div>
             </div>
         </div>
 
@@ -442,6 +486,61 @@
                     }
                 }
             });
+
+            // Update passive skills summary
+            updatePassiveSummary();
+            // Update reaction skills summary
+            updateReactionSummary();
+        }
+
+        function updatePassiveSummary() {
+            const passiveItems = document.querySelectorAll('#passive-skills-list .passive-item');
+            let hasAnyPassive = false;
+
+            passiveItems.forEach(item => {
+                const skillName = item.getAttribute('data-skill');
+                const minLevel = parseInt(item.getAttribute('data-min-level'));
+                const currentLevel = parseInt(localStorage.getItem(`${CHARACTER}-${skillName}`) || '0');
+
+                if (currentLevel >= minLevel) {
+                    item.style.display = '';
+                    hasAnyPassive = true;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            const noPassivesMsg = document.getElementById('no-passives');
+            if (hasAnyPassive) {
+                noPassivesMsg.style.display = 'none';
+            } else {
+                noPassivesMsg.style.display = 'block';
+            }
+        }
+
+        function updateReactionSummary() {
+            const reactionItems = document.querySelectorAll('#reaction-skills-list .passive-item');
+            let hasAnyReaction = false;
+
+            reactionItems.forEach(item => {
+                const skillName = item.getAttribute('data-skill');
+                const minLevel = parseInt(item.getAttribute('data-min-level'));
+                const currentLevel = parseInt(localStorage.getItem(`${CHARACTER}-${skillName}`) || '0');
+
+                if (currentLevel >= minLevel) {
+                    item.style.display = '';
+                    hasAnyReaction = true;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            const noReactionsMsg = document.getElementById('no-reactions');
+            if (hasAnyReaction) {
+                noReactionsMsg.style.display = 'none';
+            } else {
+                noReactionsMsg.style.display = 'block';
+            }
         }
 
         function resetAll() {
@@ -467,6 +566,10 @@
                 select.value = savedLevel;
                 updateSkill(skillName, savedLevel);
             });
+
+            // Initial passive and reaction summary updates
+            updatePassiveSummary();
+            updateReactionSummary();
         });
     </script>
 </body>

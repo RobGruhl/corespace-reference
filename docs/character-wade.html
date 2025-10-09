@@ -148,7 +148,62 @@
             <h2>Passive Skills Summary</h2>
             <div class="passive-summary">
                 <h3>🔮 Always Active Abilities</h3>
-                <div class="passive-item"><strong>Slippery 2:</strong> Use effortless action to ignore attack of opportunity</div>
+                <div id="passive-skills-list">
+                    <div class="passive-item" data-skill="slippery" data-min-level="2" style="display: none;">
+                        <strong>Slippery 2:</strong> Use effortless action to ignore attack of opportunity
+                    </div>
+                </div>
+                <div id="no-passives" style="color: #888; font-style: italic;">
+                    No passive abilities learned yet. Passive abilities will appear here as you learn skills.
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Available Reactions</h2>
+            <div class="passive-summary" style="border-color: #e67e22;">
+                <h3 style="color: #e67e22;">⚡ Triggered Abilities</h3>
+                <div id="reaction-skills-list">
+                    <div class="passive-item" data-skill="countershot" data-min-level="1" style="display: none;">
+                        <strong>Counter Shot 1:</strong> After targeted with ranged attack - Ranged attack vs attacker
+                    </div>
+                    <div class="passive-item" data-skill="countershot" data-min-level="2" style="display: none;">
+                        <strong>Counter Shot 2:</strong> After enemy's first action - Ranged attack vs that enemy
+                    </div>
+                    <div class="passive-item" data-skill="countershot" data-min-level="3" style="display: none;">
+                        <strong>Counter Shot 3:</strong> At any time - Ranged attack +1 die + Move
+                    </div>
+                    <div class="passive-item" data-skill="walkitoff" data-min-level="2" style="display: none;">
+                        <strong>Walk It Off 2:</strong> After targeted with attack - Reduce damage by 2
+                    </div>
+                    <div class="passive-item" data-skill="walkitoff" data-min-level="3" style="display: none;">
+                        <strong>Walk It Off 3:</strong> After defeated - Restore 1 Health, Stand Up, Move
+                    </div>
+                    <div class="passive-item" data-skill="lightfingers" data-min-level="1" style="display: none;">
+                        <strong>Light Fingers 1:</strong> After close assault (no damage) - Steal item
+                    </div>
+                    <div class="passive-item" data-skill="lightfingers" data-min-level="2" style="display: none;">
+                        <strong>Light Fingers 2:</strong> After close assault (any) - Steal item, use ✓ items immediately
+                    </div>
+                    <div class="passive-item" data-skill="lightfingers" data-min-level="3" style="display: none;">
+                        <strong>Light Fingers 3:</strong> After targeted - Steal ANY item + Move or Assault
+                    </div>
+                    <div class="passive-item" data-skill="evade" data-min-level="1" style="display: none;">
+                        <strong>Evade 1:</strong> When enemy moves into base contact - Move action
+                    </div>
+                    <div class="passive-item" data-skill="evade" data-min-level="2" style="display: none;">
+                        <strong>Evade 2:</strong> When enemy moves into base contact - Move + Assault
+                    </div>
+                    <div class="passive-item" data-skill="ambush" data-min-level="1" style="display: none;">
+                        <strong>Ambush 1:</strong> Enemy ends move within 4" while in cover - Ranged Assault
+                    </div>
+                    <div class="passive-item" data-skill="ambush" data-min-level="2" style="display: none;">
+                        <strong>Ambush 2:</strong> Enemy ends move within 4" while in cover - Move + Assault
+                    </div>
+                </div>
+                <div id="no-reactions" style="color: #888; font-style: italic;">
+                    No reaction abilities learned yet. Reaction abilities will appear here as you learn skills.
+                </div>
             </div>
         </div>
 
@@ -407,6 +462,61 @@
                     }
                 }
             });
+
+            // Update passive skills summary
+            updatePassiveSummary();
+            // Update reaction skills summary
+            updateReactionSummary();
+        }
+
+        function updatePassiveSummary() {
+            const passiveItems = document.querySelectorAll('#passive-skills-list .passive-item');
+            let hasAnyPassive = false;
+
+            passiveItems.forEach(item => {
+                const skillName = item.getAttribute('data-skill');
+                const minLevel = parseInt(item.getAttribute('data-min-level'));
+                const currentLevel = parseInt(localStorage.getItem(`${CHARACTER}-${skillName}`) || '0');
+
+                if (currentLevel >= minLevel) {
+                    item.style.display = '';
+                    hasAnyPassive = true;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            const noPassivesMsg = document.getElementById('no-passives');
+            if (hasAnyPassive) {
+                noPassivesMsg.style.display = 'none';
+            } else {
+                noPassivesMsg.style.display = 'block';
+            }
+        }
+
+        function updateReactionSummary() {
+            const reactionItems = document.querySelectorAll('#reaction-skills-list .passive-item');
+            let hasAnyReaction = false;
+
+            reactionItems.forEach(item => {
+                const skillName = item.getAttribute('data-skill');
+                const minLevel = parseInt(item.getAttribute('data-min-level'));
+                const currentLevel = parseInt(localStorage.getItem(`${CHARACTER}-${skillName}`) || '0');
+
+                if (currentLevel >= minLevel) {
+                    item.style.display = '';
+                    hasAnyReaction = true;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            const noReactionsMsg = document.getElementById('no-reactions');
+            if (hasAnyReaction) {
+                noReactionsMsg.style.display = 'none';
+            } else {
+                noReactionsMsg.style.display = 'block';
+            }
         }
 
         function resetAll() {
@@ -432,6 +542,10 @@
                 select.value = savedLevel;
                 updateSkill(skillName, savedLevel);
             });
+
+            // Initial passive and reaction summary updates
+            updatePassiveSummary();
+            updateReactionSummary();
         });
     </script>
 </body>
