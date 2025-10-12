@@ -1,0 +1,20 @@
+{
+  "id": "wade",
+  "name": "Wade",
+  "class": "smuggler",
+  "base_ability": {
+    "icon": "🏃",
+    "name": "Extra Movement",
+    "description": "When making a Move action, this character can move an additional number of squares equal to the number in the icon. Still limited to 11\" maximum."
+  },
+  "skills": [
+    "distraction",
+    "countershot",
+    "walkitoff",
+    "persuasion",
+    "lightfingers",
+    "evade",
+    "ambush",
+    "slippery"
+  ]
+}

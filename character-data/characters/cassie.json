@@ -1,0 +1,16 @@
+{
+  "id": "cassie",
+  "name": "Cassie",
+  "class": "marine",
+  "skills": [
+    "evade",
+    "weaponsexpert",
+    "slippery",
+    "marksman",
+    "countershot",
+    "combatexpert",
+    "reflexes",
+    "walkitoff",
+    "stubborn"
+  ]
+}

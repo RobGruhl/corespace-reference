@@ -1,0 +1,184 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Core Space Character Schema",
+  "description": "Schema for defining characters and their skills in Core Space",
+  "definitions": {
+    "skill_level": {
+      "type": "object",
+      "properties": {
+        "level": {
+          "type": ["integer", "string"],
+          "description": "Skill level (1-3) or 'passive' for passive abilities"
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of what this level does"
+        }
+      },
+      "required": ["level", "description"]
+    },
+    "skill": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the skill (lowercase, no spaces)"
+        },
+        "name": {
+          "type": "string",
+          "description": "Display name of the skill"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["active", "passive", "reaction", "active+passive", "active+reaction", "passive+reaction", "active+passive+reaction"],
+          "description": "Type of skill"
+        },
+        "description": {
+          "type": "string",
+          "description": "Short description of skill category"
+        },
+        "max_level": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 3,
+          "description": "Maximum level this skill can reach"
+        },
+        "trigger": {
+          "type": "string",
+          "description": "Trigger condition (for reaction skills)"
+        },
+        "levels": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/skill_level"
+          },
+          "description": "Array of skill level descriptions"
+        },
+        "passive_summary": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "min_level": {
+                "type": "integer",
+                "description": "Minimum level needed for this passive"
+              },
+              "text": {
+                "type": "string",
+                "description": "Summary text for passive ability"
+              }
+            }
+          },
+          "description": "Passive abilities that show in summary box"
+        },
+        "reaction_summary": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "min_level": {
+                "type": "integer",
+                "description": "Minimum level needed for this reaction"
+              },
+              "text": {
+                "type": "string",
+                "description": "Summary text for reaction ability"
+              }
+            }
+          },
+          "description": "Reaction abilities that show in summary box"
+        }
+      },
+      "required": ["id", "name", "type", "description", "max_level", "levels"]
+    },
+    "character": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for character (lowercase)"
+        },
+        "name": {
+          "type": "string",
+          "description": "Character display name"
+        },
+        "class": {
+          "type": "string",
+          "description": "Default character class"
+        },
+        "base_ability": {
+          "type": "object",
+          "properties": {
+            "icon": {
+              "type": "string",
+              "description": "Emoji or icon for ability"
+            },
+            "name": {
+              "type": "string",
+              "description": "Name of base ability"
+            },
+            "description": {
+              "type": "string",
+              "description": "Description of base ability"
+            }
+          },
+          "description": "Character's inherent base ability (optional)"
+        },
+        "skills": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Array of skill IDs available to this character"
+        }
+      },
+      "required": ["id", "name", "class", "skills"]
+    },
+    "class_definition": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for class (lowercase)"
+        },
+        "name": {
+          "type": "string",
+          "description": "Class display name"
+        },
+        "description": {
+          "type": "string",
+          "description": "Class description"
+        },
+        "skills": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Array of skill IDs available to this class"
+        }
+      },
+      "required": ["id", "name", "skills"]
+    }
+  },
+  "type": "object",
+  "properties": {
+    "characters": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/character"
+      }
+    },
+    "skills": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/skill"
+      }
+    },
+    "classes": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/class_definition"
+      }
+    }
+  }
+}

@@ -1,0 +1,380 @@
+{
+  "skills": [
+    {
+      "id": "evade",
+      "name": "Evade",
+      "type": "reaction",
+      "description": "escape",
+      "max_level": 2,
+      "trigger": "When an enemy moves into base contact with you",
+      "levels": [
+        {
+          "level": 1,
+          "description": "Make a Move action, ignoring attacks of opportunity"
+        },
+        {
+          "level": 2,
+          "description": "Make Move (no AoO) + Assault (in any order)"
+        }
+      ],
+      "reaction_summary": [
+        {
+          "min_level": 1,
+          "text": "When enemy moves into base contact - Move action"
+        },
+        {
+          "min_level": 2,
+          "text": "When enemy moves into base contact - Move + Assault"
+        }
+      ]
+    },
+    {
+      "id": "weaponsexpert",
+      "name": "Weapons Expert",
+      "type": "passive+active",
+      "description": "weapon mastery",
+      "max_level": 3,
+      "levels": [
+        {
+          "level": "passive",
+          "description": "Reload as effortless action"
+        },
+        {
+          "level": 1,
+          "description": "Ranged attack +2 dice. Cannot Move in same round"
+        },
+        {
+          "level": "passive",
+          "description": "Ranged Assault with pistol as effortless action"
+        },
+        {
+          "level": 2,
+          "description": "Fire 2 different pistols as single action - add dice together and subtract one die"
+        },
+        {
+          "level": 3,
+          "description": "[Marine Career] Shoot weapon from enemy's hand - ranged attack, 2 dice regardless of weapon stats, must be in range and LoS. If at least one hit scored, no damage done but weapon of your choice is removed from dashboard and scattered. Weapon is broken but can be Repaired."
+        }
+      ],
+      "passive_summary": [
+        {
+          "min_level": 1,
+          "text": "Reload as effortless action"
+        },
+        {
+          "min_level": 2,
+          "text": "Ranged Assault with pistol as effortless action"
+        }
+      ]
+    },
+    {
+      "id": "slippery",
+      "name": "Slippery",
+      "type": "active+passive",
+      "description": "scramble ability",
+      "max_level": 3,
+      "levels": [
+        {
+          "level": 1,
+          "description": "Make a Move action with Scramble +2 (adds +2 to all scramble attempts - see page 31)"
+        },
+        {
+          "level": "passive",
+          "description": "Use effortless action to ignore attack of opportunity"
+        },
+        {
+          "level": 2,
+          "description": "While Apprehended (Galactic Corps): remove Apprehended Board + restore 1 Health"
+        },
+        {
+          "level": 3,
+          "description": "Move action: this and all other Moves this turn ignore AoO. Attack (1 die) each enemy contacted - knocks prone even if no damage"
+        }
+      ],
+      "passive_summary": [
+        {
+          "min_level": 2,
+          "text": "Use effortless action to ignore attack of opportunity"
+        }
+      ]
+    },
+    {
+      "id": "marksman",
+      "name": "Marksman",
+      "type": "active",
+      "description": "multi-target specialist",
+      "max_level": 3,
+      "levels": [
+        {
+          "level": 1,
+          "description": "Make a ranged attack"
+        },
+        {
+          "level": 2,
+          "description": "Ranged attack +1 die. Split hits between up to 2 eligible targets within range of weapon and within short range of each other"
+        },
+        {
+          "level": 3,
+          "description": "Ranged attack +2 dice. Split hits between any number of eligible targets within range and within short range of each other"
+        }
+      ]
+    },
+    {
+      "id": "countershot",
+      "name": "Counter Shot",
+      "type": "reaction",
+      "description": "return fire",
+      "max_level": 3,
+      "trigger": "After being targeted with ranged attack",
+      "levels": [
+        {
+          "level": 1,
+          "description": "Make ranged attack against attacker"
+        },
+        {
+          "level": 2,
+          "description": "At any time after target enemy has taken first action, make ranged attack against target"
+        },
+        {
+          "level": 3,
+          "description": "At any time, ranged attack +1 die, then make Move action"
+        }
+      ],
+      "reaction_summary": [
+        {
+          "min_level": 1,
+          "text": "After targeted with ranged attack - Ranged attack vs attacker"
+        },
+        {
+          "min_level": 2,
+          "text": "After enemy's first action - Ranged attack vs that enemy"
+        },
+        {
+          "min_level": 3,
+          "text": "At any time - Ranged attack +1 die + Move"
+        }
+      ]
+    },
+    {
+      "id": "combatexpert",
+      "name": "Combat Expert",
+      "type": "passive+active",
+      "description": "close combat mastery",
+      "max_level": 3,
+      "levels": [
+        {
+          "level": "passive",
+          "description": "Ignore one hit scored against you during any attack of opportunity"
+        },
+        {
+          "level": 1,
+          "description": "Sweep enemy's feet - target enemy in base contact is knocked prone"
+        },
+        {
+          "level": "passive",
+          "description": "Close Assault action as effortless action"
+        },
+        {
+          "level": 2,
+          "description": "Use pistol/rifle in close assault - roll using weapon's short range stat, add 2 dice. Uses ammo"
+        },
+        {
+          "level": 3,
+          "description": "Push all engaged enemies up to 2\" away (direction of choice, stop at walls). No AoO, each pushed enemy suffers 2 dice attack (armour applies). Then make Move action"
+        }
+      ],
+      "passive_summary": [
+        {
+          "min_level": 1,
+          "text": "Ignore 1 hit in attacks of opportunity"
+        },
+        {
+          "min_level": 2,
+          "text": "Close Assault as effortless action"
+        }
+      ]
+    },
+    {
+      "id": "reflexes",
+      "name": "Reflexes",
+      "type": "reaction",
+      "description": "defensive counter",
+      "max_level": 3,
+      "trigger": "After targeted with close assault attack",
+      "levels": [
+        {
+          "level": 1,
+          "description": "Ignore all hits scored"
+        },
+        {
+          "level": 2,
+          "description": "Ignore all hits + immediate Close Assault against attacker, rolling 1 additional die"
+        },
+        {
+          "level": 3,
+          "description": "Ignore all hits + immediate Close Assault (roll 2 additional dice) + Move (no attacks of opportunity)"
+        }
+      ],
+      "reaction_summary": [
+        {
+          "min_level": 1,
+          "text": "After close assault attack - Ignore all hits"
+        },
+        {
+          "min_level": 2,
+          "text": "After close assault attack - Ignore hits + Close Assault +1 die"
+        },
+        {
+          "min_level": 3,
+          "text": "After close assault attack - Ignore hits + Close Assault +2 dice + Move"
+        }
+      ]
+    },
+    {
+      "id": "walkitoff",
+      "name": "Walk It Off",
+      "type": "active+reaction",
+      "description": "endurance",
+      "max_level": 3,
+      "levels": [
+        {
+          "level": 1,
+          "description": "Restore 1 Health"
+        },
+        {
+          "level": 2,
+          "description": "Reaction: After targeted with attack, reduce damage sustained by 2"
+        },
+        {
+          "level": 3,
+          "description": "Reaction: After defeated, no longer defeated - restore 1 Health, Stand Up, may then make Move action"
+        }
+      ],
+      "reaction_summary": [
+        {
+          "min_level": 2,
+          "text": "After targeted with attack - Reduce damage by 2"
+        },
+        {
+          "min_level": 3,
+          "text": "After defeated - Restore 1 Health, Stand Up, Move"
+        }
+      ]
+    },
+    {
+      "id": "stubborn",
+      "name": "Stubborn",
+      "type": "active",
+      "description": "resilience",
+      "max_level": 2,
+      "levels": [
+        {
+          "level": 1,
+          "description": "Make a Move action"
+        },
+        {
+          "level": 2,
+          "description": "Make Move action followed by an Assault action"
+        }
+      ]
+    },
+    {
+      "id": "distraction",
+      "name": "Distraction",
+      "type": "active",
+      "description": "tactical disruption",
+      "max_level": 1,
+      "levels": [
+        {
+          "level": 1,
+          "description": "Ranged assault - target loses 1 action in next turn (in addition to damage)"
+        }
+      ]
+    },
+    {
+      "id": "persuasion",
+      "name": "Persuasion",
+      "type": "active",
+      "description": "diplomacy",
+      "max_level": 3,
+      "levels": [
+        {
+          "level": 1,
+          "description": "Persuade enemy Trader (skill vs skill) to miss next turn"
+        },
+        {
+          "level": 2,
+          "description": "Persuade non-Purge enemy +1 die, can persuade to miss turn"
+        },
+        {
+          "level": 3,
+          "description": "Persuade non-Purge +2 dice, can recruit Trader crew (not captains, chance die each round to return)"
+        }
+      ]
+    },
+    {
+      "id": "lightfingers",
+      "name": "Light Fingers",
+      "type": "reaction",
+      "description": "thievery",
+      "max_level": 3,
+      "trigger": "After enemy close assault",
+      "levels": [
+        {
+          "level": 1,
+          "description": "After enemy close assault where you took NO damage: Take item from attacker's tray (not weapon used), drop if no space"
+        },
+        {
+          "level": 2,
+          "description": "After enemy close assault (damage doesn't matter): Take item (not weapon used). Items with ✓ can be used immediately"
+        },
+        {
+          "level": 3,
+          "description": "After being TARGETED with close assault attack: Take ANY item (can steal weapon!). Use ✓ items immediately. Then Move or Assault (no AoO)"
+        }
+      ],
+      "reaction_summary": [
+        {
+          "min_level": 1,
+          "text": "After close assault (no damage) - Steal item"
+        },
+        {
+          "min_level": 2,
+          "text": "After close assault (any) - Steal item, use ✓ items immediately"
+        },
+        {
+          "min_level": 3,
+          "text": "After targeted - Steal ANY item + Move or Assault"
+        }
+      ]
+    },
+    {
+      "id": "ambush",
+      "name": "Ambush",
+      "type": "reaction",
+      "description": "tactical positioning",
+      "max_level": 2,
+      "trigger": "Enemy ends move within 4\" and you're in full/partial cover",
+      "levels": [
+        {
+          "level": 1,
+          "description": "Ranged assault, may proximity move before/after"
+        },
+        {
+          "level": 2,
+          "description": "Move + Assault, may proximity move before/after"
+        }
+      ],
+      "reaction_summary": [
+        {
+          "min_level": 1,
+          "text": "Enemy ends move within 4\" while in cover - Ranged Assault"
+        },
+        {
+          "min_level": 2,
+          "text": "Enemy ends move within 4\" while in cover - Move + Assault"
+        }
+      ]
+    }
+  ]
+}
