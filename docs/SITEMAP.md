@@ -165,12 +165,9 @@ index.html (Main Quick Reference - Hub)
   - Drones (arrival, activation)
   - True Born (complete rules)
 - **NPC Section**
-  - Civilians
-  - Game Hunters
-  - Gangers
-  - Security
-  - Galactic Corps
-  - Rock Worms
+  - Game Hunters (core First Born NPCs)
+  - Rock Worms (beast threats)
+  - Civilians (only when mixing with other Core Space sets)
 - **For Each Enemy Type:**
   - Stats
   - Activation rules

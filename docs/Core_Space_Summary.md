@@ -182,55 +182,28 @@ target in base contact.  Must beat targets
 
 Effortless Actions – only 1 per turn
 
-Proximity move (1”).
+3. First Born Phase
 
 
-  Use any tick (effortless action) item.
-
+Check the current Hostility level for icons. Roll the First Born die for quantity icons and the Knowledge Die for rare arrivals (e.g. True Born on a 6). Roll the Knowledge Die again for each type to find the entry point and place models adjacent.
+Activate highest rank first, working down to Drones.
+Target closest non-First Born in LoS and not in cover.
+If all visible targets are in cover choose the closest visible.
+If none visible, move toward the closest target around terrain.
+o  Assassins always target Captains if they can see one.
+o  Maintain target for the activation unless it is defeated.
 
-Throw item – requires LOS.  Mostly short range but will
-say M or L if otherwise.  Once thrown is placed on floor
-by target.
-Pick up or drop item.
-Give/take/swap item between characters.
+First Born ranged attacks have unlimited range.
 
-
-
-
-Skills
-
-
-
-
-
-Spend “x” skill pegs to use skill at “x” level once per
-round.
-Passive skills do not need pegs, reaction skills only occur
-when trigger occurs.
-
-3. Purge Phase
-
-
-
-
-
-Roll black/white dice for each type.  Roll white die for
-entry point.  Place characters as close to entry as
-possible.  Max. 1 rank 4+ purge per game.  If run out of
-purge use next lowest rank.
-Activate highest rank first.
-
-o
-
-o
-
-o
-
-Target closest non-purge character, prioritising
-LOS and not in cover.
-If all visible characters in cover then target will
-be the closest.
-If no visible characters target will be closest
+Knocked-prone First Born must use their first action to stand.
+Game Hunters are the default First Born NPCs. Optional factions from other Core Space sets activate after them.
+Within each type, activate highest rank first.
+Game Hunters arrive via Event cards—place them at the entry point or worm hole indicated.
+Knocked-prone NPCs stand before taking other actions and cannot use items (but can carry them for traders).
+Game Hunters prioritise First Born, then other hostiles, before pursuing Beasts.
+Move up to 4" per action along the safest route toward their target.
+Collect Trophy tokens from defeated Beasts and withdraw once all Hunters are carrying one.
+When NPCs join a crew they activate in the Trader Phase. Traders may swap items with them but recruited NPCs still cannot use items themselves.
 no-purge character.
 o
 Target locked for turn unless defeated.
