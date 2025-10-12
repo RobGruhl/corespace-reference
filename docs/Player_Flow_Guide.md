@@ -299,17 +299,15 @@ These don't count toward your action limit:
 2. **Determine Arrivals**
    - Work down the list top to bottom
    - **Number shown:** That many arrive
-   - **Die icon:** Roll the die
-     - Black purge die = how many
-     - Chance die with 💀 = Live One appears
-   - When Hostility reaches CLEANSE: use "Charged" side of First Born board
+   - **Die icon:** Roll the indicated die
+     - <strong>First Born die:</strong> Number of models that appear
+     - <strong>Knowledge Die:</strong> Roll for rare arrivals (e.g., True Born on a 6)
+   - When Hostility reaches CLEANSE: flip to the "Charged" side of the First Born board
 
 3. **Place on Board**
    - Roll chance die for entry point
    - Place in contact with entry point
    - If no room, place as close as possible
-
-**Important:** Rank 4+ First Born (Live One, Gatherer, Annihilator) appear ONCE per game only.
 
 **Part 2: Activation**
 
@@ -376,48 +374,37 @@ Is my shooting stat > close assault stat?
 
 ### Phase 4: NPC Phase
 
-**Other characters activate:** Game Hunters, Civilians, Gangers, etc.
+**Other characters activate:** Core Space: First Born only fields Game Hunters by default, though Civilians can appear when mixing with other sets.
 
 **Activation Order:**
-1. Galactic Corps
-2. Security
-3. Gangers
-4. Civilians
+1. Game Hunters (if in play)
+2. Other NPC types from additional sets (optional)
 
 Within each type: Highest rank first.
 
 **Part 1: Arrival**
 
-1. **Check hostility tracker** for NPC icons
-2. **Roll chance die** for entry point
-3. **Place NPC** in contact with entry point
-4. **Finish activating** current type before placing next type
+1. **Check Event effects** – Game Hunters and Rock Worms arrive via cards, not the hostility tracker
+2. **Place arrivals** at the entry or worm hole indicated
 
 **Part 2: Activation**
 
 Each NPC type has specific rules:
 
 **Game Hunters:**
-- Target priority: Beasts, First Born, then others
-- Move toward target
-- Attack when in range
+- Target priority: First Born, then other threats, pursuing Beasts when unopposed
+- Move toward their current target using the safest route
+- Collect Trophy tokens from defeated Beasts and withdraw once laden
 
-**Civilians (if present):**
-- Roll chance die each activation
-- Follow die result: Move, Attack, Hide, Join, Trade, or Live One transformation
+**Civilians (if present from other sets):**
+- No civilians appear in the default First Born campaign, but mixed games follow standard Core Space civilian rules
 
 **General NPC Rules:**
-- Move up to 4" per Move action
-- Fire at up to medium range
-- Unaffected by 💥 unless stated
+- Move up to 4" per Move action, stopping if they reach their target
+- Fire at up to medium range and ignore 💥 results unless noted
+- Avoid hazardous areas unless no alternative route exists
 - Knocked prone: Stand up first
-- Can join crews if persuaded
-
-**NPCs Joining Your Crew:**
-- Activated in Trader Phase
-- Use actions shown on their board
-- Cannot use items (but can carry them for you)
-- If defeated: Removed, cannot revive
+- Can join crews if persuaded; once recruited they activate during the Trader Phase
 
 ---
 

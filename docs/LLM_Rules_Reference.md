@@ -157,20 +157,15 @@ ELSE:
 ### A5. NPC Phase
 
 **Activation Order:**
-1. Galactic Corps
-2. Security
-3. Gangers
-4. Civilians
+1. Game Hunters (default First Born NPC)
+2. Optional NPC factions from other Core Space sets
 
 Within each type: Highest rank first.
 
 **Part 1: Arrival**
 
-1. Check hostility tracker for NPC icons
-2. Roll chance die for entry point
-3. Place in contact with entry point
-4. Activate all of current type before placing next type
-5. If multiple ranks arriving simultaneously: Place lowest rank available
+- Game Hunters and Rock Worms enter play via Event cards rather than the hostility tracker
+- Place arrivals adjacent to the entry point or worm hole indicated on the card
 
 **Part 2: Activation**
 
@@ -194,6 +189,12 @@ Each type has priority list. Follow these steps:
 3. If need to shoot but can't damage chosen target: Switch to next highest priority in LoS. If none: Attack original with no effect
 4. If no enemies in LoS: Target closest highest priority (measure around terrain)
 5. Never target: Defeated traders
+
+**Game Hunters Summary:**
+
+- Priorities: First Born, other hostiles (e.g., Gangers/Traders if provoked), then Beasts
+- Arrive through Event cards and turn their focus to Beasts once the area is clear
+- Collect Trophy tokens from defeated Beasts; when all active Hunters carry trophies they head for the nearest exit
 
 **Movement Restrictions:**
 - Must move past enemies without entering base contact if possible
