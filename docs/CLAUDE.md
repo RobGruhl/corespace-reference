@@ -37,8 +37,9 @@ This is a **complete quick reference website** for the Core Space First Born boa
 3. **combat.html** - Complete combat mechanics
 4. **hostility.html** - Hostility system & events
 5. **enemies.html** - First Born & NPCs
-6. **advancement.html** - Skills, equipment & campaign
-7. **tables.html** - Quick reference tables
+6. **skills.html** - All 43 skills reference with icons
+7. **advancement.html** - Skills, equipment & campaign
+8. **tables.html** - Quick reference tables
 
 ### Character Trackers
 1. **character-cassie.html** - Cassie skill progression
@@ -82,6 +83,7 @@ docs/
 ├── combat.html                   # Combat mechanics detail page
 ├── hostility.html                # Hostility system detail page
 ├── enemies.html                  # Enemies detail page
+├── skills.html                   # Skills reference page (all 43 skills)
 ├── advancement.html              # Skills & campaign detail page
 ├── tables.html                   # Quick tables page
 │
@@ -100,6 +102,15 @@ docs/
 ├── Wade_Skills.md                # Wade skills reference
 ├── Balcor_Skills.md              # Balcor skills reference
 ├── Hopper_Skills.md              # Hopper skills reference
+│
+├── data/
+│   └── corespace-data.json       # Skills, characters, classes data (JSON)
+│
+├── images/
+│   └── skills/                   # Skill icon images (PNG)
+│       ├── accelerate.png
+│       ├── ambush.png
+│       └── ... (27 skill icons)
 │
 ├── README.md                     # Site documentation
 ├── SITEMAP.md                    # Site structure plan

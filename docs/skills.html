@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skills Reference - Core Space First Born</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .skill-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px;
+            padding: 15px;
+            transition: all 0.3s;
+            border-left: 4px solid #53a8b6;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .skill-card:hover {
+            background: rgba(255,255,255,0.08);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(83, 168, 182, 0.3);
+        }
+
+        .skill-icon {
+            width: 48px;
+            height: 48px;
+            flex-shrink: 0;
+            border-radius: 6px;
+            background: rgba(83, 168, 182, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .skill-icon img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+        }
+
+        .skill-icon img.broken {
+            display: none;
+        }
+
+        .skill-icon.has-broken-img::before {
+            content: "⭐";
+            font-size: 32px;
+            color: #53a8b6;
+        }
+
+        .skill-info {
+            flex: 1;
+        }
+
+        .skill-name {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        .skill-category {
+            font-size: 0.75em;
+            color: #53a8b6;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+
+        .skill-summary {
+            font-size: 0.85em;
+            color: #ddd;
+            line-height: 1.4;
+        }
+
+        .skill-type-badge {
+            display: inline-block;
+            font-size: 0.7em;
+            padding: 2px 6px;
+            border-radius: 3px;
+            margin-left: 6px;
+            text-transform: uppercase;
+        }
+
+        .skill-type-reaction {
+            background: #e94560;
+            color: #fff;
+        }
+
+        .skill-type-passive {
+            background: #2ecc71;
+            color: #fff;
+        }
+
+        .skill-type-between-game {
+            background: #9b59b6;
+            color: #fff;
+        }
+
+        .category-section {
+            margin-bottom: 40px;
+        }
+
+        .category-title {
+            font-size: 1.6em;
+            color: #e94560;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid rgba(233, 69, 96, 0.3);
+        }
+
+        .filter-bar {
+            margin-bottom: 25px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .filter-btn {
+            padding: 8px 16px;
+            background: rgba(83, 168, 182, 0.2);
+            border: 1px solid #53a8b6;
+            border-radius: 5px;
+            color: #53a8b6;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9em;
+        }
+
+        .filter-btn:hover {
+            background: rgba(83, 168, 182, 0.4);
+        }
+
+        .filter-btn.active {
+            background: #53a8b6;
+            color: #16213e;
+            font-weight: bold;
+        }
+
+        .breadcrumb {
+            margin-bottom: 20px;
+            color: #aaa;
+            font-size: 0.9em;
+        }
+
+        .breadcrumb a {
+            color: #53a8b6;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1><a href="index.html" style="color: inherit; text-decoration: none;">Core Space First Born</a></h1>
+        <p>Skills Reference Guide</p>
+    </header>
+
+    <div class="breadcrumb">
+        <a href="index.html">Home</a> › Skills Reference
+    </div>
+
+    <main id="skills-content">
+        <p style="text-align: center; color: #53a8b6;">Loading skills...</p>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Core Space Quick Reference | <a href="index.html">Back to Hub</a></p>
+        <div style="margin-top: 10px;">
+            <a href="actions.html">Actions</a> |
+            <a href="phases.html">Phases</a> |
+            <a href="combat.html">Combat</a> |
+            <a href="advancement.html">Advancement</a>
+        </div>
+    </footer>
+
+    <script>
+        // Skill summaries - one sentence per skill
+        const skillSummaries = {
+            accelerate: "Make extra Move or Assault actions for enhanced mobility.",
+            ambush: "Attack enemies from cover when they move near you.",
+            assist: "Protect allies from ranged attacks or restore their health.",
+            barter: "Re-roll trade costs or sell items at better prices between games.",
+            blast: "Expel energy blasts for ranged attacks or propulsive movement.",
+            bodyguardProtocol: "Protect allies by taking hits for them and healing them.",
+            brutalAssault: "Make powerful close combat attacks that knock enemies prone.",
+            camouflage: "Become untargetable while in contact with walls or terrain.",
+            charge: "Rush into enemies and deal knock back damage.",
+            combatExpert: "Reduce attacks of opportunity and make versatile close assaults.",
+            counterShot: "Return fire against enemies who attack you.",
+            disarm: "Steal enemy weapons when they fail to damage you in melee.",
+            disconnect: "Enter a rage state for extra combat power, then become uncontrolled.",
+            distraction: "Cause enemies to lose actions with clever distractions.",
+            disrupt: "Jam enemy tech or shut down Purge units electronically.",
+            energize: "Boost vitality to move, attack, or heal yourself.",
+            engineering: "Apply repair points automatically without rolling.",
+            evade: "Escape from enemy contact with quick movement.",
+            fadeToBlack: "Vanish into cover to avoid ranged attacks.",
+            hackAndGrab: "Lock/unlock doors, pickpocket enemies, or inspect crates remotely.",
+            hack: "Shut down Purge units or control doors with hacking.",
+            hardToHit: "Become immune to ranged damage while in cover or at distance.",
+            heel: "Move to protect your handler and absorb damage for them.",
+            impervious: "Resist effects that cost actions and boost your armor.",
+            kata: "Add extra dice to close assault attacks.",
+            lightFingers: "Steal items from attackers during combat.",
+            manipulate: "Disrupt enemy minds, break their equipment, or move terrain.",
+            marksman: "Make precise ranged attacks that can hit multiple targets.",
+            onslaught: "Chain multiple close assault attacks together.",
+            overdrive: "Take extra actions at the cost of health or self-destruct.",
+            persuasion: "Convince enemies to miss turns or join your crew.",
+            reflexes: "Ignore close assault hits and counter-attack instantly.",
+            regulate: "Reduce hostility or repair items and machines.",
+            repair: "Fix equipment and heal machines with repair nanites.",
+            reroute: "Restore health or recover from being defeated.",
+            scanners: "Inspect crates, manipulate Purge sensors, or jam transmissions.",
+            scientificMind: "Re-roll chance dice or create chemical compounds between games.",
+            slippery: "Move with enhanced scrambling ability and ignore attacks of opportunity.",
+            sonicRoar: "Emit sonic pulses that stun and knock down Purge enemies.",
+            stubborn: "Make steady movement and assault actions.",
+            sureShot: "Roll targeted attacks against multiple enemies.",
+            training: "Allow allies to repeat your actions or gain career points.",
+            walkItOff: "Restore health, reduce damage, or recover from defeat.",
+            weaponsExpert: "Reload effortlessly and make devastating ranged attacks."
+        };
+
+        // Load and display skills
+        fetch('data/corespace-data.json')
+            .then(response => response.json())
+            .then(data => {
+                displaySkills(data.skills);
+            })
+            .catch(error => {
+                document.getElementById('skills-content').innerHTML =
+                    '<p style="color: #e94560;">Error loading skills data.</p>';
+                console.error('Error:', error);
+            });
+
+        function displaySkills(skills) {
+            // Group skills by category
+            const categories = {};
+            skills.forEach(skill => {
+                if (!categories[skill.category]) {
+                    categories[skill.category] = [];
+                }
+                categories[skill.category].push(skill);
+            });
+
+            // Sort categories
+            const sortedCategories = Object.keys(categories).sort();
+
+            // Build HTML
+            let html = '<div class="filter-bar">';
+            html += '<button class="filter-btn active" onclick="showAllSkills()">All Skills</button>';
+            sortedCategories.forEach(cat => {
+                const catId = cat.replace(/\s+/g, '-').toLowerCase();
+                html += `<button class="filter-btn" onclick="filterByCategory('${catId}')">${cat}</button>`;
+            });
+            html += '</div>';
+
+            sortedCategories.forEach(category => {
+                const catId = category.replace(/\s+/g, '-').toLowerCase();
+                html += `<div class="category-section" data-category="${catId}">`;
+                html += `<h2 class="category-title">${category}</h2>`;
+                html += '<div class="skills-grid">';
+
+                categories[category].forEach(skill => {
+                    const iconPath = `images/skills/${skill.id.replace(/([A-Z])/g, '-$1').toLowerCase().replace(/^-/, '')}.png`;
+                    const summary = skillSummaries[skill.id] || skill.levels[0].description || skill.levels[0].effect || "Advanced skill for experienced traders.";
+                    const typeLabel = getSkillTypeLabel(skill);
+
+                    html += `<div class="skill-card">`;
+                    html += `  <div class="skill-icon" id="icon-${skill.id}">`;
+                    html += `    <img src="${iconPath}" alt="${skill.name}" onerror="this.classList.add('broken'); this.parentElement.classList.add('has-broken-img');">`;
+                    html += `  </div>`;
+                    html += `  <div class="skill-info">`;
+                    html += `    <div class="skill-name">${skill.name}${typeLabel}</div>`;
+                    html += `    <div class="skill-category">${skill.category}</div>`;
+                    html += `    <div class="skill-summary">${summary}</div>`;
+                    html += `  </div>`;
+                    html += `</div>`;
+                });
+
+                html += '</div></div>';
+            });
+
+            document.getElementById('skills-content').innerHTML = html;
+        }
+
+        function getSkillTypeLabel(skill) {
+            if (skill.type === 'reaction') {
+                return '<span class="skill-type-badge skill-type-reaction">Reaction</span>';
+            } else if (skill.type === 'between-game') {
+                return '<span class="skill-type-badge skill-type-between-game">Between Game</span>';
+            } else if (skill.type === 'mixed') {
+                const hasPassive = skill.levels.some(l => l.isPassive);
+                const hasReaction = skill.levels.some(l => l.isReaction);
+                if (hasPassive) {
+                    return '<span class="skill-type-badge skill-type-passive">Passive</span>';
+                } else if (hasReaction) {
+                    return '<span class="skill-type-badge skill-type-reaction">Reaction</span>';
+                }
+            }
+            return '';
+        }
+
+        function filterByCategory(categoryId) {
+            // Update button states
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Show/hide sections
+            document.querySelectorAll('.category-section').forEach(section => {
+                if (section.dataset.category === categoryId) {
+                    section.style.display = 'block';
+                } else {
+                    section.style.display = 'none';
+                }
+            });
+        }
+
+        function showAllSkills() {
+            // Update button states
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Show all sections
+            document.querySelectorAll('.category-section').forEach(section => {
+                section.style.display = 'block';
+            });
+        }
+    </script>
+</body>
+</html>

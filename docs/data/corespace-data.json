@@ -603,6 +603,41 @@
       ]
     },
     {
+      "id": "blast",
+      "name": "Blast",
+      "category": "Augmented Skills",
+      "type": "standard",
+      "levels": [
+        {
+          "level": 1,
+          "variant": "active",
+          "isPassive": false,
+          "isReaction": false,
+          "isBetweenGame": false,
+          "description": "You expel a focused percussive blast of energy from your limbs. Make a ranged attack with 3-2-0 statistics.",
+          "pegCost": 1
+        },
+        {
+          "level": 2,
+          "variant": "active",
+          "isPassive": false,
+          "isReaction": false,
+          "isBetweenGame": false,
+          "description": "You expel the energy behind you to propel yourself up and forward. Make two Move actions, ignoring all intervening cover and characters.",
+          "pegCost": 1
+        },
+        {
+          "level": 3,
+          "variant": "active",
+          "isPassive": false,
+          "isReaction": false,
+          "isBetweenGame": false,
+          "description": "You expel energy in all directions. All characters within short range suffer an attack with 3 dice and are pushed away a number of inches equal to hits scored, with no attacks of opportunity.",
+          "pegCost": 1
+        }
+      ]
+    },
+    {
       "id": "bodyguardProtocol",
       "name": "Bodyguard Protocol",
       "category": "Machine Skills",
@@ -694,6 +729,32 @@
           "isReaction": false,
           "isBetweenGame": false,
           "description": "Make a Ranged Assault action. While you are in base contact with any terrain you cannot be targeted for the rest of the round. Enemies cannot enter base contact with you. You do not block line of sight to other characters in any way.",
+          "pegCost": 1
+        }
+      ]
+    },
+    {
+      "id": "charge",
+      "name": "Charge",
+      "category": "Merg Skills",
+      "type": "standard",
+      "levels": [
+        {
+          "level": 1,
+          "variant": "active",
+          "isPassive": false,
+          "isReaction": false,
+          "isBetweenGame": false,
+          "description": "Make a Move action ending in base contact with an enemy. Then make a Knock Back action. Hits on Knock Back are applied as additional damage to the enemy. Armour applies normally.",
+          "pegCost": 1
+        },
+        {
+          "level": 2,
+          "variant": "active",
+          "isPassive": false,
+          "isReaction": false,
+          "isBetweenGame": false,
+          "description": "During Move actions this round, you can make free close assault attacks on up to 3 characters you contact during movement. Ignore attacks of opportunity from these characters.",
           "pegCost": 1
         }
       ]
@@ -825,6 +886,32 @@
       ]
     },
     {
+      "id": "disconnect",
+      "name": "Disconnect",
+      "category": "Merg Skills",
+      "type": "standard",
+      "levels": [
+        {
+          "level": 1,
+          "variant": "active",
+          "isPassive": false,
+          "isReaction": false,
+          "isBetweenGame": false,
+          "description": "Allow natural rage to flood the body. For this turn: move an additional 2 inches and roll 2 extra combat dice in Close Assault. At turn's end, become disconnected from handler.",
+          "pegCost": 1
+        },
+        {
+          "level": 2,
+          "variant": "active",
+          "isPassive": false,
+          "isReaction": false,
+          "isBetweenGame": false,
+          "description": "Fill body with unbridled rage. For this turn: gain an extra action, move an additional 2 inches, roll 2 extra combat dice in Close Assault, and enemies contacted during moves are knocked prone. At turn's end, become disconnected from handler.",
+          "pegCost": 1
+        }
+      ]
+    },
+    {
       "id": "distraction",
       "name": "Distraction",
       "category": "Cunning Skills",
@@ -855,6 +942,41 @@
           "isReaction": false,
           "isBetweenGame": false,
           "description": "Make a Ranged Assault action. You may then make a Move action with the target model (you cannot use this Move to enter base contact with an enemy), and it will miss its entire next turn in addition to any damage caused. Then make a Move action yourself.",
+          "pegCost": 1
+        }
+      ]
+    },
+    {
+      "id": "disrupt",
+      "name": "Disrupt",
+      "category": "Tech Skills",
+      "type": "standard",
+      "levels": [
+        {
+          "level": 1,
+          "variant": "active",
+          "isPassive": false,
+          "isReaction": false,
+          "isBetweenGame": false,
+          "description": "Target an enemy Trader with Tech Class within medium range (they cannot use any Tech Skills this round) OR target up to 2 Purge (rank 1-3 only) within medium range (they miss their next turn).",
+          "pegCost": 1
+        },
+        {
+          "level": 2,
+          "variant": "active",
+          "isPassive": false,
+          "isReaction": false,
+          "isBetweenGame": false,
+          "description": "All enemy Traders with Tech Class within medium range cannot use any Tech Skills this round OR all Purge (rank 1-3 only) within medium range miss their next turn.",
+          "pegCost": 1
+        },
+        {
+          "level": 3,
+          "variant": "active",
+          "isPassive": false,
+          "isReaction": false,
+          "isBetweenGame": false,
+          "description": "Choose one: Target an enemy Trader with Tech Class within medium range (cannot use Tech Skills for rest of game) OR target an enemy Trader with Tech Class anywhere on board (cannot use Tech Skills this round) OR all Purge (rank 1-3 only) within medium range miss next two turns OR all Purge (rank 1-3 only) on board miss next turn.",
           "pegCost": 1
         }
       ]
@@ -994,6 +1116,76 @@
           "isReaction": false,
           "isBetweenGame": false,
           "description": "Use a homemade miniaturised portal device to inspect the contents of any Searchable terrain piece within medium range. Then roll a combat die: • Critical fail: Return all the items. • Blank: Take or swap a small item of your choice. • One hit: Take or swap any item of your choice. • Two hits: Take or swap all items, and distribute them between your own equipment tray and your ship's hold. You may then lock the terrain piece if you wish.",
+          "pegCost": 1
+        }
+      ]
+    },
+    {
+      "id": "hack",
+      "name": "Hack",
+      "category": "Tech Skills",
+      "type": "standard",
+      "levels": [
+        {
+          "level": 1,
+          "variant": "active",
+          "isPassive": false,
+          "isReaction": false,
+          "isBetweenGame": false,
+          "description": "Shut down a Purge character (rank 1-2 only) within medium range. Remove the character from play. OR Lock/unlock a door in base contact.",
+          "pegCost": 1
+        },
+        {
+          "level": 2,
+          "variant": "active",
+          "isPassive": false,
+          "isReaction": false,
+          "isBetweenGame": false,
+          "description": "Shut down up to 2 Purge characters (rank 1-2 only) within medium range. Remove them from play. OR Lock/unlock any door within medium range.",
+          "pegCost": 1
+        },
+        {
+          "level": 3,
+          "variant": "active",
+          "isPassive": false,
+          "isReaction": false,
+          "isBetweenGame": false,
+          "description": "Shut down up to 2 Purge characters (rank 1-3 only) within medium range. Remove them from play. OR Take control of any Purge character (rank 1-3 only) within medium range. OR Lock or unlock any one door on the board.",
+          "pegCost": 1
+        }
+      ]
+    },
+    {
+      "id": "heel",
+      "name": "Heel",
+      "category": "Merg Skills",
+      "type": "standard",
+      "levels": [
+        {
+          "level": 1,
+          "variant": "active",
+          "isPassive": false,
+          "isReaction": false,
+          "isBetweenGame": false,
+          "description": "Make a Move action towards your handler via the shortest possible route. If you enter base contact with your handler, any hits that your handler suffers from attacks this round are taken on you instead (armour applies as normal).",
+          "pegCost": 1
+        },
+        {
+          "level": 2,
+          "variant": "active",
+          "isPassive": false,
+          "isReaction": false,
+          "isBetweenGame": false,
+          "description": "Make up to two Move actions towards your handler via the shortest possible route. If you enter base contact with your handler, any hits that your handler suffers from attacks this round are taken on you instead (armour applies as normal). Your handler also restores 1 Health.",
+          "pegCost": 1
+        },
+        {
+          "level": 3,
+          "variant": "active",
+          "isPassive": false,
+          "isReaction": false,
+          "isBetweenGame": false,
+          "description": "Make up to three Move actions (up to the normal 11 inch limit) towards your handler via the shortest possible route. You may move through other characters, making a free Knock Back action on each one you pass through. If you enter base contact with your handler, any hits that your handler suffers from attacks this round are taken on you instead (armour applies as normal). Your handler also restores 1 Health.",
           "pegCost": 1
         }
       ]
@@ -1168,6 +1360,41 @@
           "isBetweenGame": false,
           "pegCost": 1,
           "description": "Make a ranged attack with two extra combat dice. After rolling the dice, you can split the hits scored between any number of eligible targets within range of your weapon and within short range of each other."
+        }
+      ]
+    },
+    {
+      "id": "manipulate",
+      "name": "Manipulate",
+      "category": "Augmented Skills",
+      "type": "standard",
+      "levels": [
+        {
+          "level": 1,
+          "variant": "active",
+          "isPassive": false,
+          "isReaction": false,
+          "isBetweenGame": false,
+          "description": "You disrupt the mind of the enemy. Target an enemy in LoS. They miss their next turn.",
+          "pegCost": 1
+        },
+        {
+          "level": 2,
+          "variant": "active",
+          "isPassive": false,
+          "isReaction": false,
+          "isBetweenGame": false,
+          "description": "You disrupt the enemy's equipment. Target an item held by an enemy in LoS. That item immediately breaks.",
+          "pegCost": 1
+        },
+        {
+          "level": 3,
+          "variant": "active",
+          "isPassive": false,
+          "isReaction": false,
+          "isBetweenGame": false,
+          "description": "You alter the environment around you. Perform one of the following: Move any small terrain item (such as a cargo crate or table) or loose item token in LoS up to short range from its current location. OR Hurl any small to medium terrain item (like a vending machine or table) in medium range and LoS up to short range from its current location. If it hits a character, it will stop and an attack roll of 4 dice is made against the target.",
+          "pegCost": 1
         }
       ]
     },
@@ -1407,6 +1634,41 @@
       ]
     },
     {
+      "id": "scanners",
+      "name": "Scanners",
+      "category": "Machine Skills",
+      "type": "standard",
+      "levels": [
+        {
+          "level": 1,
+          "variant": "active",
+          "isPassive": false,
+          "isReaction": false,
+          "isBetweenGame": false,
+          "description": "Target a cargo crate within short range and LoS. Inspect the contents and then put it back inside.",
+          "pegCost": 1
+        },
+        {
+          "level": 2,
+          "variant": "active",
+          "isPassive": false,
+          "isReaction": false,
+          "isBetweenGame": false,
+          "description": "You can intercept Purge sensors and relay false data. Target any 2 Purge characters (rank 1-3 only) within medium range and make a Move action with them in a direction of your choice.",
+          "pegCost": 1
+        },
+        {
+          "level": 3,
+          "variant": "active",
+          "isPassive": false,
+          "isReaction": false,
+          "isBetweenGame": false,
+          "description": "You can send out a jamming pulse that blocks all transmissions and micro control data. Reduce or increase the Hostility Tracker by 2 points. All other Traders with the Machine Class and Purge of rank 1-3 miss their next turn.",
+          "pegCost": 1
+        }
+      ]
+    },
+    {
       "id": "slippery",
       "name": "Slippery",
       "category": "Vocational Skills",
@@ -1443,6 +1705,76 @@
       ]
     },
     {
+      "id": "scientificMind",
+      "name": "Scientific Mind",
+      "category": "Vocational Skills",
+      "type": "mixed",
+      "levels": [
+        {
+          "level": 1,
+          "variant": "active",
+          "isPassive": false,
+          "isReaction": false,
+          "isBetweenGame": false,
+          "description": "You have a penchant for discovery. Re-roll any Chance die once per game.",
+          "pegCost": 1
+        },
+        {
+          "level": 2,
+          "variant": "between-game",
+          "isPassive": false,
+          "isReaction": false,
+          "isBetweenGame": true,
+          "description": "Assessment Phase: Produce a chemical compound. Choose one: 1 medkit OR Tier 1 armour-reducing chemical weapon OR a corrosive chemical that unlocks any locked door or searchable terrain. Lasts one game.",
+          "pegCost": 1
+        },
+        {
+          "level": 3,
+          "variant": "between-game",
+          "isPassive": false,
+          "isReaction": false,
+          "isBetweenGame": true,
+          "description": "Assessment Phase: You can mix and refine raw materials with precision. Choose one: 1 item of equipment up to 6UA (or 10UA if Scientist class) OR 1 equipment token OR 1 booster pack.",
+          "pegCost": 1
+        }
+      ]
+    },
+    {
+      "id": "sonicRoar",
+      "name": "Sonic Roar",
+      "category": "Merg Skills",
+      "type": "standard",
+      "levels": [
+        {
+          "level": 1,
+          "variant": "active",
+          "isPassive": false,
+          "isReaction": false,
+          "isBetweenGame": false,
+          "description": "Emit a Merg call that intimidates and disorientates. Make a Move action OR target up to 3 rank 1-2 characters within medium range and reduce their hit points on next attack by 1.",
+          "pegCost": 1
+        },
+        {
+          "level": 2,
+          "variant": "active",
+          "isPassive": false,
+          "isReaction": false,
+          "isBetweenGame": false,
+          "description": "Emit a low-frequency pulse. All Purge characters (rank 1-3 only) within short range miss next turn and are knocked prone.",
+          "pegCost": 1
+        },
+        {
+          "level": 3,
+          "variant": "active",
+          "isPassive": false,
+          "isReaction": false,
+          "isBetweenGame": false,
+          "description": "Generate a powerful sonic pulse. All rank 1-3 Purge characters within medium range miss their next 2 turns and are knocked prone OR all rank 1-3 Purge characters on the board miss their next turn.",
+          "pegCost": 1
+        }
+      ]
+    },
+    {
       "id": "stubborn",
       "name": "Stubborn",
       "category": "Endurance Skills",
@@ -1464,6 +1796,41 @@
           "isReaction": false,
           "isBetweenGame": false,
           "description": "Make a Move action followed by an Assault action.",
+          "pegCost": 1
+        }
+      ]
+    },
+    {
+      "id": "sureShot",
+      "name": "Sure Shot",
+      "category": "Ranged Skills",
+      "type": "standard",
+      "levels": [
+        {
+          "level": 1,
+          "variant": "active",
+          "isPassive": false,
+          "isReaction": false,
+          "isBetweenGame": false,
+          "description": "Target 1 enemy within short range and roll a die against them. Assign resulting hits.",
+          "pegCost": 1
+        },
+        {
+          "level": 2,
+          "variant": "active",
+          "isPassive": false,
+          "isReaction": false,
+          "isBetweenGame": false,
+          "description": "Target 2 enemies within medium range and roll 1 die against each. Assign resulting hits.",
+          "pegCost": 1
+        },
+        {
+          "level": 3,
+          "variant": "active",
+          "isPassive": false,
+          "isReaction": false,
+          "isBetweenGame": false,
+          "description": "Target any number of enemies within medium range and roll 1 die against each. Assign resulting hits.",
           "pegCost": 1
         }
       ]

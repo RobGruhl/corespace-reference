@@ -22,12 +22,7 @@ build/
 ._*
 Thumbs.db
 
-# Project-specific
-test-v2-output/
-enhanced-output/pages/*.png
-enhanced-output/vision-prompts/
-
-# PDFs (large files, not needed in repo)
+# PDFs (large files, reference only)
 *.pdf
 
 # Keep requirements if we add it
