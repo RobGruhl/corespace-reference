@@ -1399,6 +1399,41 @@
       ]
     },
     {
+      "id": "negotiation",
+      "name": "Negotiation",
+      "category": "Vocational Skills",
+      "type": "mixed",
+      "levels": [
+        {
+          "level": 1,
+          "variant": "passive",
+          "isPassive": true,
+          "isReaction": false,
+          "isBetweenGame": false,
+          "passiveEffect": "Re-roll one die on any Persuade roll.",
+          "pegCost": 0
+        },
+        {
+          "level": 2,
+          "variant": "between-game",
+          "isPassive": false,
+          "isReaction": false,
+          "isBetweenGame": true,
+          "description": "Extraction Phase: Use before rolling on the 'You're on Your Own' or Apprehended tables for yourself or any other crew member. Ignore any UA cost. Gain a Career Point after use.",
+          "pegCost": 1
+        },
+        {
+          "level": 3,
+          "variant": "between-game",
+          "isPassive": false,
+          "isReaction": false,
+          "isBetweenGame": true,
+          "description": "Extraction Phase: Your crew can work with crews from enemy captains on diplomatic missions. Enemy crew will never attack you, and you may assist them with Persuade actions and similar Skills.",
+          "pegCost": 1
+        }
+      ]
+    },
+    {
       "id": "onslaught",
       "name": "Onslaught",
       "category": "Endurance Skills",
