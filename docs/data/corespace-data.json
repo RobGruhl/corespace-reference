@@ -294,7 +294,7 @@
           "note": "FREE - Character Card skill"
         }
       ],
-      "notes": "Daric has +1 movement as an inherent ability, allowing him to move faster than standard characters.",
+      "notes": "Daric has +1 inch movement as an inherent ability (moves 1 additional inch during Move actions).",
       "defaultClass": null
     },
     {
@@ -334,7 +334,7 @@
           "note": "FREE - Character Card skill"
         }
       ],
-      "notes": "Yeti is small-sized, which may provide advantages in tight spaces and for cover.",
+      "notes": "Yeti is small-sized (not Massive), which means they do not block LoS to Massive characters but may provide cover. Easier to move by other characters.",
       "defaultClass": null
     },
     {
@@ -354,7 +354,7 @@
           "note": "FREE - Character Card skill"
         }
       ],
-      "notes": "Lohbac has +2 dice in close combat attacks as a racial ability from the App'a species.",
+      "notes": "Lohbac has 2 inherent close combat dice when unarmed (rolls 2 dice for Close Assault when not using a weapon) as an App'a racial ability.",
       "defaultClass": null
     },
     {
@@ -374,7 +374,7 @@
           "note": "FREE - Character Card skill"
         }
       ],
-      "notes": "XL is a large-sized machine with 1 inherent armor and 3 dice for close combat attacks. Can only use Machine class.",
+      "notes": "XL is Massive (can be seen over smaller characters, reduces Knock Back against them, adds automatic hits to own Knock Back, can move items/smaller characters at full speed). Has 1 inherent armor and 3 inherent close combat dice when unarmed. Machine class only.",
       "defaultClass": "machine",
       "classBoards": [
         {
