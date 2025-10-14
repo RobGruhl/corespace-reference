@@ -17,6 +17,15 @@ Core Space Quick Reference
 └── tables.html            - Quick reference tables
 ```
 
+### 🔧 Character Page Generation
+
+- `data/corespace-data.json` – Shared character/class/skill dataset
+- `templates/character-page.html` – HTML scaffold used for every respec page
+- `docs/js/character-page.js` – Client-side renderer that builds the page from data
+- `generate_character_pages.py` – Script that emits `docs/character-<id>.html` for each character in the dataset
+
+Run `./generate_character_pages.py` after updating the JSON data to regenerate all character pages automatically.
+
 ## 🎯 Design Philosophy
 
 **Hub & Spoke Architecture:**
