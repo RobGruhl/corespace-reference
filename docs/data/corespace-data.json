@@ -334,7 +334,7 @@
           "note": "FREE - Character Card skill"
         }
       ],
-      "notes": "Yeti is small-sized (not Massive), which means they do not block LoS to Massive characters but may provide cover. Easier to move by other characters.",
+      "notes": "Yeti is Small: Does not block LoS to regular or Massive characters (may provide cover). Terrain provides greater cover to Small characters. Can be moved by a single character at full speed (unless that character is also Small).",
       "defaultClass": null
     },
     {
