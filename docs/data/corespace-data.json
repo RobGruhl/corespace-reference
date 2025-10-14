@@ -354,7 +354,7 @@
           "note": "FREE - Character Card skill"
         }
       ],
-      "notes": "Lohbac has 2 inherent close combat dice when unarmed (rolls 2 dice for Close Assault when not using a weapon) as an App'a racial ability.",
+      "notes": "Lohbac rolls 2 dice (total, not bonus) for Close Assault actions when unarmed. If using a weapon, use weapon's statistics instead. App'a racial trait.",
       "defaultClass": null
     },
     {
@@ -374,7 +374,7 @@
           "note": "FREE - Character Card skill"
         }
       ],
-      "notes": "XL is Massive (can be seen over smaller characters, reduces Knock Back against them, adds automatic hits to own Knock Back, can move items/smaller characters at full speed). Has 1 inherent armor and 3 inherent close combat dice when unarmed. Machine class only.",
+      "notes": "XL is Massive (can be seen over smaller characters, reduces Knock Back against them, adds automatic hits to own Knock Back, can move items/smaller characters at full speed). Has permanent armor value of 1 (use highest if wearing armor). Rolls 3 dice (total, not bonus) for Close Assault when unarmed (use weapon stats if armed). Machine class only.",
       "defaultClass": "machine",
       "classBoards": [
         {
