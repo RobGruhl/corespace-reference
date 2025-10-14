@@ -271,6 +271,146 @@
         }
       ],
       "notes": "Balcor starts with Brutal Assault at level 2 and builds additional resilience and close combat tricks through Support or Marine class boards."
+    },
+    {
+      "id": "daric",
+      "name": "Daric",
+      "description": "Human trader with exceptional mobility, resilience, and diplomatic skills.",
+      "baseStats": {
+        "health": 5,
+        "skill": 3
+      },
+      "startingSkillPoints": 2,
+      "maxLevelUpBonus": 3,
+      "inherentSkills": [
+        {
+          "skillId": "walkItOff",
+          "level": 1,
+          "note": "FREE - Character Card skill"
+        },
+        {
+          "skillId": "negotiation",
+          "level": 1,
+          "note": "FREE - Character Card skill"
+        }
+      ],
+      "notes": "Daric has +1 movement as an inherent ability, allowing him to move faster than standard characters.",
+      "defaultClass": null
+    },
+    {
+      "id": "qiog",
+      "name": "Qiog",
+      "description": "Trader of unknown race with exceptional resilience and skill.",
+      "baseStats": {
+        "health": 3,
+        "skill": 4
+      },
+      "startingSkillPoints": 2,
+      "maxLevelUpBonus": 3,
+      "inherentSkills": [
+        {
+          "skillId": "impervious",
+          "level": 1,
+          "note": "FREE - Character Card skill"
+        }
+      ],
+      "notes": "Qiog is of unknown race origin with high skill but lower health, compensated by Impervious ability.",
+      "defaultClass": null
+    },
+    {
+      "id": "yeti",
+      "name": "Yeti",
+      "description": "Small-sized trader with technical expertise and sensor manipulation abilities.",
+      "baseStats": {
+        "health": 4,
+        "skill": 2
+      },
+      "startingSkillPoints": 2,
+      "maxLevelUpBonus": 3,
+      "inherentSkills": [
+        {
+          "skillId": "regulate",
+          "level": 1,
+          "note": "FREE - Character Card skill"
+        }
+      ],
+      "notes": "Yeti is small-sized, which may provide advantages in tight spaces and for cover.",
+      "defaultClass": null
+    },
+    {
+      "id": "lohbac",
+      "name": "Lohbac",
+      "description": "App'a warrior with enhanced close combat abilities and martial arts expertise.",
+      "baseStats": {
+        "health": 5,
+        "skill": 4
+      },
+      "startingSkillPoints": 2,
+      "maxLevelUpBonus": 3,
+      "inherentSkills": [
+        {
+          "skillId": "kata",
+          "level": 1,
+          "note": "FREE - Character Card skill"
+        }
+      ],
+      "notes": "Lohbac has +2 dice in close combat attacks as a racial ability from the App'a species.",
+      "defaultClass": null
+    },
+    {
+      "id": "xl",
+      "name": "XL",
+      "description": "Large machine with heavy armor and devastating close combat capabilities. Restricted to Machine class only.",
+      "baseStats": {
+        "health": 4,
+        "skill": 1
+      },
+      "startingSkillPoints": 2,
+      "maxLevelUpBonus": 3,
+      "inherentSkills": [
+        {
+          "skillId": "energize",
+          "level": 1,
+          "note": "FREE - Character Card skill"
+        }
+      ],
+      "notes": "XL is a large-sized machine with 1 inherent armor and 3 dice for close combat attacks. Can only use Machine class.",
+      "defaultClass": "machine",
+      "classBoards": [
+        {
+          "id": "machine",
+          "availableSkills": [
+            {
+              "skillId": "reroute",
+              "maxLevel": 3
+            },
+            {
+              "skillId": "overdrive",
+              "maxLevel": 3
+            },
+            {
+              "skillId": "repair",
+              "maxLevel": 3
+            },
+            {
+              "skillId": "bodyguardProtocol",
+              "maxLevel": 3
+            },
+            {
+              "skillId": "accelerate",
+              "maxLevel": 2
+            },
+            {
+              "skillId": "reflexes",
+              "maxLevel": 3
+            },
+            {
+              "skillId": "energize",
+              "maxLevel": 1
+            }
+          ]
+        }
+      ]
     }
   ],
   "classes": [
