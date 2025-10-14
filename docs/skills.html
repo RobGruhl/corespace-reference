@@ -243,14 +243,29 @@
 
         // Load and display skills
         fetch('data/corespace-data.json')
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
             .then(data => {
                 displaySkills(data.skills);
             })
             .catch(error => {
+                console.error('Error loading skills:', error);
                 document.getElementById('skills-content').innerHTML =
-                    '<p style="color: #e94560;">Error loading skills data.</p>';
-                console.error('Error:', error);
+                    `<div style="color: #e94560; padding: 20px;">
+                        <h3>Error loading skills data</h3>
+                        <p style="color: #ddd; margin-top: 10px;">
+                            If viewing locally, please use one of these methods:
+                        </p>
+                        <ol style="color: #ddd; text-align: left; max-width: 600px; margin: 20px auto;">
+                            <li>View on GitHub Pages: <a href="https://robgruhl.github.io/corespace-reference/skills.html" style="color: #53a8b6;">Live Site</a></li>
+                            <li>Run a local server: <code>cd docs && python3 -m http.server 8000</code> then visit <code>http://localhost:8000/skills.html</code></li>
+                        </ol>
+                        <p style="color: #888; font-size: 0.9em; margin-top: 15px;">Technical details: ${error.message}</p>
+                    </div>`;
             });
 
         function displaySkills(skills) {
