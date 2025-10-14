@@ -323,10 +323,38 @@
             const select = buildLevelSelector(entry);
             card.appendChild(select);
 
+            const titleContainer = document.createElement('div');
+            titleContainer.style.display = 'flex';
+            titleContainer.style.alignItems = 'center';
+            titleContainer.style.gap = '10px';
+            titleContainer.style.marginBottom = '8px';
+
+            const iconWrapper = document.createElement('div');
+            iconWrapper.style.width = '40px';
+            iconWrapper.style.height = '40px';
+            iconWrapper.style.flexShrink = '0';
+
+            const icon = document.createElement('img');
+            const iconFilename = entry.skill.id.replace(/([A-Z])/g, '-$1').toLowerCase().replace(/^-/, '') + '.png';
+            icon.src = `images/skills/${iconFilename}`;
+            icon.alt = entry.skill.name;
+            icon.style.width = '40px';
+            icon.style.height = '40px';
+            icon.style.objectFit = 'contain';
+            icon.onerror = function() {
+                this.style.display = 'none';
+                iconWrapper.style.display = 'none';
+            };
+            iconWrapper.appendChild(icon);
+            titleContainer.appendChild(iconWrapper);
+
             const title = document.createElement('div');
             title.className = 'action-card-title';
+            title.style.margin = '0';
             title.textContent = entry.skill.name;
-            card.appendChild(title);
+            titleContainer.appendChild(title);
+
+            card.appendChild(titleContainer);
 
             const subtitle = document.createElement('div');
             subtitle.className = 'action-requirements';

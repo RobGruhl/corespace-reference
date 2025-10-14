@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wade - Character Progression Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="character-page.css">
+    <script defer src="js/character-page.js"></script>
+</head>
+<body>
+    <script>
+        window.characterPageConfig = {
+            characterId: "wade",
+            dataPath: "data/corespace-data.json",
+            pageTitle: "Wade - Character Progression Tracker",
+            defaultClass: null
+        };
+    </script>
+    <div class="container character-page">
+        <header>
+            <h1><a href="index.html">⚡ CORE SPACE ⚡</a></h1>
+            <div class="tagline" id="page-tagline">Wade - Character Progression Tracker</div>
+        </header>
+
+        <div class="breadcrumb">
+            <a href="index.html">Home</a>
+            <span>›</span>
+            <span id="breadcrumb-character">Wade</span>
+        </div>
+
+        <a href="index.html" class="back-btn">← Back to Hub</a>
+
+        <div id="error-panel"></div>
+
+        <div id="character-content">
+            <div class="section">
+                <h2>Character Overview</h2>
+                <div class="character-header">
+                    <h2 id="overview-name">Wade</h2>
+                    <p class="character-description" id="character-description"></p>
+                    <div class="base-stats" id="base-stats"></div>
+                    <div class="inherent-skills" id="inherent-skills"></div>
+                    <div class="info-box" id="character-notes" style="display: none;"></div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Passive Skills Summary</h2>
+                <div class="passive-summary">
+                    <h3>🔮 Always Active Abilities</h3>
+                    <div id="passive-skills-list"></div>
+                    <div class="empty-state" id="no-passives">
+                        No passive abilities learned yet. Passive abilities will appear here as you learn skills.
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Available Reactions</h2>
+                <div class="passive-summary" style="border-color: #e67e22;">
+                    <h3 style="color: #e67e22;">⚡ Triggered Abilities</h3>
+                    <div id="reaction-skills-list"></div>
+                    <div class="empty-state" id="no-reactions">
+                        No reaction abilities learned yet. Reaction abilities will appear here as you learn skills.
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Campaign Tracker</h2>
+                <div class="skill-controls">
+                    <div class="class-selector">
+                        <label for="class-select">Class Card</label>
+                        <select id="class-select"></select>
+                    </div>
+                    <div class="info-box" id="class-summary">
+                        Loading class details…
+                    </div>
+                    <button class="reset-btn" id="reset-button" type="button">Reset All Skills</button>
+                </div>
+                <div class="info-box" id="class-description" style="display: none;"></div>
+            </div>
+
+            <div class="section">
+                <h2 id="skills-section-title">Character Skills</h2>
+                <div class="action-grid" id="skills-grid"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
