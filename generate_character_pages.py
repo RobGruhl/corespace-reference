@@ -20,10 +20,13 @@ def load_data() -> dict:
 
 def render_character(template: Template, character: dict) -> str:
     tagline = f"{character['name']} - Character Progression Tracker"
+    default_class = character.get("defaultClass")
+    default_class_str = f'"{default_class}"' if default_class else "null"
     return template.substitute(
         character_id=character["id"],
         character_name=character["name"],
         tagline=tagline,
+        default_class=default_class_str,
     )
 
 
