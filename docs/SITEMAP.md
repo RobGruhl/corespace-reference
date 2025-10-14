@@ -9,8 +9,19 @@ index.html (Main Quick Reference - Hub)
 ├── combat.html (Complete Combat Mechanics)
 ├── hostility.html (Hostility System & Events)
 ├── enemies.html (First Born + NPCs)
+├── skills.html (All Skills Reference)
 ├── advancement.html (Skills, Equipment, Campaign)
-└── tables.html (Quick Reference Tables)
+├── tables.html (Quick Reference Tables)
+└── Character Progression Trackers
+    ├── character-cassie.html
+    ├── character-wade.html
+    ├── character-hopper.html
+    ├── character-balcor.html
+    ├── character-daric.html
+    ├── character-qiog.html
+    ├── character-yeti.html
+    ├── character-lohbac.html
+    └── character-xl.html
 ```
 
 ---
@@ -267,6 +278,37 @@ index.html (Main Quick Reference - Hub)
 
 ---
 
-**Total Pages:** 8 (1 hub + 7 detail pages)
+### 9. **Character Progression Trackers**
+
+**Generated Pages (9 characters):**
+- character-cassie.html
+- character-wade.html
+- character-hopper.html
+- character-balcor.html
+- character-daric.html
+- character-qiog.html
+- character-yeti.html
+- character-lohbac.html
+- character-xl.html
+
+**Content (Data-Driven):**
+- Character overview (stats, description, inherent abilities)
+- Base stats display
+- Inherent skills list
+- Passive skills summary (auto-populated as skills are learned)
+- Available reactions summary (auto-populated)
+- Class selector with available skills
+- Campaign tracker with skill progression
+- LocalStorage persistence for campaign progress
+
+**Technical:**
+- Generated from `templates/character-page.html`
+- Uses `generate_character_pages.py` script
+- Data source: `data/corespace-data.json`
+- JavaScript: `js/character-page.js` (shared)
+
+---
+
+**Total Pages:** 18 (1 hub + 8 detail pages + 9 character trackers)
 
 **Target:** Each detail page should be densely packed with information but still fit on one screen/printable page when possible, or naturally scroll if content requires.
