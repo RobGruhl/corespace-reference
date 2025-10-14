@@ -3,550 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wade - Character Tracker</title>
+    <title>Wade - Character Progression Tracker</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-        .character-ability {
-            background: rgba(83, 168, 182, 0.15);
-            border: 2px solid #53a8b6;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-        }
-        .ability-title {
-            font-weight: bold;
-            color: #53a8b6;
-            font-size: 1.1em;
-            margin-bottom: 8px;
-        }
-        .passive-summary {
-            background: rgba(155, 89, 182, 0.15);
-            border: 2px solid #9b59b6;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-        }
-        .passive-summary h3 {
-            color: #9b59b6;
-            margin-top: 0;
-            margin-bottom: 10px;
-        }
-        .passive-item {
-            padding: 8px 0;
-            border-bottom: 1px solid rgba(155, 89, 182, 0.2);
-        }
-        .passive-item:last-child {
-            border-bottom: none;
-        }
-        .skill-controls {
-            background: rgba(83, 168, 182, 0.1);
-            padding: 12px;
-            border-radius: 6px;
-            margin-bottom: 15px;
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-            align-items: center;
-        }
-        .reset-btn {
-            background: rgba(231, 76, 60, 0.3);
-            border: 2px solid #e74c3c;
-            color: #e74c3c;
-            padding: 6px 12px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 0.85em;
-            transition: all 0.3s;
-        }
-        .reset-btn:hover {
-            background: rgba(231, 76, 60, 0.5);
-        }
-        .skill-select {
-            background: rgba(255, 255, 255, 0.1);
-            border: 2px solid #53a8b6;
-            color: #eee;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 0.9em;
-            cursor: pointer;
-            margin-bottom: 8px;
-        }
-        .skill-select option {
-            background: #1a1a2e;
-            color: #eee;
-        }
-        .action-card.not-learned {
-            opacity: 0.3;
-            filter: grayscale(0.8);
-        }
-        .action-card.not-learned .action-card-title {
-            text-decoration: line-through;
-        }
-        .skill-level {
-            padding: 8px 12px;
-            margin: 5px 0;
-            border-radius: 4px;
-            border-left: 4px solid;
-        }
-        .skill-level[data-level="1"] {
-            border-left-color: #2ecc71;
-            background: rgba(46, 204, 113, 0.1);
-        }
-        .skill-level[data-level="2"] {
-            border-left-color: #f39c12;
-            background: rgba(243, 156, 18, 0.1);
-        }
-        .skill-level[data-level="3"] {
-            border-left-color: #e74c3c;
-            background: rgba(231, 76, 60, 0.1);
-        }
-        .skill-level[data-level="passive"] {
-            border-left-color: #9b59b6;
-            background: rgba(155, 89, 182, 0.1);
-        }
-        .skill-level.hidden {
-            display: none;
-        }
-        .level-label {
-            font-weight: bold;
-            margin-right: 8px;
-        }
-        .level-label[data-level="1"] { color: #2ecc71; }
-        .level-label[data-level="2"] { color: #f39c12; }
-        .level-label[data-level="3"] { color: #e74c3c; }
-        .level-label[data-level="passive"] { color: #9b59b6; }
-        @media print {
-            .skill-controls, .back-btn, .breadcrumb, .skill-select { display: none; }
-            .action-card.not-learned { display: none; }
-        }
-    </style>
+    <link rel="stylesheet" href="character-page.css">
+    <script defer src="js/character-page.js"></script>
 </head>
 <body>
-    <div class="container">
+    <script>
+        window.characterPageConfig = {
+            characterId: "wade",
+            dataPath: "data/corespace-data.json",
+            pageTitle: "Wade - Character Progression Tracker",
+            defaultClass: null
+        };
+    </script>
+    <div class="container character-page">
         <header>
             <h1><a href="index.html">⚡ CORE SPACE ⚡</a></h1>
-            <div class="tagline">Wade - Character Progression Tracker</div>
+            <div class="tagline" id="page-tagline">Wade - Character Progression Tracker</div>
         </header>
 
         <div class="breadcrumb">
             <a href="index.html">Home</a>
             <span>›</span>
-            <span>Wade</span>
+            <span id="breadcrumb-character">Wade</span>
         </div>
 
         <a href="index.html" class="back-btn">← Back to Hub</a>
 
-        <div class="section">
-            <h2>Character Ability</h2>
-            <div class="character-ability">
-                <div class="ability-title">🏃 Extra Movement</div>
-                <div>When making a Move action, this character can move an additional number of squares equal to the number in the icon. Still limited to 11" maximum.</div>
+        <div id="error-panel"></div>
+
+        <div id="character-content">
+            <div class="section">
+                <h2>Character Overview</h2>
+                <div class="character-header">
+                    <h2 id="overview-name">Wade</h2>
+                    <p class="character-description" id="character-description"></p>
+                    <div class="base-stats" id="base-stats"></div>
+                    <div class="inherent-skills" id="inherent-skills"></div>
+                    <div class="info-box" id="character-notes" style="display: none;"></div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Passive Skills Summary</h2>
+                <div class="passive-summary">
+                    <h3>🔮 Always Active Abilities</h3>
+                    <div id="passive-skills-list"></div>
+                    <div class="empty-state" id="no-passives">
+                        No passive abilities learned yet. Passive abilities will appear here as you learn skills.
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Available Reactions</h2>
+                <div class="passive-summary" style="border-color: #e67e22;">
+                    <h3 style="color: #e67e22;">⚡ Triggered Abilities</h3>
+                    <div id="reaction-skills-list"></div>
+                    <div class="empty-state" id="no-reactions">
+                        No reaction abilities learned yet. Reaction abilities will appear here as you learn skills.
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Campaign Tracker</h2>
+                <div class="skill-controls">
+                    <div class="class-selector">
+                        <label for="class-select">Class Card</label>
+                        <select id="class-select"></select>
+                    </div>
+                    <div class="info-box" id="class-summary">
+                        Loading class details…
+                    </div>
+                    <button class="reset-btn" id="reset-button" type="button">Reset All Skills</button>
+                </div>
+                <div class="info-box" id="class-description" style="display: none;"></div>
+            </div>
+
+            <div class="section">
+                <h2 id="skills-section-title">Character Skills</h2>
+                <div class="action-grid" id="skills-grid"></div>
             </div>
         </div>
-
-        <div class="section">
-            <h2>Passive Skills Summary</h2>
-            <div class="passive-summary">
-                <h3>🔮 Always Active Abilities</h3>
-                <div id="passive-skills-list">
-                    <div class="passive-item" data-skill="slippery" data-min-level="2" style="display: none;">
-                        <strong>Slippery 2:</strong> Use effortless action to ignore attack of opportunity
-                    </div>
-                </div>
-                <div id="no-passives" style="color: #888; font-style: italic;">
-                    No passive abilities learned yet. Passive abilities will appear here as you learn skills.
-                </div>
-            </div>
-        </div>
-
-        <div class="section">
-            <h2>Available Reactions</h2>
-            <div class="passive-summary" style="border-color: #e67e22;">
-                <h3 style="color: #e67e22;">⚡ Triggered Abilities</h3>
-                <div id="reaction-skills-list">
-                    <div class="passive-item" data-skill="countershot" data-min-level="1" style="display: none;">
-                        <strong>Counter Shot 1:</strong> After targeted with ranged attack - Ranged attack vs attacker
-                    </div>
-                    <div class="passive-item" data-skill="countershot" data-min-level="2" style="display: none;">
-                        <strong>Counter Shot 2:</strong> After enemy's first action - Ranged attack vs that enemy
-                    </div>
-                    <div class="passive-item" data-skill="countershot" data-min-level="3" style="display: none;">
-                        <strong>Counter Shot 3:</strong> At any time - Ranged attack +1 die + Move
-                    </div>
-                    <div class="passive-item" data-skill="walkitoff" data-min-level="2" style="display: none;">
-                        <strong>Walk It Off 2:</strong> After targeted with attack - Reduce damage by 2
-                    </div>
-                    <div class="passive-item" data-skill="walkitoff" data-min-level="3" style="display: none;">
-                        <strong>Walk It Off 3:</strong> After defeated - Restore 1 Health, Stand Up, Move
-                    </div>
-                    <div class="passive-item" data-skill="lightfingers" data-min-level="1" style="display: none;">
-                        <strong>Light Fingers 1:</strong> After close assault (no damage) - Steal item
-                    </div>
-                    <div class="passive-item" data-skill="lightfingers" data-min-level="2" style="display: none;">
-                        <strong>Light Fingers 2:</strong> After close assault (any) - Steal item, use ✓ items immediately
-                    </div>
-                    <div class="passive-item" data-skill="lightfingers" data-min-level="3" style="display: none;">
-                        <strong>Light Fingers 3:</strong> After targeted - Steal ANY item + Move or Assault
-                    </div>
-                    <div class="passive-item" data-skill="evade" data-min-level="1" style="display: none;">
-                        <strong>Evade 1:</strong> When enemy moves into base contact - Move action
-                    </div>
-                    <div class="passive-item" data-skill="evade" data-min-level="2" style="display: none;">
-                        <strong>Evade 2:</strong> When enemy moves into base contact - Move + Assault
-                    </div>
-                    <div class="passive-item" data-skill="ambush" data-min-level="1" style="display: none;">
-                        <strong>Ambush 1:</strong> Enemy ends move within 4" while in cover - Ranged Assault
-                    </div>
-                    <div class="passive-item" data-skill="ambush" data-min-level="2" style="display: none;">
-                        <strong>Ambush 2:</strong> Enemy ends move within 4" while in cover - Move + Assault
-                    </div>
-                </div>
-                <div id="no-reactions" style="color: #888; font-style: italic;">
-                    No reaction abilities learned yet. Reaction abilities will appear here as you learn skills.
-                </div>
-            </div>
-        </div>
-
-        <div class="section">
-            <h2>Campaign Tracker</h2>
-            <div class="skill-controls">
-                <div class="info-box" style="margin: 0; flex: 1;">
-                    <strong>How to use:</strong> Use the dropdown on each skill card to set your current level. Cards update automatically and your progress is saved!
-                </div>
-                <button class="reset-btn" onclick="resetAll()">Reset All Skills</button>
-            </div>
-        </div>
-
-        <div class="section">
-            <h2>Wade's Skills</h2>
-            <div class="action-grid">
-
-                <div class="action-card" data-skill="distraction">
-                    <select class="skill-select" onchange="updateSkill('distraction', this.value)">
-                        <option value="0">Not Learned</option>
-                        <option value="1">Level 1</option>
-                    </select>
-                    <div class="action-card-title">Distraction</div>
-                    <div class="action-requirements">Active - tactical disruption</div>
-                    <div>
-                        <div class="skill-level" data-level="1">
-                            <span class="level-label" data-level="1">Level 1:</span>
-                            Ranged assault - target loses 1 action in next turn (in addition to damage)
-                        </div>
-                    </div>
-                </div>
-
-                <div class="action-card" data-skill="countershot">
-                    <select class="skill-select" onchange="updateSkill('countershot', this.value)">
-                        <option value="0">Not Learned</option>
-                        <option value="1">Level 1</option>
-                        <option value="2">Level 2</option>
-                        <option value="3">Level 3</option>
-                    </select>
-                    <div class="action-card-title">Counter Shot</div>
-                    <div class="action-requirements">Reaction - return fire</div>
-                    <div>
-                        <div class="skill-level" data-level="passive">
-                            <span class="level-label" data-level="passive">Trigger:</span>
-                            After being targeted with ranged attack
-                        </div>
-                        <div class="skill-level" data-level="1">
-                            <span class="level-label" data-level="1">Level 1:</span>
-                            Ranged attack against attacker
-                        </div>
-                        <div class="skill-level" data-level="2">
-                            <span class="level-label" data-level="2">Level 2:</span>
-                            At any time after enemy's first action, ranged attack
-                        </div>
-                        <div class="skill-level" data-level="3">
-                            <span class="level-label" data-level="3">Level 3:</span>
-                            At any time, ranged attack (+1 die) + move
-                        </div>
-                    </div>
-                </div>
-
-                <div class="action-card" data-skill="walkitoff">
-                    <select class="skill-select" onchange="updateSkill('walkitoff', this.value)">
-                        <option value="0">Not Learned</option>
-                        <option value="1">Level 1</option>
-                        <option value="2">Level 2</option>
-                        <option value="3">Level 3</option>
-                    </select>
-                    <div class="action-card-title">Walk It Off</div>
-                    <div class="action-requirements">Active + Reaction - endurance</div>
-                    <div>
-                        <div class="skill-level" data-level="1">
-                            <span class="level-label" data-level="1">Level 1:</span>
-                            Restore 1 Health
-                        </div>
-                        <div class="skill-level" data-level="2">
-                            <span class="level-label" data-level="2">Level 2:</span>
-                            Reaction: After targeted with attack, reduce damage by 2
-                        </div>
-                        <div class="skill-level" data-level="3">
-                            <span class="level-label" data-level="3">Level 3:</span>
-                            Reaction: After defeated, restore 1 Health, Stand Up, may move
-                        </div>
-                    </div>
-                </div>
-
-                <div class="action-card" data-skill="persuasion">
-                    <select class="skill-select" onchange="updateSkill('persuasion', this.value)">
-                        <option value="0">Not Learned</option>
-                        <option value="1">Level 1</option>
-                        <option value="2">Level 2</option>
-                        <option value="3">Level 3</option>
-                    </select>
-                    <div class="action-card-title">Persuasion</div>
-                    <div class="action-requirements">Active - diplomacy</div>
-                    <div>
-                        <div class="skill-level" data-level="1">
-                            <span class="level-label" data-level="1">Level 1:</span>
-                            Persuade enemy Trader (skill vs skill) to miss next turn
-                        </div>
-                        <div class="skill-level" data-level="2">
-                            <span class="level-label" data-level="2">Level 2:</span>
-                            Persuade non-Purge enemy +1 die, can persuade to miss turn
-                        </div>
-                        <div class="skill-level" data-level="3">
-                            <span class="level-label" data-level="3">Level 3:</span>
-                            Persuade non-Purge +2 dice, can recruit Trader crew (not captains, chance die each round to return)
-                        </div>
-                    </div>
-                </div>
-
-                <div class="action-card" data-skill="lightfingers">
-                    <select class="skill-select" onchange="updateSkill('lightfingers', this.value)">
-                        <option value="0">Not Learned</option>
-                        <option value="1">Level 1</option>
-                        <option value="2">Level 2</option>
-                        <option value="3">Level 3</option>
-                    </select>
-                    <div class="action-card-title">Light Fingers</div>
-                    <div class="action-requirements">Reaction - thievery</div>
-                    <div>
-                        <div class="skill-level" data-level="1">
-                            <span class="level-label" data-level="1">Level 1 (Trigger: took no damage):</span>
-                            After enemy close assault where you took NO damage: Take item from attacker's tray (not weapon used), drop if no space
-                        </div>
-                        <div class="skill-level" data-level="2">
-                            <span class="level-label" data-level="2">Level 2 (Trigger: any damage OK):</span>
-                            After enemy close assault (damage doesn't matter): Take item (not weapon used). Items with ✓ can be used immediately
-                        </div>
-                        <div class="skill-level" data-level="3">
-                            <span class="level-label" data-level="3">Level 3 (Trigger: just targeted):</span>
-                            After being TARGETED with close assault attack: Take ANY item (can steal weapon!). Use ✓ items immediately. Then Move or Assault (no AoO)
-                        </div>
-                    </div>
-                </div>
-
-                <div class="action-card" data-skill="evade">
-                    <select class="skill-select" onchange="updateSkill('evade', this.value)">
-                        <option value="0">Not Learned</option>
-                        <option value="1">Level 1</option>
-                        <option value="2">Level 2</option>
-                    </select>
-                    <div class="action-card-title">Evade</div>
-                    <div class="action-requirements">Reaction - escape</div>
-                    <div>
-                        <div class="skill-level" data-level="passive">
-                            <span class="level-label" data-level="passive">Trigger:</span>
-                            When enemy moves into base contact
-                        </div>
-                        <div class="skill-level" data-level="1">
-                            <span class="level-label" data-level="1">Level 1:</span>
-                            Make Move (no attacks of opportunity)
-                        </div>
-                        <div class="skill-level" data-level="2">
-                            <span class="level-label" data-level="2">Level 2:</span>
-                            Make Move (no AoO) + Assault (in any order)
-                        </div>
-                    </div>
-                </div>
-
-                <div class="action-card" data-skill="ambush">
-                    <select class="skill-select" onchange="updateSkill('ambush', this.value)">
-                        <option value="0">Not Learned</option>
-                        <option value="1">Level 1</option>
-                        <option value="2">Level 2</option>
-                    </select>
-                    <div class="action-card-title">Ambush</div>
-                    <div class="action-requirements">Reaction - tactical positioning</div>
-                    <div>
-                        <div class="skill-level" data-level="passive">
-                            <span class="level-label" data-level="passive">Trigger:</span>
-                            Enemy ends move within 4" and you're in full/partial cover
-                        </div>
-                        <div class="skill-level" data-level="1">
-                            <span class="level-label" data-level="1">Level 1:</span>
-                            Ranged assault, may proximity move before/after
-                        </div>
-                        <div class="skill-level" data-level="2">
-                            <span class="level-label" data-level="2">Level 2:</span>
-                            Move + Assault, may proximity move before/after
-                        </div>
-                    </div>
-                </div>
-
-                <div class="action-card" data-skill="slippery">
-                    <select class="skill-select" onchange="updateSkill('slippery', this.value)">
-                        <option value="0">Not Learned</option>
-                        <option value="1">Level 1</option>
-                        <option value="2">Level 2</option>
-                        <option value="3">Level 3</option>
-                    </select>
-                    <div class="action-card-title">Slippery</div>
-                    <div class="action-requirements">Active + Passive + Between Games</div>
-                    <div>
-                        <div class="skill-level" data-level="1">
-                            <span class="level-label" data-level="1">Level 1:</span>
-                            Make Move action with Scramble [2,3] (adds +2 to scramble attempts)
-                        </div>
-                        <div class="skill-level" data-level="passive">
-                            <span class="level-label" data-level="passive">Passive 2:</span>
-                            Use effortless action to ignore attack of opportunity
-                        </div>
-                        <div class="skill-level" data-level="2">
-                            <span class="level-label" data-level="2">Level 2 (Between Games):</span>
-                            While Apprehended (Galactic Corps): remove Apprehended Board + restore 1 Health
-                        </div>
-                        <div class="skill-level" data-level="3">
-                            <span class="level-label" data-level="3">Level 3:</span>
-                            Move action: this and all other Moves this turn ignore AoO. Attack (1 die) each enemy contacted - knocks prone even if no damage
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-        <footer>
-            <div class="guide-links">
-                <a href="index.html" class="guide-link">← Back to Hub</a>
-                <a href="advancement.html" class="guide-link">View All Skills</a>
-            </div>
-        </footer>
     </div>
-
-    <script>
-        const CHARACTER = 'wade';
-
-        function updateSkill(skillName, level) {
-            level = parseInt(level);
-            localStorage.setItem(`${CHARACTER}-${skillName}`, level);
-
-            const card = document.querySelector(`[data-skill="${skillName}"]`);
-            const skillLevels = card.querySelectorAll('.skill-level');
-
-            if (level === 0) {
-                card.classList.add('not-learned');
-            } else {
-                card.classList.remove('not-learned');
-            }
-
-            skillLevels.forEach(levelDiv => {
-                const divLevel = levelDiv.getAttribute('data-level');
-
-                if (divLevel === 'passive') {
-                    if (level > 0) {
-                        levelDiv.classList.remove('hidden');
-                    } else {
-                        levelDiv.classList.add('hidden');
-                    }
-                } else {
-                    const divLevelNum = parseInt(divLevel);
-                    if (divLevelNum <= level) {
-                        levelDiv.classList.remove('hidden');
-                    } else {
-                        levelDiv.classList.add('hidden');
-                    }
-                }
-            });
-
-            // Update passive skills summary
-            updatePassiveSummary();
-            // Update reaction skills summary
-            updateReactionSummary();
-        }
-
-        function updatePassiveSummary() {
-            const passiveItems = document.querySelectorAll('#passive-skills-list .passive-item');
-            let hasAnyPassive = false;
-
-            passiveItems.forEach(item => {
-                const skillName = item.getAttribute('data-skill');
-                const minLevel = parseInt(item.getAttribute('data-min-level'));
-                const currentLevel = parseInt(localStorage.getItem(`${CHARACTER}-${skillName}`) || '0');
-
-                if (currentLevel >= minLevel) {
-                    item.style.display = '';
-                    hasAnyPassive = true;
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-
-            const noPassivesMsg = document.getElementById('no-passives');
-            if (hasAnyPassive) {
-                noPassivesMsg.style.display = 'none';
-            } else {
-                noPassivesMsg.style.display = 'block';
-            }
-        }
-
-        function updateReactionSummary() {
-            const reactionItems = document.querySelectorAll('#reaction-skills-list .passive-item');
-            let hasAnyReaction = false;
-
-            reactionItems.forEach(item => {
-                const skillName = item.getAttribute('data-skill');
-                const minLevel = parseInt(item.getAttribute('data-min-level'));
-                const currentLevel = parseInt(localStorage.getItem(`${CHARACTER}-${skillName}`) || '0');
-
-                if (currentLevel >= minLevel) {
-                    item.style.display = '';
-                    hasAnyReaction = true;
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-
-            const noReactionsMsg = document.getElementById('no-reactions');
-            if (hasAnyReaction) {
-                noReactionsMsg.style.display = 'none';
-            } else {
-                noReactionsMsg.style.display = 'block';
-            }
-        }
-
-        function resetAll() {
-            if (!confirm('Reset all skills to "Not Learned"? This cannot be undone.')) {
-                return;
-            }
-
-            const cards = document.querySelectorAll('[data-skill]');
-            cards.forEach(card => {
-                const skillName = card.getAttribute('data-skill');
-                const select = card.querySelector('select');
-                select.value = '0';
-                updateSkill(skillName, 0);
-            });
-        }
-
-        window.addEventListener('DOMContentLoaded', () => {
-            const cards = document.querySelectorAll('[data-skill]');
-            cards.forEach(card => {
-                const skillName = card.getAttribute('data-skill');
-                const savedLevel = localStorage.getItem(`${CHARACTER}-${skillName}`) || '0';
-                const select = card.querySelector('select');
-                select.value = savedLevel;
-                updateSkill(skillName, savedLevel);
-            });
-
-            // Initial passive and reaction summary updates
-            updatePassiveSummary();
-            updateReactionSummary();
-        });
-    </script>
 </body>
 </html>
