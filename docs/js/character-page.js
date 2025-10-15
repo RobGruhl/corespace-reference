@@ -517,7 +517,7 @@
 
     function buildLevelElement(level) {
         const levelEl = document.createElement('div');
-        levelEl.className = 'skill-level';
+        levelEl.className = 'skill-level hidden'; // Start hidden, updateSkillDisplay will show if needed
         levelEl.dataset.level = level.dataLevel;
         levelEl.dataset.minLevel = String(level.level);
 
