@@ -1,5 +1,5 @@
 (function () {
-    console.log('Character Page JS Build: 2025-10-14.003');
+    console.log('Character Page JS Build: 2025-10-14.004 - FIXED');
 
     const skillSummaries = {
         accelerate: "Make extra Move or Assault actions for enhanced mobility.",
@@ -656,7 +656,7 @@
     function updateSkillDisplay(skillId, level) {
         console.log(`updateSkillDisplay called: skillId="${skillId}", level=${level}`);
 
-        const selector = `[data-skill="${CSS.escape(skillId)}"]`;
+        const selector = `.action-card[data-skill="${CSS.escape(skillId)}"]`;
         console.log(`  Selector: ${selector}`);
 
         const card = document.querySelector(selector);
