@@ -626,6 +626,138 @@
           "maxLevel": 3
         }
       ]
+    },
+    {
+      "id": "outlander",
+      "name": "Outlander",
+      "description": "Wilderness survivor with exceptional endurance and relentless combat abilities",
+      "flavorText": "Hardened by harsh frontiers, unstoppable in combat",
+      "availableSkills": [
+        {
+          "skillId": "walkItOff",
+          "maxLevel": 3
+        },
+        {
+          "skillId": "stubborn",
+          "maxLevel": 3
+        },
+        {
+          "skillId": "onslaught",
+          "maxLevel": 3
+        },
+        {
+          "skillId": "reflexes",
+          "maxLevel": 2
+        },
+        {
+          "skillId": "combatExpert",
+          "maxLevel": 3
+        },
+        {
+          "skillId": "charge",
+          "maxLevel": 2
+        }
+      ]
+    },
+    {
+      "id": "mechSoldier",
+      "name": "Mech Soldier",
+      "description": "Mechanical combatant specializing in ranged combat and self-repair",
+      "flavorText": "Military machine with advanced tactical protocols",
+      "availableSkills": [
+        {
+          "skillId": "marksman",
+          "maxLevel": 1
+        },
+        {
+          "skillId": "counterShot",
+          "maxLevel": 3
+        },
+        {
+          "skillId": "bodyguardProtocol",
+          "maxLevel": 2
+        },
+        {
+          "skillId": "repair",
+          "maxLevel": 3
+        },
+        {
+          "skillId": "overdrive",
+          "maxLevel": 3
+        },
+        {
+          "skillId": "reroute",
+          "maxLevel": 3
+        }
+      ]
+    },
+    {
+      "id": "bossman",
+      "name": "Bossman",
+      "description": "Cunning leader with social manipulation and stealth expertise",
+      "flavorText": "Commands respect through wit and ruthless efficiency",
+      "availableSkills": [
+        {
+          "skillId": "persuasion",
+          "maxLevel": 3
+        },
+        {
+          "skillId": "lightFingers",
+          "maxLevel": 3
+        },
+        {
+          "skillId": "evade",
+          "maxLevel": 3
+        },
+        {
+          "skillId": "distraction",
+          "maxLevel": 3
+        },
+        {
+          "skillId": "reflexes",
+          "maxLevel": 3
+        },
+        {
+          "skillId": "counterShot",
+          "maxLevel": 2
+        },
+        {
+          "skillId": "ambush",
+          "maxLevel": 3
+        }
+      ]
+    },
+    {
+      "id": "infiltrator",
+      "name": "Infiltrator",
+      "description": "Shadow operative specializing in stealth and evasion",
+      "flavorText": "Unseen predator who strikes from concealment",
+      "availableSkills": [
+        {
+          "skillId": "ambush",
+          "maxLevel": 3
+        },
+        {
+          "skillId": "fadeToBlack",
+          "maxLevel": 3
+        },
+        {
+          "skillId": "camouflage",
+          "maxLevel": 3
+        },
+        {
+          "skillId": "hardToHit",
+          "maxLevel": 3
+        },
+        {
+          "skillId": "combatExpert",
+          "maxLevel": 2
+        },
+        {
+          "skillId": "reflexes",
+          "maxLevel": 2
+        }
+      ]
     }
   ],
   "skills": [
