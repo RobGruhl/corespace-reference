@@ -1,5 +1,5 @@
 (function () {
-    console.log('Character Page JS Build: 2025-10-14.002');
+    console.log('Character Page JS Build: 2025-10-14.003');
 
     const skillSummaries = {
         accelerate: "Make extra Move or Assault actions for enhanced mobility.",
@@ -454,8 +454,13 @@
             updateSkillDisplay(entry.skill.id, savedLevel);
 
             select.addEventListener('change', (event) => {
+                console.log(`🎯 Dropdown changed for ${entry.skill.id}`);
+                console.log(`  Event target:`, event.target);
+                console.log(`  Event target value:`, event.target.value);
                 const newLevel = parseInt(event.target.value, 10) || 0;
+                console.log(`  Parsed level:`, newLevel);
                 saveSkillLevel(entry.skill.id, newLevel);
+                console.log(`  Calling updateSkillDisplay with skillId="${entry.skill.id}", level=${newLevel}`);
                 updateSkillDisplay(entry.skill.id, newLevel);
             });
         });
