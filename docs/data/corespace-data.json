@@ -477,6 +477,46 @@
           ]
         }
       ]
+    },
+    {
+      "id": "laurinda",
+      "name": "Laurinda",
+      "description": "Human female mineral and gem prospector with trading expertise",
+      "baseStats": {
+        "health": 4,
+        "skill": 1
+      },
+      "startingSkillPoints": 2,
+      "maxLevelUpBonus": 3,
+      "inherentSkills": [
+        {
+          "skillId": "barter",
+          "level": 1,
+          "note": "FREE - Character Card skill"
+        }
+      ],
+      "notes": "Laurinda is a skilled prospector specializing in mineral and gem discovery with natural trading abilities.",
+      "defaultClass": null
+    },
+    {
+      "id": "bulworth",
+      "name": "Bulworth",
+      "description": "Fueler mineral and gem prospector with exceptional resilience",
+      "baseStats": {
+        "health": 4,
+        "skill": 0
+      },
+      "startingSkillPoints": 2,
+      "maxLevelUpBonus": 3,
+      "inherentSkills": [
+        {
+          "skillId": "walkItOff",
+          "level": 1,
+          "note": "FREE - Character Card skill"
+        }
+      ],
+      "notes": "Bulworth is a hardy Fueler prospector. Has permanent armor value of 1 (use highest if wearing armor). Fueler racial trait.",
+      "defaultClass": null
     }
   ],
   "classes": [
