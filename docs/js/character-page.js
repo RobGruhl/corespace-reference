@@ -1,4 +1,52 @@
 (function () {
+    const skillSummaries = {
+        accelerate: "Make extra Move or Assault actions for enhanced mobility.",
+        ambush: "Attack enemies from cover when they move near you.",
+        assist: "Protect allies from ranged attacks or restore their health.",
+        barter: "Re-roll trade costs or sell items at better prices between games.",
+        blast: "Expel energy blasts for ranged attacks or propulsive movement.",
+        bodyguardProtocol: "Protect allies by taking hits for them and healing them.",
+        brutalAssault: "Make powerful close combat attacks that knock enemies prone.",
+        camouflage: "Become untargetable while in contact with walls or terrain.",
+        charge: "Rush into enemies and deal knock back damage.",
+        combatExpert: "Reduce attacks of opportunity and make versatile close assaults.",
+        counterShot: "Return fire against enemies who attack you.",
+        disarm: "Steal enemy weapons when they fail to damage you in melee.",
+        disconnect: "Enter a rage state for extra combat power, then become uncontrolled.",
+        distraction: "Cause enemies to lose actions with clever distractions.",
+        disrupt: "Jam enemy tech or shut down Purge units electronically.",
+        energize: "Boost vitality to move, attack, or heal yourself.",
+        engineering: "Apply repair points automatically without rolling.",
+        evade: "Escape from enemy contact with quick movement.",
+        fadeToBlack: "Vanish into cover to avoid ranged attacks.",
+        hackAndGrab: "Lock/unlock doors, pickpocket enemies, or inspect crates remotely.",
+        hack: "Shut down Purge units or control doors with hacking.",
+        hardToHit: "Become immune to ranged damage while in cover or at distance.",
+        heel: "Move to protect your handler and absorb damage for them.",
+        impervious: "Resist effects that cost actions and boost your armor.",
+        kata: "Add extra dice to close assault attacks.",
+        lightFingers: "Steal items from attackers during combat.",
+        manipulate: "Disrupt enemy minds, break their equipment, or move terrain.",
+        marksman: "Make precise ranged attacks that can hit multiple targets.",
+        negotiation: "Re-roll Persuade dice and improve extraction outcomes or work diplomatically with enemy crews.",
+        onslaught: "Chain multiple close assault attacks together.",
+        overdrive: "Take extra actions at the cost of health or self-destruct.",
+        persuasion: "Convince enemies to miss turns or join your crew.",
+        reflexes: "Ignore close assault hits and counter-attack instantly.",
+        regulate: "Reduce hostility or repair items and machines.",
+        repair: "Fix equipment and heal machines with repair nanites.",
+        reroute: "Restore health or recover from being defeated.",
+        scanners: "Inspect crates, manipulate Purge sensors, or jam transmissions.",
+        scientificMind: "Re-roll chance dice or create chemical compounds between games.",
+        slippery: "Move with enhanced scrambling ability and ignore attacks of opportunity.",
+        sonicRoar: "Emit sonic pulses that stun and knock down Purge enemies.",
+        stubborn: "Make steady movement and assault actions.",
+        sureShot: "Roll targeted attacks against multiple enemies.",
+        training: "Allow allies to repeat your actions or gain career points.",
+        walkItOff: "Restore health, reduce damage, or recover from defeat.",
+        weaponsExpert: "Reload effortlessly and make devastating ranged attacks."
+    };
+
     const state = {
         character: null,
         classes: new Map(),
@@ -350,6 +398,19 @@
             subtitle.className = 'action-requirements';
             subtitle.textContent = buildSkillSubtitle(entry.skill);
             card.appendChild(subtitle);
+
+            const summary = skillSummaries[entry.skill.id];
+            if (summary) {
+                const summaryEl = document.createElement('div');
+                summaryEl.className = 'skill-summary';
+                summaryEl.style.fontSize = '0.85em';
+                summaryEl.style.color = '#ddd';
+                summaryEl.style.marginTop = '6px';
+                summaryEl.style.marginBottom = '10px';
+                summaryEl.style.lineHeight = '1.4';
+                summaryEl.textContent = summary;
+                card.appendChild(summaryEl);
+            }
 
             const meta = buildSkillMeta(entry, cls);
             if (meta) {
