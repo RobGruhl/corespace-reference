@@ -319,11 +319,22 @@
 
     function buildLevelDetails(skill, maxLevel) {
         const details = [];
+        console.log(`Building level details for ${skill.name}: maxLevel=${maxLevel}, skill has ${skill.levels?.length || 0} level definitions`);
+
         (skill.levels || []).forEach((levelInfo) => {
-            if (typeof levelInfo.level !== 'number') return;
-            if (levelInfo.level > maxLevel) return;
+            if (typeof levelInfo.level !== 'number') {
+                console.log(`  Skipping level (not a number): ${JSON.stringify(levelInfo)}`);
+                return;
+            }
+            if (levelInfo.level > maxLevel) {
+                console.log(`  Skipping level ${levelInfo.level} (exceeds maxLevel ${maxLevel})`);
+                return;
+            }
             const text = levelInfo.passiveEffect || levelInfo.effect || levelInfo.description || levelInfo.summary;
-            if (!text) return;
+            if (!text) {
+                console.log(`  Skipping level ${levelInfo.level} (no text found)`);
+                return;
+            }
             details.push({
                 level: levelInfo.level,
                 label: levelInfo.isPassive ? `Passive ${levelInfo.level}` : `Level ${levelInfo.level}`,
@@ -335,7 +346,10 @@
                 pegCost: levelInfo.pegCost,
                 dataLevel: levelInfo.isPassive ? 'passive' : String(levelInfo.level),
             });
+            console.log(`  Added level ${levelInfo.level} (passive=${levelInfo.isPassive}, reaction=${levelInfo.isReaction})`);
         });
+
+        console.log(`Built ${details.length} level details for ${skill.name}`);
         return details;
     }
 
@@ -426,7 +440,7 @@
 
             grid.appendChild(card);
 
-            const savedLevel = loadSkillLevel(entry.skill.id, entry.inherentLevel || 0);
+            const savedLevel = loadSkillLevel(entry.skill.id, 0); // Always default to 0 (Not Learned)
             select.value = String(savedLevel);
             updateSkillDisplay(entry.skill.id, savedLevel);
 
@@ -442,6 +456,10 @@
         const select = document.createElement('select');
         select.className = 'skill-select';
         const max = entry.maxLevel || 0;
+
+        // Debug logging to check max level calculation
+        console.log(`Building selector for ${entry.skill.name}: inherent=${entry.inherentLevel}, classMax=${entry.classMaxLevel}, total max=${max}`);
+
         for (let level = 0; level <= max; level += 1) {
             const option = document.createElement('option');
             option.value = String(level);
@@ -623,7 +641,13 @@
 
     function updateSkillDisplay(skillId, level) {
         const card = document.querySelector(`[data-skill="${CSS.escape(skillId)}"]`);
-        if (!card) return;
+        if (!card) {
+            console.warn(`Card not found for skill: ${skillId}`);
+            return;
+        }
+
+        console.log(`Updating display for ${skillId}: level=${level}`);
+
         if (level === 0) {
             card.classList.add('not-learned');
         } else {
@@ -631,14 +655,27 @@
         }
 
         const levelEls = card.querySelectorAll('.skill-level');
+        console.log(`Found ${levelEls.length} level elements for ${skillId}`);
+
+        if (levelEls.length === 0) {
+            console.warn(`No level elements found for skill: ${skillId}`);
+        }
+
+        let shownCount = 0;
         levelEls.forEach((el) => {
             const minLevel = parseInt(el.dataset.minLevel || '1', 10);
+            const dataLevel = el.dataset.level;
+            console.log(`  Level element: minLevel=${minLevel}, dataLevel=${dataLevel}, showing=${level >= minLevel}`);
+
             if (level >= minLevel) {
                 el.classList.remove('hidden');
+                shownCount++;
             } else {
                 el.classList.add('hidden');
             }
         });
+
+        console.log(`Showed ${shownCount} of ${levelEls.length} level elements`);
 
         refreshSummaries();
     }
