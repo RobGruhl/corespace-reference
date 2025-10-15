@@ -183,6 +183,39 @@
               "maxLevel": 1
             }
           ]
+        },
+        {
+          "id": "machineTech",
+          "availableSkills": [
+            {
+              "skillId": "scanners",
+              "maxLevel": 3
+            },
+            {
+              "skillId": "overdrive",
+              "maxLevel": 3
+            },
+            {
+              "skillId": "repair",
+              "maxLevel": 3
+            },
+            {
+              "skillId": "bodyguardProtocol",
+              "maxLevel": 3
+            },
+            {
+              "skillId": "reroute",
+              "maxLevel": 3
+            },
+            {
+              "skillId": "accelerate",
+              "maxLevel": 2
+            },
+            {
+              "skillId": "barter",
+              "maxLevel": 1
+            }
+          ]
         }
       ],
       "notes": "Hopper keeps Barter 1 inherently and invests additional Machine skills via the Machine class card."
@@ -409,6 +442,39 @@
               "maxLevel": 1
             }
           ]
+        },
+        {
+          "id": "machineTech",
+          "availableSkills": [
+            {
+              "skillId": "scanners",
+              "maxLevel": 3
+            },
+            {
+              "skillId": "overdrive",
+              "maxLevel": 3
+            },
+            {
+              "skillId": "repair",
+              "maxLevel": 3
+            },
+            {
+              "skillId": "bodyguardProtocol",
+              "maxLevel": 3
+            },
+            {
+              "skillId": "reroute",
+              "maxLevel": 3
+            },
+            {
+              "skillId": "accelerate",
+              "maxLevel": 2
+            },
+            {
+              "skillId": "energize",
+              "maxLevel": 1
+            }
+          ]
         }
       ]
     }
@@ -597,7 +663,7 @@
     },
     {
       "id": "machine",
-      "name": "Machine",
+      "name": "Machine (Combat)",
       "description": "Robotic specialist with self-repair and combat protocols",
       "flavorText": "Advanced AI with mechanical advantages",
       "availableSkills": [
@@ -763,6 +829,146 @@
         },
         {
           "skillId": "persuasion",
+          "maxLevel": 2
+        }
+      ]
+    },
+    {
+      "id": "gangerEnforcer",
+      "name": "Ganger (Enforcer)",
+      "description": "Street tough with intimidation, combat resilience, and evasion skills",
+      "flavorText": "Hardened gang member who controls through force and fear",
+      "availableSkills": [
+        {
+          "skillId": "persuasion",
+          "maxLevel": 3
+        },
+        {
+          "skillId": "distraction",
+          "maxLevel": 3
+        },
+        {
+          "skillId": "reflexes",
+          "maxLevel": 3
+        },
+        {
+          "skillId": "stubborn",
+          "maxLevel": 3
+        },
+        {
+          "skillId": "onslaught",
+          "maxLevel": 3
+        },
+        {
+          "skillId": "hardToHit",
+          "maxLevel": 3
+        },
+        {
+          "skillId": "slippery",
+          "maxLevel": 2
+        }
+      ]
+    },
+    {
+      "id": "machineTech",
+      "name": "Machine (Tech)",
+      "description": "Advanced reconnaissance machine with scanning and technical support capabilities",
+      "flavorText": "Specialized AI focused on intelligence gathering and tactical coordination",
+      "availableSkills": [
+        {
+          "skillId": "scanners",
+          "maxLevel": 3
+        },
+        {
+          "skillId": "overdrive",
+          "maxLevel": 3
+        },
+        {
+          "skillId": "repair",
+          "maxLevel": 3
+        },
+        {
+          "skillId": "bodyguardProtocol",
+          "maxLevel": 3
+        },
+        {
+          "skillId": "reroute",
+          "maxLevel": 3
+        },
+        {
+          "skillId": "accelerate",
+          "maxLevel": 2
+        }
+      ]
+    },
+    {
+      "id": "gangerThief",
+      "name": "Ganger (Thief)",
+      "description": "Nimble gang operative specializing in theft, disarming, and evasion",
+      "flavorText": "Quick-fingered shadow who strikes and vanishes",
+      "availableSkills": [
+        {
+          "skillId": "lightFingers",
+          "maxLevel": 3
+        },
+        {
+          "skillId": "evade",
+          "maxLevel": 3
+        },
+        {
+          "skillId": "disarm",
+          "maxLevel": 3
+        },
+        {
+          "skillId": "counterShot",
+          "maxLevel": 3
+        },
+        {
+          "skillId": "onslaught",
+          "maxLevel": 3
+        },
+        {
+          "skillId": "hardToHit",
+          "maxLevel": 3
+        },
+        {
+          "skillId": "slippery",
+          "maxLevel": 2
+        }
+      ]
+    },
+    {
+      "id": "hacker",
+      "name": "Hacker",
+      "description": "Cyber infiltration specialist with technical disruption and cunning abilities",
+      "flavorText": "Digital ghost who bends systems to their will",
+      "availableSkills": [
+        {
+          "skillId": "hack",
+          "maxLevel": 3
+        },
+        {
+          "skillId": "regulate",
+          "maxLevel": 3
+        },
+        {
+          "skillId": "disrupt",
+          "maxLevel": 3
+        },
+        {
+          "skillId": "persuasion",
+          "maxLevel": 3
+        },
+        {
+          "skillId": "lightFingers",
+          "maxLevel": 3
+        },
+        {
+          "skillId": "evade",
+          "maxLevel": 2
+        },
+        {
+          "skillId": "distraction",
           "maxLevel": 2
         }
       ]
