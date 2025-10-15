@@ -447,7 +447,7 @@
 
             grid.appendChild(card);
 
-            const savedLevel = loadSkillLevel(entry.skill.id, 0); // Always default to 0 (Not Learned)
+            const savedLevel = loadSkillLevel(entry.skill.id, entry.inherentLevel || 0);
             select.value = String(savedLevel);
             updateSkillDisplay(entry.skill.id, savedLevel);
 
