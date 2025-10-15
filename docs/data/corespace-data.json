@@ -353,7 +353,7 @@
     {
       "id": "yeti",
       "name": "Yeti",
-      "description": "Small-sized trader with technical expertise and sensor manipulation abilities.",
+      "description": "Kalieh trader with technical expertise and sensor manipulation abilities.",
       "baseStats": {
         "health": 4,
         "skill": 2
@@ -367,7 +367,7 @@
           "note": "FREE - Character Card skill"
         }
       ],
-      "notes": "Yeti is Small: Does not block LoS to regular or Massive characters (may provide cover). Terrain provides greater cover to Small characters. Can be moved by a single character at full speed (unless that character is also Small).",
+      "notes": "Yeti is Small (Kalieh racial trait): Does not block LoS to regular or Massive characters (may provide cover). Terrain provides greater cover to Small characters. Can be moved by a single character at full speed (unless that character is also Small).",
       "defaultClass": null
     },
     {
