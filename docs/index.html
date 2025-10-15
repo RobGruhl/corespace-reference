@@ -314,10 +314,55 @@
                 <a href="Player_Flow_Guide.md" class="guide-link">📘 Player Flow Guide</a>
                 <a href="LLM_Rules_Reference.md" class="guide-link">📕 Complete Rules Reference</a>
             </div>
+            <div style="margin-top: 20px;">
+                <button id="clear-storage-btn" style="
+                    padding: 10px 20px;
+                    background: rgba(233, 69, 96, 0.2);
+                    border: 1px solid #e94560;
+                    border-radius: 5px;
+                    color: #e94560;
+                    cursor: pointer;
+                    font-size: 0.9em;
+                    transition: all 0.3s;
+                " onmouseover="this.style.background='rgba(233, 69, 96, 0.4)'" onmouseout="this.style.background='rgba(233, 69, 96, 0.2)'">
+                    🗑️ Clear All Character Progress
+                </button>
+                <div id="storage-message" style="margin-top: 10px; font-size: 0.85em; color: #2ecc71; display: none;"></div>
+            </div>
             <div style="margin-top: 15px; font-size: 0.75em; color: #888;">
                 Core Space © Battle Systems Ltd | Quick Reference Hub v2.0 | 2025-10-05
             </div>
         </footer>
     </div>
+
+    <script>
+        document.getElementById('clear-storage-btn').addEventListener('click', function() {
+            const confirmed = confirm(
+                'This will clear ALL saved character progression data.\n\n' +
+                'All skill levels for all characters will be reset.\n\n' +
+                'Are you sure you want to continue?'
+            );
+
+            if (confirmed) {
+                // Clear all localStorage items that start with 'corespace::'
+                const keys = Object.keys(localStorage);
+                let cleared = 0;
+                keys.forEach(key => {
+                    if (key.startsWith('corespace::')) {
+                        localStorage.removeItem(key);
+                        cleared++;
+                    }
+                });
+
+                const message = document.getElementById('storage-message');
+                message.textContent = `✅ Successfully cleared ${cleared} saved skill level${cleared !== 1 ? 's' : ''}!`;
+                message.style.display = 'block';
+
+                setTimeout(() => {
+                    message.style.display = 'none';
+                }, 5000);
+            }
+        });
+    </script>
 </body>
 </html>
