@@ -366,7 +366,13 @@
             return;
         }
 
+        console.log(`Rendering ${entries.length} skill cards`);
+
         entries.forEach((entry) => {
+            console.log(`Rendering skill card: ${entry.skill.name}, maxLevel=${entry.maxLevel}, ${entry.levels.length} level elements`);
+            entry.levels.forEach((level, idx) => {
+                console.log(`  Level element ${idx}: level=${level.level}, dataLevel=${level.dataLevel}, minLevel from data=${level.level}, isPassive=${level.isPassive}, isReaction=${level.isReaction}, text="${level.text.substring(0, 50)}..."`);
+            });
             const card = document.createElement('div');
             card.className = 'action-card';
             card.dataset.skill = entry.skill.id;
@@ -432,8 +438,9 @@
             }
 
             const levelsContainer = document.createElement('div');
-            entry.levels.forEach((level) => {
+            entry.levels.forEach((level, idx) => {
                 const levelEl = buildLevelElement(level);
+                console.log(`  Created DOM element ${idx} for ${entry.skill.name}: classList="${levelEl.className}", data-level="${levelEl.dataset.level}", data-min-level="${levelEl.dataset.minLevel}"`);
                 levelsContainer.appendChild(levelEl);
             });
             card.appendChild(levelsContainer);
