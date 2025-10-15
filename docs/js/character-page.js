@@ -257,8 +257,8 @@
         return Array.from(entries.values())
             .map((entry) => ({
                 ...entry,
-                maxLevel: Math.max(entry.inherentLevel || 0, entry.classMaxLevel || 0),
-                levels: buildLevelDetails(entry.skill, Math.max(entry.inherentLevel || 0, entry.classMaxLevel || 0)),
+                maxLevel: (entry.inherentLevel || 0) + (entry.classMaxLevel || 0),
+                levels: buildLevelDetails(entry.skill, (entry.inherentLevel || 0) + (entry.classMaxLevel || 0)),
             }))
             .filter((entry) => entry.maxLevel > 0 && entry.levels.length > 0)
             .sort((a, b) => {
