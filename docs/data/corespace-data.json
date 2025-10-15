@@ -760,6 +760,10 @@
         {
           "skillId": "reflexes",
           "maxLevel": 2
+        },
+        {
+          "skillId": "persuasion",
+          "maxLevel": 2
         }
       ]
     }
