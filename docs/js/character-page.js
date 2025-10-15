@@ -1,4 +1,6 @@
 (function () {
+    console.log('Character Page JS Build: 2025-10-14.001');
+
     const skillSummaries = {
         accelerate: "Make extra Move or Assault actions for enhanced mobility.",
         ambush: "Attack enemies from cover when they move near you.",
