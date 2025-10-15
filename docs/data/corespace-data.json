@@ -656,6 +656,10 @@
         {
           "skillId": "charge",
           "maxLevel": 2
+        },
+        {
+          "skillId": "kata",
+          "maxLevel": 2
         }
       ]
     },

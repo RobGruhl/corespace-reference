@@ -213,16 +213,6 @@
         if (summary) {
             summary.textContent = cls?.description || 'No description for this class yet.';
         }
-        const detail = document.getElementById('class-description');
-        if (detail) {
-            if (cls?.flavorText) {
-                detail.style.display = 'block';
-                detail.textContent = cls.flavorText;
-            } else {
-                detail.style.display = 'none';
-                detail.textContent = '';
-            }
-        }
     }
 
     function computeSkillEntries(character, cls) {
