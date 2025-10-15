@@ -1,5 +1,5 @@
 (function () {
-    console.log('Character Page JS Build: 2025-10-14.001');
+    console.log('Character Page JS Build: 2025-10-14.002');
 
     const skillSummaries = {
         accelerate: "Make extra Move or Assault actions for enhanced mobility.",
@@ -649,12 +649,21 @@
     }
 
     function updateSkillDisplay(skillId, level) {
-        const card = document.querySelector(`[data-skill="${CSS.escape(skillId)}"]`);
+        console.log(`updateSkillDisplay called: skillId="${skillId}", level=${level}`);
+
+        const selector = `[data-skill="${CSS.escape(skillId)}"]`;
+        console.log(`  Selector: ${selector}`);
+
+        const card = document.querySelector(selector);
+        console.log(`  Card found:`, card);
+
         if (!card) {
             console.warn(`Card not found for skill: ${skillId}`);
+            console.log(`  All cards in DOM:`, document.querySelectorAll('[data-skill]'));
             return;
         }
 
+        console.log(`  Card dataset.skill: "${card.dataset.skill}"`);
         console.log(`Updating display for ${skillId}: level=${level}`);
 
         if (level === 0) {
