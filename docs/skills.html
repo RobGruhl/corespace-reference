@@ -80,6 +80,29 @@
             font-size: 0.85em;
             color: #ddd;
             line-height: 1.4;
+            margin-bottom: 8px;
+        }
+
+        .skill-sources {
+            font-size: 0.8em;
+            line-height: 1.6;
+        }
+
+        .skill-sources-line {
+            margin: 2px 0;
+        }
+
+        .source-icon {
+            margin-right: 4px;
+        }
+
+        .source-character {
+            color: #5390d9;
+            font-style: italic;
+        }
+
+        .source-class {
+            color: #9b59b6;
         }
 
         .skill-type-badge {
@@ -243,6 +266,7 @@
         };
 
         // Load and display skills
+        let fullData = null;
         fetch('data/corespace-data.json')
             .then(response => {
                 if (!response.ok) {
@@ -251,6 +275,7 @@
                 return response.json();
             })
             .then(data => {
+                fullData = data;
                 displaySkills(data.skills);
             })
             .catch(error => {
@@ -268,6 +293,80 @@
                         <p style="color: #888; font-size: 0.9em; margin-top: 15px;">Technical details: ${error.message}</p>
                     </div>`;
             });
+
+        function buildSkillSources() {
+            const skillSources = {};
+
+            if (!fullData) return skillSources;
+
+            // Process characters for inherent skills
+            if (fullData.characters) {
+                fullData.characters.forEach(char => {
+                    if (char.inherentSkills) {
+                        char.inherentSkills.forEach(skill => {
+                            const skillId = skill.skillId;
+                            const level = skill.level || 1;
+                            if (!skillSources[skillId]) {
+                                skillSources[skillId] = { characters: [], classes: [] };
+                            }
+                            skillSources[skillId].characters.push({ name: char.name, level });
+                        });
+                    }
+                });
+            }
+
+            // Process classes for available skills
+            if (fullData.classes) {
+                fullData.classes.forEach(cls => {
+                    if (cls.availableSkills) {
+                        cls.availableSkills.forEach(skill => {
+                            const skillId = skill.skillId;
+                            const maxLevel = skill.maxLevel || 3;
+                            if (!skillSources[skillId]) {
+                                skillSources[skillId] = { characters: [], classes: [] };
+                            }
+                            skillSources[skillId].classes.push({ name: cls.name, level: maxLevel });
+                        });
+                    }
+                });
+            }
+
+            // Sort sources by level (low to high)
+            Object.keys(skillSources).forEach(skillId => {
+                skillSources[skillId].characters.sort((a, b) => a.level - b.level);
+                skillSources[skillId].classes.sort((a, b) => a.level - b.level);
+            });
+
+            return skillSources;
+        }
+
+        function getSourcesHTML(skillId) {
+            const sources = buildSkillSources()[skillId];
+            if (!sources) return '';
+
+            let html = '<div class="skill-sources">';
+
+            // Characters line
+            if (sources.characters && sources.characters.length > 0) {
+                html += '<div class="skill-sources-line">';
+                html += '<span class="source-icon">👤</span>';
+                html += '<span class="source-character">Characters: ';
+                html += sources.characters.map(c => `${c.name} (${c.level})`).join(', ');
+                html += '</span></div>';
+            }
+
+            // Classes line
+            if (sources.classes && sources.classes.length > 0) {
+                html += '<div class="skill-sources-line">';
+                html += '<span class="source-icon">🎴</span>';
+                html += '<span class="source-class">Classes: ';
+                html += sources.classes.map(c => `${c.name} (${c.level})`).join(', ');
+                html += '</span></div>';
+            }
+
+            html += '</div>';
+            return html;
+        }
 
         function displaySkills(skills) {
             // Group skills by category
@@ -301,6 +400,7 @@
                     const iconPath = `images/skills/${skill.id.replace(/([A-Z])/g, '-$1').toLowerCase().replace(/^-/, '')}.png`;
                     const summary = skillSummaries[skill.id] || skill.levels[0].description || skill.levels[0].effect || "Advanced skill for experienced traders.";
                     const typeLabel = getSkillTypeLabel(skill);
+                    const sourcesHTML = getSourcesHTML(skill.id);
 
                     html += `<div class="skill-card">`;
                     html += `  <div class="skill-icon" id="icon-${skill.id}">`;
@@ -308,8 +408,8 @@
                     html += `  </div>`;
                     html += `  <div class="skill-info">`;
                     html += `    <div class="skill-name">${skill.name}${typeLabel}</div>`;
-                    html += `    <div class="skill-category">${skill.category}</div>`;
                     html += `    <div class="skill-summary">${summary}</div>`;
+                    html += sourcesHTML;
                     html += `  </div>`;
                     html += `</div>`;
                 });
