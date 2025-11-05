@@ -1,5 +1,5 @@
 (function () {
-    console.log('Character Page JS Build: 2025-10-14.005');
+    console.log('Character Page JS Build: 2025.11.05.001');
 
     const skillSummaries = {
         accelerate: "Make extra Move or Assault actions for enhanced mobility.",
