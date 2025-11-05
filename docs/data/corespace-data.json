@@ -294,13 +294,7 @@
           ]
         },
         {
-          "id": "machine",
-          "availableSkills": [
-            {
-              "skillId": "impervious",
-              "maxLevel": 3
-            }
-          ]
+          "id": "tech"
         }
       ],
       "notes": "Balcor starts with Brutal Assault at level 2 and builds additional resilience and close combat tricks through Support or Marine class boards."

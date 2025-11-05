@@ -113,15 +113,42 @@
             return fallbackClasses;
         }
 
-        return boards.map((board) => {
-            const global = state.globalClasses.get(board.id) || {};
-            return {
-                ...global,
-                ...board,
-                availableSkills: board.availableSkills || global.availableSkills || [],
-                description: board.description || global.description || '',
-                flavorText: board.flavorText || global.flavorText || '',
-            };
+        // Check if this is a machine-only character (only has machine/machineTech classes)
+        const isMachineOnly = boards.every(board =>
+            board.id === 'machine' || board.id === 'machineTech'
+        );
+
+        // Machine characters only get their restricted class options
+        if (isMachineOnly) {
+            return boards.map((board) => {
+                const global = state.globalClasses.get(board.id) || {};
+                return {
+                    ...global,
+                    ...board,
+                    availableSkills: board.availableSkills || global.availableSkills || [],
+                    description: board.description || global.description || '',
+                    flavorText: board.flavorText || global.flavorText || '',
+                };
+            });
+        }
+
+        // Non-machine characters get all classes, with character-specific customizations merged in
+        const customBoards = new Map(boards.map(board => [board.id, board]));
+
+        return fallbackClasses.map((globalClass) => {
+            const customBoard = customBoards.get(globalClass.id);
+            if (customBoard) {
+                // Merge character-specific customizations with global class
+                return {
+                    ...globalClass,
+                    ...customBoard,
+                    availableSkills: customBoard.availableSkills || globalClass.availableSkills || [],
+                    description: customBoard.description || globalClass.description || '',
+                    flavorText: customBoard.flavorText || globalClass.flavorText || '',
+                };
+            }
+            // Use global class definition as-is
+            return globalClass;
         });
     }
 
