@@ -2358,6 +2358,15 @@
           "isBetweenGame": false,
           "description": "Make a Move action followed by an Assault action.",
           "pegCost": 1
+        },
+        {
+          "level": 3,
+          "variant": "active",
+          "isPassive": false,
+          "isReaction": true,
+          "isBetweenGame": false,
+          "description": "Use after being targeted with an attack. Ignore all hits scored, and then make a Move action and an Assault action in any order.",
+          "pegCost": 1
         }
       ]
     },
