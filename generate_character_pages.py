@@ -3,12 +3,14 @@
 from __future__ import annotations
 
 import json
+from datetime import datetime
 from pathlib import Path
 from string import Template
 
 DATA_PATH = Path("docs/data/corespace-data.json")
 TEMPLATE_PATH = Path("templates/character-page.html")
 OUTPUT_DIR = Path("docs")
+BUILD_VERSION = datetime.now().strftime("%Y.%m.%d.001")
 
 
 def load_data() -> dict:
@@ -27,6 +29,7 @@ def render_character(template: Template, character: dict) -> str:
         character_name=character["name"],
         tagline=tagline,
         default_class=default_class_str,
+        build_version=BUILD_VERSION,
     )
 
 
