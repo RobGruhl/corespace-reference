@@ -21,7 +21,7 @@ from typing import Any
 DATA_PATH = Path("docs/data/corespace-data.json")
 TEMPLATE_PATH = Path("templates/character-page.html")
 OUTPUT_DIR = Path("docs")
-BUILD_VERSION = datetime.now().strftime("%Y.%m.%d.001")
+BUILD_VERSION = datetime.now().strftime("%Y.%m.%d.%H%M")
 
 
 def load_data() -> dict[str, Any]:
