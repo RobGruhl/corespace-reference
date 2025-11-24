@@ -1033,7 +1033,8 @@
           "description": "Make two extra Move and/or Assault actions this turn. You may make your other actions before, during or after these actions.",
           "pegCost": 1
         }
-      ]
+      ],
+      "summary": "Make extra Move or Assault actions for enhanced mobility."
     },
     {
       "id": "ambush",
@@ -1068,7 +1069,8 @@
           "effect": "Make a Move action, an Assault action against any enemy, and then another Move action. You may make a Proximity Move before, during or after these actions.",
           "pegCost": 1
         }
-      ]
+      ],
+      "summary": "Attack enemies from cover when they move near you."
     },
     {
       "id": "assist",
@@ -1103,7 +1105,8 @@
           "description": "Co-ordinate your team with vital intelligence. Target yourself and two other members of your crew. Each character may make 1 action, resolved in any order.",
           "pegCost": 1
         }
-      ]
+      ],
+      "summary": "Protect allies from ranged attacks or restore their health."
     },
     {
       "id": "barter",
@@ -1120,7 +1123,8 @@
           "description": "Trade Phase: Perform one of the following: re-roll a Ship Repair cost result, re-roll a Raw Blue sale price result, or sell one item for its buy value (maximum 10UA).",
           "pegCost": 1
         }
-      ]
+      ],
+      "summary": "Re-roll trade costs or sell items at better prices between games."
     },
     {
       "id": "blast",
@@ -1155,7 +1159,8 @@
           "description": "You expel energy in all directions. All characters within short range suffer an attack with 3 dice and are pushed away a number of inches equal to hits scored, with no attacks of opportunity.",
           "pegCost": 1
         }
-      ]
+      ],
+      "summary": "Expel energy blasts for ranged attacks or propulsive movement."
     },
     {
       "id": "bodyguardProtocol",
@@ -1190,7 +1195,8 @@
           "description": "Use at any time. Make two Move actions and a Close Assault action, in any order. After the Close Assault action, if the enemy has not been defeated, roll a combat die. If you score one or more hits, the enemy is knocked prone.",
           "pegCost": 1
         }
-      ]
+      ],
+      "summary": "Protect allies by taking hits for them and healing them."
     },
     {
       "id": "brutalAssault",
@@ -1225,7 +1231,8 @@
           "description": "Make up to three Close Assault actions using only your base ability. If the target survives lay it prone. Then make a Move action.",
           "pegCost": 1
         }
-      ]
+      ],
+      "summary": "Make powerful close combat attacks that knock enemies prone."
     },
     {
       "id": "camouflage",
@@ -1251,7 +1258,8 @@
           "description": "Make a Ranged Assault action. While you are in base contact with any terrain you cannot be targeted for the rest of the round. Enemies cannot enter base contact with you. You do not block line of sight to other characters in any way.",
           "pegCost": 1
         }
-      ]
+      ],
+      "summary": "Become untargetable while in contact with walls or terrain."
     },
     {
       "id": "charge",
@@ -1277,7 +1285,8 @@
           "description": "During Move actions this round, you can make free close assault attacks on up to 3 characters you contact during movement. Ignore attacks of opportunity from these characters.",
           "pegCost": 1
         }
-      ]
+      ],
+      "summary": "Rush into enemies and deal knock back damage."
     },
     {
       "id": "combatExpert",
@@ -1330,7 +1339,8 @@
           "description": "You burst out of combat. All enemies engaged with your character can be pushed up to 2 inches away in a direction of your choice, stopping if they hit a wall or other obstruction. No attacks of opportunity are made, but each enemy pushed back suffers an attack with 2 dice (armour applies as normal). Then, you may make a Move action.",
           "pegCost": 1
         }
-      ]
+      ],
+      "summary": "Reduce attacks of opportunity and make versatile close assaults."
     },
     {
       "id": "counterShot",
@@ -1365,7 +1375,8 @@
           "effect": "Make a ranged attack against an enemy with one extra combat die, and then make a Move action.",
           "pegCost": 1
         }
-      ]
+      ],
+      "summary": "Return fire against enemies who attack you."
     },
     {
       "id": "disarm",
@@ -1403,7 +1414,8 @@
           "effect": "As level 2. In addition you can make an immediate Close Assault action with the stolen weapon, followed by a Move action with no attacks of opportunity allowed.",
           "pegCost": 1
         }
-      ]
+      ],
+      "summary": "Steal enemy weapons when they fail to damage you in melee."
     },
     {
       "id": "disconnect",
@@ -1429,7 +1441,8 @@
           "description": "Fill body with unbridled rage. For this turn: gain an extra action, move an additional 2 inches, roll 2 extra combat dice in Close Assault, and enemies contacted during moves are knocked prone. At turn's end, become disconnected from handler.",
           "pegCost": 1
         }
-      ]
+      ],
+      "summary": "Enter a rage state for extra combat power, then become uncontrolled."
     },
     {
       "id": "distraction",
@@ -1464,7 +1477,8 @@
           "description": "Make a Ranged Assault action. You may then make a Move action with the target model (you cannot use this Move to enter base contact with an enemy), and it will miss its entire next turn in addition to any damage caused. Then make a Move action yourself.",
           "pegCost": 1
         }
-      ]
+      ],
+      "summary": "Cause enemies to lose actions with clever distractions."
     },
     {
       "id": "disrupt",
@@ -1499,7 +1513,8 @@
           "description": "Choose one: Target an enemy Trader with Tech Class within medium range (cannot use Tech Skills for rest of game) OR target an enemy Trader with Tech Class anywhere on board (cannot use Tech Skills this round) OR all Purge (rank 1-3 only) within medium range miss next two turns OR all Purge (rank 1-3 only) on board miss next turn.",
           "pegCost": 1
         }
-      ]
+      ],
+      "summary": "Jam enemy tech or shut down Purge units electronically."
     },
     {
       "id": "energize",
@@ -1516,7 +1531,8 @@
           "description": "Boost your vitality. Make a Move action or Ranged Assault action OR restore 1 Health.",
           "pegCost": 1
         }
-      ]
+      ],
+      "summary": "Boost vitality to move, attack, or heal yourself."
     },
     {
       "id": "engineering",
@@ -1533,7 +1549,8 @@
           "description": "Make a Repair action. Do not roll – apply up to two Repair Points automatically. Additional Repair Points may be applied by spending additional actions.",
           "pegCost": 1
         }
-      ]
+      ],
+      "summary": "Apply repair points automatically without rolling."
     },
     {
       "id": "evade",
@@ -1568,7 +1585,8 @@
           "effect": "In any order, make two Move actions, ignoring attacks of opportunity, and an Assault action. The attacker cannot do anything further this round, including using Skills.",
           "pegCost": 1
         }
-      ]
+      ],
+      "summary": "Escape from enemy contact with quick movement."
     },
     {
       "id": "fadeToBlack",
@@ -1603,7 +1621,8 @@
           "effect": "Make a Move action into cover, ignoring any attacks of opportunity, and make a Ranged Assault action, in any order. You cannot be targeted for the rest of the round.",
           "pegCost": 1
         }
-      ]
+      ],
+      "summary": "Vanish into cover to avoid ranged attacks."
     },
     {
       "id": "hackAndGrab",
@@ -1638,7 +1657,8 @@
           "description": "Use a homemade miniaturised portal device to inspect the contents of any Searchable terrain piece within medium range. Then roll a combat die: • Critical fail: Return all the items. • Blank: Take or swap a small item of your choice. • One hit: Take or swap any item of your choice. • Two hits: Take or swap all items, and distribute them between your own equipment tray and your ship's hold. You may then lock the terrain piece if you wish.",
           "pegCost": 1
         }
-      ]
+      ],
+      "summary": "Lock/unlock doors, pickpocket enemies, or inspect crates remotely."
     },
     {
       "id": "hack",
@@ -1673,7 +1693,8 @@
           "description": "Shut down up to 2 Purge characters (rank 1-3 only) within medium range. Remove them from play. OR Take control of any Purge character (rank 1-3 only) within medium range. OR Lock or unlock any one door on the board.",
           "pegCost": 1
         }
-      ]
+      ],
+      "summary": "Shut down Purge units or control doors with hacking."
     },
     {
       "id": "heel",
@@ -1708,7 +1729,8 @@
           "description": "Make up to three Move actions (up to the normal 11 inch limit) towards your handler via the shortest possible route. You may move through other characters, making a free Knock Back action on each one you pass through. If you enter base contact with your handler, any hits that your handler suffers from attacks this round are taken on you instead (armour applies as normal). Your handler also restores 1 Health.",
           "pegCost": 1
         }
-      ]
+      ],
+      "summary": "Move to protect your handler and absorb damage for them."
     },
     {
       "id": "hardToHit",
@@ -1743,7 +1765,8 @@
           "description": "Make a Ranged Assault action followed by a Move action. You cannot be damaged by any enemy ranged attacks until the end of the round, although you can be targeted as normal.",
           "pegCost": 1
         }
-      ]
+      ],
+      "summary": "Become immune to ranged damage while in cover or at distance."
     },
     {
       "id": "impervious",
@@ -1779,7 +1802,8 @@
           "description": "Restore 1 Health. This may take you above your starting level as long as there is space on your dashboard, for this game only. In addition, you may not take any damage, be Knocked Back, or be affected by any rule that causes you to lose actions or miss your turn until the end of the round after the current one.",
           "pegCost": 1
         }
-      ]
+      ],
+      "summary": "Resist effects that cost actions and boost your armor."
     },
     {
       "id": "kata",
@@ -1814,7 +1838,8 @@
           "description": "Use when making a close assault attack. Add 4 dice to the attack. After rolling the dice, you can split the hits scored between any number of enemies in base contact.",
           "pegCost": 1
         }
-      ]
+      ],
+      "summary": "Add extra dice to close assault attacks."
     },
     {
       "id": "lightFingers",
@@ -1849,7 +1874,8 @@
           "effect": "Take any item from the attacker's item tray. Items with the [check] icon can be used immediately. Otherwise, if you do not have space for it, it or another item you are holding must be dropped. Then make an immediate Move or Assault action, ignoring attacks of opportunity.",
           "pegCost": 1
         }
-      ]
+      ],
+      "summary": "Steal items from attackers during combat."
     },
     {
       "id": "marksman",
@@ -1881,7 +1907,8 @@
           "pegCost": 1,
           "description": "Make a ranged attack with two extra combat dice. After rolling the dice, you can split the hits scored between any number of eligible targets within range of your weapon and within short range of each other."
         }
-      ]
+      ],
+      "summary": "Make precise ranged attacks that can hit multiple targets."
     },
     {
       "id": "manipulate",
@@ -1916,7 +1943,8 @@
           "description": "You alter the environment around you. Perform one of the following: Move any small terrain item (such as a cargo crate or table) or loose item token in LoS up to short range from its current location. OR Hurl any small to medium terrain item (like a vending machine or table) in medium range and LoS up to short range from its current location. If it hits a character, it will stop and an attack roll of 4 dice is made against the target.",
           "pegCost": 1
         }
-      ]
+      ],
+      "summary": "Disrupt enemy minds, break their equipment, or move terrain."
     },
     {
       "id": "negotiation",
@@ -1951,7 +1979,8 @@
           "description": "Extraction Phase: Your crew can work with crews from enemy captains on diplomatic missions. Enemy crew will never attack you, and you may assist them with Persuade actions and similar Skills.",
           "pegCost": 1
         }
-      ]
+      ],
+      "summary": "Re-roll Persuade dice and improve extraction outcomes or work diplomatically with enemy crews."
     },
     {
       "id": "onslaught",
@@ -1988,7 +2017,8 @@
           "description": "Use during a Move action. You may ignore attacks of opportunity during this Move, and you may make a close assault attack against each enemy you come into contact with while moving.",
           "pegCost": 1
         }
-      ]
+      ],
+      "summary": "Chain multiple close assault attacks together."
     },
     {
       "id": "overdrive",
@@ -2023,7 +2053,8 @@
           "description": "Overload your power cells and self-destruct. Make a ranged attack against each character within short range with five combat dice. Make a ranged attack against each character in medium range with two combat dice. After resolving the attacks roll the Chance Die for consequences (see full rules).",
           "pegCost": 1
         }
-      ]
+      ],
+      "summary": "Take extra actions at the cost of health or self-destruct."
     },
     {
       "id": "persuasion",
@@ -2055,7 +2086,8 @@
           "pegCost": 1,
           "description": "Make a Persuade action against a non-Purge enemy within short range and LoS, with 2 additional dice. Targeted Traders use their Skill statistic as above. The same options apply as above, except that Trader crew (not captains) can be persuaded to join you, for the rest of this mission only. They will never attack their old crew members. Like Civilians, you must roll the Chance Die each round before activating them. On a result they will return to their old crew."
         }
-      ]
+      ],
+      "summary": "Convince enemies to miss turns or join your crew."
     },
     {
       "id": "reflexes",
@@ -2090,7 +2122,8 @@
           "effect": "Ignore all hits scored. Then, make an immediate Close Assault action against the attacker, rolling 2 additional dice, followed by a Move action with no attacks of opportunity allowed.",
           "pegCost": 1
         }
-      ]
+      ],
+      "summary": "Ignore close assault hits and counter-attack instantly."
     },
     {
       "id": "regulate",
@@ -2116,7 +2149,8 @@
           "description": "Choose an Entry or Patrol Point and turn the counter over. Nothing will enter from this point until the next Hostility level is reached. If this Entry or Patrol Point is rolled, roll again.",
           "pegCost": 1
         }
-      ]
+      ],
+      "summary": "Reduce hostility or repair items and machines."
     },
     {
       "id": "repair",
@@ -2151,7 +2185,8 @@
           "description": "Release a cloud of repair nanites. Fully Repair one object or heal any Machine character in short range (including yourself), without rolling. Any other objects, items or Machine characters in short range can apply 1 Repair Point.",
           "pegCost": 1
         }
-      ]
+      ],
+      "summary": "Fix equipment and heal machines with repair nanites."
     },
     {
       "id": "reroute",
@@ -2186,7 +2221,8 @@
           "description": "Use when in base contact with a wall that does not contain a door or window. Patch into the internal substructure to recharge. Restore your Health to its maximum.",
           "pegCost": 1
         }
-      ]
+      ],
+      "summary": "Restore health or recover from being defeated."
     },
     {
       "id": "scanners",
@@ -2221,7 +2257,8 @@
           "description": "You can send out a jamming pulse that blocks all transmissions and micro control data. Reduce or increase the Hostility Tracker by 2 points. All other Traders with the Machine Class and Purge of rank 1-3 miss their next turn.",
           "pegCost": 1
         }
-      ]
+      ],
+      "summary": "Inspect crates, manipulate Purge sensors, or jam transmissions."
     },
     {
       "id": "slippery",
@@ -2257,7 +2294,8 @@
           "description": "Make a Move action. This and all of your other Move actions in this turn ignore attacks of opportunity. Make an attack with one die against each enemy contacted during your moves. Any hits will also knock them prone, even if no damage is caused.",
           "pegCost": 1
         }
-      ]
+      ],
+      "summary": "Move with enhanced scrambling ability and ignore attacks of opportunity."
     },
     {
       "id": "scientificMind",
@@ -2292,7 +2330,8 @@
           "description": "Assessment Phase: You can mix and refine raw materials with precision. Choose one: 1 item of equipment up to 6UA (or 10UA if Scientist class) OR 1 equipment token OR 1 booster pack.",
           "pegCost": 1
         }
-      ]
+      ],
+      "summary": "Re-roll chance dice or create chemical compounds between games."
     },
     {
       "id": "sonicRoar",
@@ -2327,7 +2366,8 @@
           "description": "Generate a powerful sonic pulse. All rank 1-3 Purge characters within medium range miss their next 2 turns and are knocked prone OR all rank 1-3 Purge characters on the board miss their next turn.",
           "pegCost": 1
         }
-      ]
+      ],
+      "summary": "Emit sonic pulses that stun and knock down Purge enemies."
     },
     {
       "id": "stubborn",
@@ -2362,7 +2402,8 @@
           "description": "Use after being targeted with an attack. Ignore all hits scored, and then make a Move action and an Assault action in any order.",
           "pegCost": 1
         }
-      ]
+      ],
+      "summary": "Make steady movement and assault actions."
     },
     {
       "id": "sureShot",
@@ -2397,7 +2438,8 @@
           "description": "Target any number of enemies within medium range and roll 1 die against each. Assign resulting hits.",
           "pegCost": 1
         }
-      ]
+      ],
+      "summary": "Roll targeted attacks against multiple enemies."
     },
     {
       "id": "training",
@@ -2432,7 +2474,8 @@
           "description": "Advancement Phase: Add one Career Point to any two Traders in your crew. One can be at any level; the other is level 1-2 only.",
           "pegCost": 1
         }
-      ]
+      ],
+      "summary": "Allow allies to repeat your actions or gain career points."
     },
     {
       "id": "walkItOff",
@@ -2469,7 +2512,8 @@
           "effect": "You are no longer defeated – restore 1 Health, Stand Up, and you may then make a Move action.",
           "pegCost": 1
         }
-      ]
+      ],
+      "summary": "Restore health, reduce damage, or recover from defeat."
     },
     {
       "id": "weaponsExpert",
@@ -2522,7 +2566,8 @@
           "description": "You can shoot a weapon from an enemy's hand. Make a ranged attack. This rolls two dice regardless of the weapon's statistics but must be within range and LoS as normal. If at least one hit is scored, no damage is done, but a weapon of your choice is removed from their dashboard and scattered. The weapon is broken but can be Repaired as normal.",
           "pegCost": 1
         }
-      ]
+      ],
+      "summary": "Reload effortlessly and make devastating ranged attacks."
     }
   ],
   "saveDataExample": {
