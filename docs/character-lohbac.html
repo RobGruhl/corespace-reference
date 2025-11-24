@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Lohbac character progression tracker for Core Space First Born board game">
     <title>Lohbac - Character Progression Tracker</title>
-    <link rel="stylesheet" href="style.css?v=2025.11.05.001">
-    <link rel="stylesheet" href="character-page.css?v=2025.11.05.001">
-    <script defer src="js/character-page.js?v=2025.11.05.001"></script>
+    <link rel="stylesheet" href="style.css?v=2025.11.24.001">
+    <link rel="stylesheet" href="character-page.css?v=2025.11.24.001">
+    <script defer src="js/character-page.js?v=2025.11.24.001"></script>
 </head>
 <body>
     <script>
@@ -14,7 +15,8 @@
             characterId: "lohbac",
             dataPath: "data/corespace-data.json",
             pageTitle: "Lohbac - Character Progression Tracker",
-            defaultClass: null
+            defaultClass: null,
+            buildVersion: "2025.11.24.001"
         };
     </script>
     <div class="container character-page">
@@ -23,72 +25,74 @@
             <div class="tagline" id="page-tagline">Lohbac - Character Progression Tracker</div>
         </header>
 
-        <div class="breadcrumb">
+        <nav class="breadcrumb" aria-label="Breadcrumb navigation">
             <a href="index.html">Home</a>
-            <span>›</span>
-            <span id="breadcrumb-character">Lohbac</span>
-        </div>
+            <span aria-hidden="true">›</span>
+            <span id="breadcrumb-character" aria-current="page">Lohbac</span>
+        </nav>
 
-        <a href="index.html" class="back-btn">← Back to Hub</a>
+        <a href="index.html" class="back-btn" aria-label="Back to main hub">← Back to Hub</a>
 
-        <div id="error-panel"></div>
+        <div id="error-panel" role="alert" aria-live="polite"></div>
 
-        <div id="character-content">
-            <div class="section">
-                <h2>Character Overview</h2>
+        <main id="character-content">
+            <section class="section" aria-labelledby="overview-heading">
+                <h2 id="overview-heading">Character Overview</h2>
                 <div class="character-header">
-                    <h2 id="overview-name">Lohbac</h2>
+                    <h3 id="overview-name">Lohbac</h3>
                     <p class="character-description" id="character-description"></p>
-                    <div class="base-stats" id="base-stats"></div>
-                    <div class="inherent-skills" id="inherent-skills"></div>
-                    <div class="info-box" id="character-notes" style="display: none;"></div>
+                    <div class="base-stats" id="base-stats" aria-label="Character base statistics"></div>
+                    <div class="inherent-skills" id="inherent-skills" aria-label="Inherent skills"></div>
+                    <div class="info-box" id="character-notes" hidden></div>
                 </div>
-            </div>
+            </section>
 
-            <div class="section">
-                <h2>Passive Skills Summary</h2>
+            <section class="section" aria-labelledby="passives-heading">
+                <h2 id="passives-heading">Passive Skills Summary</h2>
                 <div class="passive-summary">
                     <h3>🔮 Always Active Abilities</h3>
-                    <div id="passive-skills-list"></div>
+                    <div id="passive-skills-list" role="list" aria-label="Learned passive abilities"></div>
                     <div class="empty-state" id="no-passives">
                         No passive abilities learned yet. Passive abilities will appear here as you learn skills.
                     </div>
                 </div>
-            </div>
+            </section>
 
-            <div class="section">
-                <h2>Available Reactions</h2>
-                <div class="passive-summary" style="border-color: #e67e22;">
-                    <h3 style="color: #e67e22;">⚡ Triggered Abilities</h3>
-                    <div id="reaction-skills-list"></div>
+            <section class="section" aria-labelledby="reactions-heading">
+                <h2 id="reactions-heading">Available Reactions</h2>
+                <div class="passive-summary passive-summary--reaction">
+                    <h3 class="text-warning">⚡ Triggered Abilities</h3>
+                    <div id="reaction-skills-list" role="list" aria-label="Learned reaction abilities"></div>
                     <div class="empty-state" id="no-reactions">
                         No reaction abilities learned yet. Reaction abilities will appear here as you learn skills.
                     </div>
                 </div>
-            </div>
+            </section>
 
-            <div class="section">
-                <h2>Class Card Selection</h2>
+            <section class="section" aria-labelledby="class-heading">
+                <h2 id="class-heading">Class Card Selection</h2>
                 <div class="skill-controls">
                     <div class="class-selector">
                         <label for="class-select">Class Card</label>
-                        <select id="class-select"></select>
+                        <select id="class-select" aria-describedby="class-summary"></select>
                     </div>
-                    <div class="info-box" id="class-summary">
+                    <div class="info-box" id="class-summary" aria-live="polite">
                         Loading class details…
                     </div>
-                    <button class="reset-btn" id="reset-button" type="button">Reset All Skills</button>
+                    <button class="reset-btn" id="reset-button" type="button" aria-label="Reset all skills to their inherent levels">
+                        Reset All Skills
+                    </button>
                 </div>
-            </div>
+            </section>
 
-            <div class="section">
+            <section class="section" aria-labelledby="skills-section-title">
                 <h2 id="skills-section-title">Character Skills</h2>
-                <div class="action-grid" id="skills-grid"></div>
-            </div>
-        </div>
+                <div class="action-grid" id="skills-grid" role="list" aria-label="Available character skills"></div>
+            </section>
+        </main>
 
-        <footer style="text-align: center; margin-top: 40px; padding: 20px; font-size: 0.75em; color: #888;">
-            Character Tracker Build: 2025.11.05.001
+        <footer class="text-center mt-40 pt-20 text-tiny text-dim">
+            Character Tracker Build: 2025.11.24.001
         </footer>
     </div>
 </body>
