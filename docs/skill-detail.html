@@ -550,10 +550,12 @@
                 badges += '<span class="level-badge active">Active</span>';
             }
 
-            if (level.pegCost !== undefined && level.pegCost > 0) {
-                badges += `<span class="level-badge peg-cost">${level.pegCost} Peg${level.pegCost > 1 ? 's' : ''}</span>`;
-            } else if (level.pegCost === 0) {
+            // Peg cost: passive skills are free, non-passive skills cost pegs equal to their level
+            if (level.isPassive) {
                 badges += '<span class="level-badge peg-cost">Free</span>';
+            } else {
+                const pegs = level.level || 1;
+                badges += `<span class="level-badge peg-cost">${pegs} Peg${pegs > 1 ? 's' : ''}</span>`;
             }
 
             return badges;
