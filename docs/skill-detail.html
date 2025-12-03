@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skill Detail - Core Space First Born</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .skill-header {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid rgba(233, 69, 96, 0.3);
+        }
+
+        .skill-icon-large {
+            width: 80px;
+            height: 80px;
+            flex-shrink: 0;
+            border-radius: 10px;
+            background: rgba(83, 168, 182, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #53a8b6;
+        }
+
+        .skill-icon-large img {
+            width: 64px;
+            height: 64px;
+            object-fit: contain;
+        }
+
+        .skill-icon-large img.broken {
+            display: none;
+        }
+
+        .skill-icon-large.has-broken-img::before {
+            content: "\2B50";
+            font-size: 48px;
+            color: #53a8b6;
+        }
+
+        .skill-title-section {
+            flex: 1;
+        }
+
+        .skill-title {
+            font-size: 2em;
+            color: #e94560;
+            margin-bottom: 8px;
+        }
+
+        .skill-category-badge {
+            display: inline-block;
+            background: rgba(83, 168, 182, 0.3);
+            color: #53a8b6;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-right: 8px;
+        }
+
+        .skill-type-badge {
+            display: inline-block;
+            font-size: 0.8em;
+            padding: 4px 10px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .skill-type-reaction {
+            background: #e94560;
+            color: #fff;
+        }
+
+        .skill-type-passive {
+            background: #2ecc71;
+            color: #fff;
+        }
+
+        .skill-type-between-game {
+            background: #9b59b6;
+            color: #fff;
+        }
+
+        .skill-type-mixed {
+            background: linear-gradient(135deg, #2ecc71 0%, #e94560 100%);
+            color: #fff;
+        }
+
+        .skill-summary {
+            font-size: 1.1em;
+            color: #ddd;
+            margin-top: 12px;
+            font-style: italic;
+            line-height: 1.5;
+        }
+
+        .levels-section {
+            margin-top: 30px;
+        }
+
+        .levels-title {
+            font-size: 1.4em;
+            color: #e94560;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(233, 69, 96, 0.3);
+        }
+
+        .level-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 5px solid #53a8b6;
+            transition: all 0.3s;
+        }
+
+        .level-card:hover {
+            background: rgba(255,255,255,0.08);
+            transform: translateX(5px);
+        }
+
+        .level-card.level-1 {
+            border-left-color: #3498db;
+        }
+
+        .level-card.level-2 {
+            border-left-color: #9b59b6;
+        }
+
+        .level-card.level-3 {
+            border-left-color: #e94560;
+        }
+
+        .level-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .level-number {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #fff;
+        }
+
+        .level-1 .level-number {
+            background: #3498db;
+        }
+
+        .level-2 .level-number {
+            background: #9b59b6;
+        }
+
+        .level-3 .level-number {
+            background: #e94560;
+        }
+
+        .level-badges {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .level-badge {
+            font-size: 0.75em;
+            padding: 3px 8px;
+            border-radius: 3px;
+            text-transform: uppercase;
+        }
+
+        .level-badge.passive {
+            background: rgba(46, 204, 113, 0.3);
+            color: #2ecc71;
+            border: 1px solid #2ecc71;
+        }
+
+        .level-badge.reaction {
+            background: rgba(233, 69, 96, 0.3);
+            color: #e94560;
+            border: 1px solid #e94560;
+        }
+
+        .level-badge.between-game {
+            background: rgba(155, 89, 182, 0.3);
+            color: #9b59b6;
+            border: 1px solid #9b59b6;
+        }
+
+        .level-badge.active {
+            background: rgba(83, 168, 182, 0.3);
+            color: #53a8b6;
+            border: 1px solid #53a8b6;
+        }
+
+        .level-badge.peg-cost {
+            background: rgba(241, 196, 15, 0.3);
+            color: #f1c40f;
+            border: 1px solid #f1c40f;
+        }
+
+        .level-content {
+            margin-left: 48px;
+        }
+
+        .level-trigger {
+            background: rgba(233, 69, 96, 0.15);
+            border-left: 3px solid #e94560;
+            padding: 10px 15px;
+            margin-bottom: 10px;
+            border-radius: 0 5px 5px 0;
+            font-size: 0.9em;
+        }
+
+        .level-trigger-label {
+            color: #e94560;
+            font-weight: bold;
+            font-size: 0.8em;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .level-description {
+            font-size: 1em;
+            line-height: 1.6;
+            color: #eee;
+        }
+
+        .level-effect {
+            background: rgba(46, 204, 113, 0.1);
+            border-left: 3px solid #2ecc71;
+            padding: 10px 15px;
+            border-radius: 0 5px 5px 0;
+            margin-top: 10px;
+        }
+
+        .level-effect-label {
+            color: #2ecc71;
+            font-weight: bold;
+            font-size: 0.8em;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .level-passive {
+            background: rgba(46, 204, 113, 0.15);
+            border-left: 3px solid #2ecc71;
+            padding: 10px 15px;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .level-passive-label {
+            color: #2ecc71;
+            font-weight: bold;
+            font-size: 0.8em;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .sources-section {
+            margin-top: 30px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .sources-title {
+            font-size: 1.2em;
+            color: #53a8b6;
+            margin-bottom: 15px;
+        }
+
+        .sources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .source-group {
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px;
+            padding: 15px;
+        }
+
+        .source-group-title {
+            font-size: 0.9em;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .source-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .source-item {
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .source-item:last-child {
+            border-bottom: none;
+        }
+
+        .source-name {
+            color: #eee;
+        }
+
+        .source-name.character {
+            color: #5390d9;
+        }
+
+        .source-name.class {
+            color: #9b59b6;
+        }
+
+        .source-level {
+            background: rgba(83, 168, 182, 0.2);
+            color: #53a8b6;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-size: 0.8em;
+        }
+
+        .no-sources {
+            color: #888;
+            font-style: italic;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #53a8b6;
+            font-size: 1.2em;
+        }
+
+        .error-message {
+            background: rgba(233, 69, 96, 0.2);
+            border: 2px solid #e94560;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            color: #e94560;
+        }
+
+        .error-message h3 {
+            margin-bottom: 15px;
+        }
+
+        .error-message p {
+            color: #ddd;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #53a8b6;
+            text-decoration: none;
+            margin-bottom: 20px;
+            padding: 8px 16px;
+            background: rgba(83, 168, 182, 0.1);
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .back-link:hover {
+            background: rgba(83, 168, 182, 0.2);
+            transform: translateX(-5px);
+        }
+
+        .breadcrumb {
+            margin-bottom: 20px;
+            color: #aaa;
+            font-size: 0.9em;
+        }
+
+        .breadcrumb a {
+            color: #53a8b6;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .variant-separator {
+            margin: 15px 0;
+            border-top: 1px dashed rgba(255,255,255,0.2);
+            padding-top: 15px;
+        }
+
+        .variant-label {
+            font-size: 0.8em;
+            color: #888;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .skill-header {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .level-content {
+                margin-left: 0;
+                margin-top: 12px;
+            }
+
+            .level-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1><a href="index.html" style="color: inherit; text-decoration: none;">Core Space First Born</a></h1>
+        <p>Skill Detail</p>
+    </header>
+
+    <div class="breadcrumb">
+        <a href="index.html">Home</a> &#8250; <a href="skills.html">Skills Reference</a> &#8250; <span id="breadcrumb-skill-name">Skill</span>
+    </div>
+
+    <main id="skill-content">
+        <p class="loading">Loading skill data...</p>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Core Space Quick Reference | <a href="index.html">Back to Hub</a></p>
+        <div style="margin-top: 10px;">
+            <a href="skills.html">All Skills</a> |
+            <a href="actions.html">Actions</a> |
+            <a href="combat.html">Combat</a> |
+            <a href="advancement.html">Advancement</a>
+        </div>
+    </footer>
+
+    <script>
+        let fullData = null;
+
+        // Get skill ID from URL parameter
+        function getSkillIdFromUrl() {
+            const params = new URLSearchParams(window.location.search);
+            return params.get('skill');
+        }
+
+        // Convert skill ID to icon path
+        function getIconPath(skillId) {
+            return `images/skills/${skillId.replace(/([A-Z])/g, '-$1').toLowerCase().replace(/^-/, '')}.png`;
+        }
+
+        // Build skill sources from character and class data
+        function buildSkillSources(skillId) {
+            const sources = { characters: [], classes: [] };
+
+            if (!fullData) return sources;
+
+            // Process characters for inherent skills
+            if (fullData.characters) {
+                fullData.characters.forEach(char => {
+                    if (char.inherentSkills) {
+                        char.inherentSkills.forEach(skill => {
+                            if (skill.skillId === skillId) {
+                                sources.characters.push({
+                                    name: char.name,
+                                    level: skill.level || 1,
+                                    note: skill.note
+                                });
+                            }
+                        });
+                    }
+                });
+            }
+
+            // Process classes for available skills
+            if (fullData.classes) {
+                fullData.classes.forEach(cls => {
+                    if (cls.availableSkills) {
+                        cls.availableSkills.forEach(skill => {
+                            if (skill.skillId === skillId) {
+                                sources.classes.push({
+                                    name: cls.name,
+                                    level: skill.maxLevel || 3
+                                });
+                            }
+                        });
+                    }
+                });
+            }
+
+            // Sort by level
+            sources.characters.sort((a, b) => a.level - b.level);
+            sources.classes.sort((a, b) => a.level - b.level);
+
+            return sources;
+        }
+
+        // Get skill type badge
+        function getSkillTypeBadge(skill) {
+            if (skill.type === 'reaction') {
+                return '<span class="skill-type-badge skill-type-reaction">Reaction</span>';
+            } else if (skill.type === 'between-game') {
+                return '<span class="skill-type-badge skill-type-between-game">Between Game</span>';
+            } else if (skill.type === 'mixed') {
+                return '<span class="skill-type-badge skill-type-mixed">Mixed</span>';
+            }
+            return '';
+        }
+
+        // Get level badges
+        function getLevelBadges(level) {
+            let badges = '';
+
+            if (level.isPassive) {
+                badges += '<span class="level-badge passive">Passive</span>';
+            } else if (level.isReaction) {
+                badges += '<span class="level-badge reaction">Reaction</span>';
+            } else if (level.isBetweenGame) {
+                badges += '<span class="level-badge between-game">Between Game</span>';
+            } else {
+                badges += '<span class="level-badge active">Active</span>';
+            }
+
+            if (level.pegCost !== undefined && level.pegCost > 0) {
+                badges += `<span class="level-badge peg-cost">${level.pegCost} Peg${level.pegCost > 1 ? 's' : ''}</span>`;
+            } else if (level.pegCost === 0) {
+                badges += '<span class="level-badge peg-cost">Free</span>';
+            }
+
+            return badges;
+        }
+
+        // Render level content
+        function renderLevelContent(level) {
+            let html = '';
+
+            // For passive abilities
+            if (level.isPassive && level.passiveEffect) {
+                html += `
+                    <div class="level-passive">
+                        <div class="level-passive-label">Passive Effect</div>
+                        <div class="level-description">${level.passiveEffect}</div>
+                    </div>
+                `;
+            }
+
+            // For reactions with trigger/effect
+            if (level.isReaction && level.trigger) {
+                html += `
+                    <div class="level-trigger">
+                        <div class="level-trigger-label">Trigger</div>
+                        <div>${level.trigger}</div>
+                    </div>
+                `;
+                if (level.effect) {
+                    html += `
+                        <div class="level-effect">
+                            <div class="level-effect-label">Effect</div>
+                            <div class="level-description">${level.effect}</div>
+                        </div>
+                    `;
+                }
+            }
+
+            // For standard description
+            if (level.description && !level.isPassive) {
+                html += `<div class="level-description">${level.description}</div>`;
+            }
+
+            return html;
+        }
+
+        // Group levels by level number to handle variants
+        function groupLevelsByNumber(levels) {
+            const grouped = {};
+            levels.forEach(level => {
+                const num = level.level;
+                if (!grouped[num]) {
+                    grouped[num] = [];
+                }
+                grouped[num].push(level);
+            });
+            return grouped;
+        }
+
+        // Render skill detail page
+        function renderSkillDetail(skill) {
+            const iconPath = getIconPath(skill.id);
+            const sources = buildSkillSources(skill.id);
+            const typeBadge = getSkillTypeBadge(skill);
+            const groupedLevels = groupLevelsByNumber(skill.levels);
+
+            // Update page title and breadcrumb
+            document.title = `${skill.name} - Core Space First Born`;
+            document.getElementById('breadcrumb-skill-name').textContent = skill.name;
+
+            let html = `
+                <a href="skills.html" class="back-link">&#8592; Back to All Skills</a>
+
+                <div class="skill-header">
+                    <div class="skill-icon-large" id="icon-container">
+                        <img src="${iconPath}" alt="${skill.name}" onerror="this.classList.add('broken'); this.parentElement.classList.add('has-broken-img');">
+                    </div>
+                    <div class="skill-title-section">
+                        <h2 class="skill-title">${skill.name}</h2>
+                        <div>
+                            <span class="skill-category-badge">${skill.category}</span>
+                            ${typeBadge}
+                        </div>
+                        ${skill.summary ? `<p class="skill-summary">${skill.summary}</p>` : ''}
+                    </div>
+                </div>
+
+                <div class="levels-section">
+                    <h3 class="levels-title">Skill Levels</h3>
+            `;
+
+            // Render each level
+            Object.keys(groupedLevels).sort((a, b) => parseInt(a) - parseInt(b)).forEach(levelNum => {
+                const levelVariants = groupedLevels[levelNum];
+
+                html += `<div class="level-card level-${levelNum}">`;
+                html += `
+                    <div class="level-header">
+                        <div class="level-number">${levelNum}</div>
+                        <div class="level-badges">
+                            ${getLevelBadges(levelVariants[0])}
+                        </div>
+                    </div>
+                    <div class="level-content">
+                `;
+
+                // Render each variant at this level
+                levelVariants.forEach((variant, idx) => {
+                    if (idx > 0) {
+                        html += '<div class="variant-separator"></div>';
+                        if (variant.variant) {
+                            html += `<div class="variant-label">${variant.variant} Ability</div>`;
+                        }
+                        // Show badges for additional variants
+                        html += `<div class="level-badges" style="margin-bottom: 10px;">${getLevelBadges(variant)}</div>`;
+                    } else if (levelVariants.length > 1 && variant.variant) {
+                        html += `<div class="variant-label" style="margin-bottom: 10px;">${variant.variant} Ability</div>`;
+                    }
+                    html += renderLevelContent(variant);
+                });
+
+                html += `
+                    </div>
+                </div>
+                `;
+            });
+
+            html += '</div>';
+
+            // Render sources section
+            html += `
+                <div class="sources-section">
+                    <h3 class="sources-title">Where to Find This Skill</h3>
+                    <div class="sources-grid">
+                        <div class="source-group">
+                            <div class="source-group-title">
+                                <span>&#128100;</span> Characters (Inherent)
+                            </div>
+                            ${sources.characters.length > 0 ? `
+                                <ul class="source-list">
+                                    ${sources.characters.map(c => `
+                                        <li class="source-item">
+                                            <span class="source-name character">${c.name}</span>
+                                            <span class="source-level">Level ${c.level}</span>
+                                        </li>
+                                    `).join('')}
+                                </ul>
+                            ` : '<p class="no-sources">No characters have this as an inherent skill</p>'}
+                        </div>
+                        <div class="source-group">
+                            <div class="source-group-title">
+                                <span>&#127924;</span> Classes (Available)
+                            </div>
+                            ${sources.classes.length > 0 ? `
+                                <ul class="source-list">
+                                    ${sources.classes.map(c => `
+                                        <li class="source-item">
+                                            <span class="source-name class">${c.name}</span>
+                                            <span class="source-level">Up to Level ${c.level}</span>
+                                        </li>
+                                    `).join('')}
+                                </ul>
+                            ` : '<p class="no-sources">No classes offer this skill</p>'}
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('skill-content').innerHTML = html;
+        }
+
+        // Show error message
+        function showError(message) {
+            document.getElementById('skill-content').innerHTML = `
+                <div class="error-message">
+                    <h3>Skill Not Found</h3>
+                    <p>${message}</p>
+                    <p style="margin-top: 15px;">
+                        <a href="skills.html" style="color: #53a8b6;">Browse all skills</a>
+                    </p>
+                </div>
+            `;
+        }
+
+        // Initialize
+        const skillId = getSkillIdFromUrl();
+
+        if (!skillId) {
+            showError('No skill specified. Please select a skill from the skills list.');
+        } else {
+            fetch('data/corespace-data.json')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    fullData = data;
+                    const skill = data.skills.find(s => s.id === skillId);
+
+                    if (skill) {
+                        renderSkillDetail(skill);
+                    } else {
+                        showError(`Could not find skill with ID "${skillId}".`);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error loading skill data:', error);
+                    document.getElementById('skill-content').innerHTML = `
+                        <div class="error-message">
+                            <h3>Error Loading Data</h3>
+                            <p style="color: #ddd;">
+                                If viewing locally, please use one of these methods:
+                            </p>
+                            <ol style="color: #ddd; text-align: left; max-width: 600px; margin: 20px auto;">
+                                <li>View on GitHub Pages: <a href="https://robgruhl.github.io/corespace-reference/skills.html" style="color: #53a8b6;">Live Site</a></li>
+                                <li>Run a local server: <code>cd docs && python3 -m http.server 8000</code></li>
+                            </ol>
+                            <p style="color: #888; font-size: 0.9em; margin-top: 15px;">Technical details: ${error.message}</p>
+                        </div>
+                    `;
+                });
+        }
+    </script>
+</body>
+</html>
