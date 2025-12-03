@@ -22,12 +22,27 @@
             display: flex;
             gap: 12px;
             align-items: flex-start;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
         }
 
         .skill-card:hover {
             background: rgba(255,255,255,0.08);
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(83, 168, 182, 0.3);
+        }
+
+        .skill-card .view-detail {
+            font-size: 0.75em;
+            color: #53a8b6;
+            margin-top: 8px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .skill-card:hover .view-detail {
+            opacity: 1;
         }
 
         .skill-icon {
@@ -402,7 +417,7 @@
                     const typeLabel = getSkillTypeLabel(skill);
                     const sourcesHTML = getSourcesHTML(skill.id);
 
-                    html += `<div class="skill-card">`;
+                    html += `<a href="skill-detail.html?skill=${skill.id}" class="skill-card">`;
                     html += `  <div class="skill-icon" id="icon-${skill.id}">`;
                     html += `    <img src="${iconPath}" alt="${skill.name}" onerror="this.classList.add('broken'); this.parentElement.classList.add('has-broken-img');">`;
                     html += `  </div>`;
@@ -410,8 +425,9 @@
                     html += `    <div class="skill-name">${skill.name}${typeLabel}</div>`;
                     html += `    <div class="skill-summary">${summary}</div>`;
                     html += sourcesHTML;
+                    html += `    <div class="view-detail">Click to view full details &#8594;</div>`;
                     html += `  </div>`;
-                    html += `</div>`;
+                    html += `</a>`;
                 });
 
                 html += '</div></div>';
