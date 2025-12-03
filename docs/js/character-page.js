@@ -804,12 +804,16 @@
             levelEl.appendChild(notes);
         }
 
-        if (typeof level.pegCost === 'number') {
-            const cost = document.createElement('div');
-            cost.className = 'skill-note';
-            cost.textContent = `Peg Cost: ${level.pegCost}`;
-            levelEl.appendChild(cost);
+        // Peg cost: passive skills are free, non-passive skills cost pegs equal to their level
+        const cost = document.createElement('div');
+        cost.className = 'skill-note';
+        if (level.isPassive) {
+            cost.textContent = 'Peg Cost: Free';
+        } else {
+            const pegs = level.level || 1;
+            cost.textContent = `Peg Cost: ${pegs} Peg${pegs > 1 ? 's' : ''}`;
         }
+        levelEl.appendChild(cost);
 
         return levelEl;
     }
