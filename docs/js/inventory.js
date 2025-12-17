@@ -253,6 +253,57 @@
     }
 
     /**
+     * Get the image path for an item
+     */
+    function getImagePath(item) {
+        // Map item IDs to actual image filenames where they differ
+        const imageMap = {
+            // Equipment nano items
+            'n-ammo': 'ammo',
+            'n-action': 'combat-stim',
+            'n-heal': 'heal-stim',
+            // Explosives
+            'n-nade': 'grenade',
+            'n-mine': 'mine',
+            // First Born
+            'n-engram': 'port-engram-n',
+            'n-event': 'sypher-orb-n',
+            'n-freeze': 'freeze-blast',
+            'n-key': 'first-key',
+            // Yamato items - map to their specific images
+            'yamato-common-pistol': 'common-pistol',
+            'yamato-knife': 'knife',
+            'yamato-machine-pistol': 'machine-pistol',
+            'yamato-military-pistol': 'military-pistol',
+            'yamato-storm-bracers': 'storm-bracers',
+            'yamato-merg-plating': 'merg-plating',
+            'yamato-military-coat': 'military-coat',
+            'yamato-empathic-cuffs': 'empathic-cuffs',
+            'yamato-ammo': 'n-ammo'
+        };
+
+        let imageId = imageMap[item.id] || item.id;
+        return `images/tokens/${item.product}/${imageId}.png`;
+    }
+
+    /**
+     * Get category icon for placeholder
+     */
+    function getCategoryIcon(category) {
+        const icons = {
+            'weapons': '⚔️',
+            'armor': '🛡️',
+            'equipment': '🎒',
+            'explosives': '💣',
+            'firstborn': '🔮',
+            'consumables': '💊',
+            'mission': '🎯',
+            'materials': '💎'
+        };
+        return icons[category] || '📦';
+    }
+
+    /**
      * Render a single item card
      */
     function renderItemCard(item) {
@@ -275,11 +326,22 @@
         // Product badge
         const productBadge = item.product === 'yamato' ? 'Yamato' : '';
 
+        // Image path
+        const imagePath = getImagePath(item);
+        const categoryIcon = getCategoryIcon(item.category);
+
         return `
             <div class="item-card ${isExpanded ? 'expanded' : ''}"
                  data-id="${item.id}"
                  data-color="${item.color}"
                  data-category="${item.category}">
+                <div class="item-image-container">
+                    <img class="item-image"
+                         src="${imagePath}"
+                         alt="${escapeHtml(item.name)}"
+                         onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\\'item-image-placeholder\\'>${categoryIcon}</div>';"
+                         loading="lazy">
+                </div>
                 <div class="item-header">
                     <h3 class="item-name">${escapeHtml(item.name)}</h3>
                     <div class="item-badges">
