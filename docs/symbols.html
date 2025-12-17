@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Item Card Symbols - Core Space Quick Reference</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Symbol Page Specific Styles */
+        .symbol-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
+        }
+
+        .symbol-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-left: 4px solid var(--color-secondary);
+            transition: all 0.3s;
+        }
+
+        .symbol-card:hover {
+            background: rgba(255,255,255,0.08);
+            transform: translateX(5px);
+        }
+
+        .symbol-card.weapon { border-left-color: #3498db; }
+        .symbol-card.armor { border-left-color: #f1c40f; }
+        .symbol-card.equipment { border-left-color: #e67e22; }
+        .symbol-card.firstborn { border-left-color: #2ecc71; }
+        .symbol-card.explosive { border-left-color: #e74c3c; }
+        .symbol-card.crystal { border-left-color: #9b59b6; }
+
+        .symbol-icon {
+            width: 48px;
+            height: 48px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .symbol-icon svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .symbol-info {
+            flex: 1;
+        }
+
+        .symbol-name {
+            font-weight: bold;
+            color: var(--color-primary);
+            margin-bottom: 4px;
+            font-size: 1.1em;
+        }
+
+        .symbol-desc {
+            font-size: 0.85em;
+            color: var(--color-text-muted);
+            line-height: 1.4;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(233, 69, 96, 0.3);
+        }
+
+        .category-header h2 {
+            margin: 0;
+            border: none;
+            padding: 0;
+        }
+
+        .category-badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75em;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .category-badge.weapon { background: rgba(52, 152, 219, 0.3); color: #3498db; }
+        .category-badge.armor { background: rgba(241, 196, 15, 0.3); color: #f1c40f; }
+        .category-badge.equipment { background: rgba(230, 126, 34, 0.3); color: #e67e22; }
+        .category-badge.firstborn { background: rgba(46, 204, 113, 0.3); color: #2ecc71; }
+        .category-badge.explosive { background: rgba(231, 76, 60, 0.3); color: #e74c3c; }
+        .category-badge.crystal { background: rgba(155, 89, 182, 0.3); color: #9b59b6; }
+
+        .example-cards {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+
+        .example-card {
+            background: rgba(0,0,0,0.3);
+            border-radius: 8px;
+            overflow: hidden;
+            max-width: 150px;
+        }
+
+        .example-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .example-card-label {
+            padding: 8px;
+            font-size: 0.75em;
+            text-align: center;
+            color: var(--color-text-muted);
+        }
+
+        .intro-section {
+            background: rgba(83, 168, 182, 0.1);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        .intro-section p {
+            margin: 10px 0;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+
+        .range-diagram {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 15px 0;
+            padding: 15px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 8px;
+        }
+
+        .range-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .range-label {
+            font-size: 0.8em;
+            color: var(--color-text-muted);
+        }
+
+        .legend-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 12px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 6px;
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+
+        .legend-color.blue { background: #3498db; }
+        .legend-color.yellow { background: #f1c40f; }
+        .legend-color.orange { background: #e67e22; }
+        .legend-color.green { background: #2ecc71; }
+        .legend-color.brown { background: #8b4513; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><a href="index.html">⚡ CORE SPACE ⚡</a></h1>
+            <div class="tagline">Item Card Symbols Reference</div>
+        </header>
+
+        <nav class="breadcrumb">
+            <a href="index.html">Home</a> <span>›</span> <a href="inventory.html">Inventory</a> <span>›</span> Symbols
+        </nav>
+
+        <a href="inventory.html" class="back-btn">← Back to Inventory</a>
+
+        <!-- Introduction -->
+        <div class="intro-section">
+            <h2 style="margin-top: 0;">Understanding Item Card Symbols</h2>
+            <p>Item cards in Core Space use a visual symbol system to quickly convey weapon stats, abilities, and special effects. This guide explains each symbol you'll find on item tokens.</p>
+            <p><strong>Token Border Colors:</strong></p>
+            <div class="legend-grid">
+                <div class="legend-item">
+                    <div class="legend-color blue"></div>
+                    <span>Blue = Weapons</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color yellow"></div>
+                    <span>Yellow = Armor</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color orange"></div>
+                    <span>Orange = Equipment</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color green"></div>
+                    <span>Green = First Born Tech</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color brown"></div>
+                    <span>Brown = Mission Items</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- RANGE & ATTACK VALUES -->
+        <div class="category-header">
+            <h2>Range & Attack Values</h2>
+            <span class="category-badge weapon">Combat Stats</span>
+        </div>
+
+        <div class="info-box">
+            Numbers inside shaped bubbles indicate how many dice you roll at different ranges or in different attack types.
+        </div>
+
+        <div class="symbol-grid">
+            <div class="symbol-card weapon">
+                <div class="symbol-icon">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8 28C8 20 14 14 24 14C34 14 40 20 40 28C40 32 38 36 24 36C10 36 8 32 8 28Z" fill="#fff" stroke="#333" stroke-width="2"/>
+                        <text x="24" y="30" text-anchor="middle" font-size="14" font-weight="bold" fill="#333">3</text>
+                    </svg>
+                </div>
+                <div class="symbol-info">
+                    <div class="symbol-name">Short Range</div>
+                    <div class="symbol-desc">Dice rolled for targets 0-5" away. Cloud-shaped bubble.</div>
+                </div>
+            </div>
+
+            <div class="symbol-card weapon">
+                <div class="symbol-icon">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6 24C6 18 12 12 24 12C36 12 42 18 42 24C42 30 36 32 24 32C12 32 6 30 6 24Z" fill="#fff" stroke="#333" stroke-width="2"/>
+                        <path d="M24 32L24 40L20 36" stroke="#333" stroke-width="2" fill="none"/>
+                        <text x="24" y="26" text-anchor="middle" font-size="14" font-weight="bold" fill="#333">2</text>
+                    </svg>
+                </div>
+                <div class="symbol-info">
+                    <div class="symbol-name">Medium Range</div>
+                    <div class="symbol-desc">Dice rolled for targets 5-13" away. Speech bubble with small tail.</div>
+                </div>
+            </div>
+
+            <div class="symbol-card weapon">
+                <div class="symbol-icon">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6 22C6 16 12 10 24 10C36 10 42 16 42 22C42 28 36 30 24 30C12 30 6 28 6 22Z" fill="#fff" stroke="#333" stroke-width="2"/>
+                        <path d="M24 30L24 42L18 36" stroke="#333" stroke-width="2" fill="none"/>
+                        <text x="24" y="24" text-anchor="middle" font-size="14" font-weight="bold" fill="#333">1</text>
+                    </svg>
+                </div>
+                <div class="symbol-info">
+                    <div class="symbol-name">Long Range</div>
+                    <div class="symbol-desc">Dice rolled for targets 13"+ away. Speech bubble with long tail.</div>
+                </div>
+            </div>
+
+            <div class="symbol-card weapon">
+                <div class="symbol-icon">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M24 6L28 18H40L30 26L34 38L24 30L14 38L18 26L8 18H20L24 6Z" fill="#fff" stroke="#333" stroke-width="2"/>
+                        <text x="24" y="28" text-anchor="middle" font-size="12" font-weight="bold" fill="#333">4</text>
+                    </svg>
+                </div>
+                <div class="symbol-info">
+                    <div class="symbol-name">Heavy Attack</div>
+                    <div class="symbol-desc">Dice for heavy/power attacks. Star/burst shape. Uses extra action.</div>
+                </div>
+            </div>
+
+            <div class="symbol-card weapon">
+                <div class="symbol-icon">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 16L38 16L44 28L38 28L32 40L26 28L10 28Z" fill="#fff" stroke="#333" stroke-width="2"/>
+                        <text x="24" y="24" text-anchor="middle" font-size="12" font-weight="bold" fill="#333">2</text>
+                    </svg>
+                </div>
+                <div class="symbol-info">
+                    <div class="symbol-name">Throw</div>
+                    <div class="symbol-desc">Dice for throwing the item. Arrow-shaped bubble pointing down.</div>
+                </div>
+            </div>
+
+            <div class="symbol-card weapon">
+                <div class="symbol-icon">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="24" cy="24" r="16" fill="#fff" stroke="#333" stroke-width="2"/>
+                        <path d="M24 12V16M24 32V36M12 24H16M32 24H36" stroke="#333" stroke-width="2"/>
+                        <text x="24" y="28" text-anchor="middle" font-size="12" font-weight="bold" fill="#333">3</text>
+                    </svg>
+                </div>
+                <div class="symbol-info">
+                    <div class="symbol-name">Close Combat</div>
+                    <div class="symbol-desc">Dice for base-to-base melee attacks. Circular/rounded shape.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- COMBAT ABILITIES -->
+        <div class="category-header">
+            <h2>Combat Ability Icons</h2>
+            <span class="category-badge weapon">Weapons</span>
+        </div>
+
+        <div class="symbol-grid">
+            <div class="symbol-card weapon">
+                <div class="symbol-icon">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="24" cy="24" r="14" fill="none" stroke="#3498db" stroke-width="3"/>
+                        <path d="M24 14V20M24 28V34M14 24H20M28 24H34" stroke="#3498db" stroke-width="2"/>
+                        <circle cx="24" cy="24" r="4" fill="#3498db"/>
+                    </svg>
+                </div>
+                <div class="symbol-info">
+                    <div class="symbol-name">Reliable (Single Gear)</div>
+                    <div class="symbol-desc">Re-roll ONE missed die. Shown as a gear/cog icon.</div>
+                </div>
+            </div>
+
+            <div class="symbol-card weapon">
+                <div class="symbol-icon">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="18" cy="24" r="10" fill="none" stroke="#f39c12" stroke-width="2"/>
+                        <path d="M18 16V20M18 28V32M10 24H14M22 24H26" stroke="#f39c12" stroke-width="2"/>
+                        <circle cx="18" cy="24" r="3" fill="#f39c12"/>
+                        <circle cx="32" cy="24" r="10" fill="none" stroke="#f39c12" stroke-width="2"/>
+                        <path d="M32 16V20M32 28V32M24 24H28M36 24H40" stroke="#f39c12" stroke-width="2"/>
+                        <circle cx="32" cy="24" r="3" fill="#f39c12"/>
+                    </svg>
+                </div>
+                <div class="symbol-info">
+                    <div class="symbol-name">Super Reliable (Double Gear)</div>
+                    <div class="symbol-desc">Re-roll ALL missed dice. Shown as two overlapping gears.</div>
+                </div>
+            </div>
+
+            <div class="symbol-card weapon">
+                <div class="symbol-icon">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <ellipse cx="24" cy="30" rx="8" ry="12" fill="#e74c3c"/>
+                        <ellipse cx="24" cy="20" rx="4" ry="6" fill="#f39c12"/>
+                        <ellipse cx="24" cy="14" rx="2" ry="3" fill="#f1c40f"/>
+                    </svg>
+                </div>
+                <div class="symbol-info">
+                    <div class="symbol-name">Burst (Flame/Bullet)</div>
+                    <div class="symbol-desc">Fire additional shots. Burst 1 = +1 shot, Burst 2 = +2 shots. Uses extra ammo.</div>
+                </div>
+            </div>
+
+            <div class="symbol-card weapon">
+                <div class="symbol-icon">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M28 8L18 24H26L20 40L36 20H26L32 8H28Z" fill="#f1c40f" stroke="#e67e22" stroke-width="2"/>
+                    </svg>
+                </div>
+                <div class="symbol-info">
+                    <div class="symbol-name">Full Charge (Lightning)</div>
+                    <div class="symbol-desc">Energy weapon - no ammo required. Never needs reloading.</div>
+                </div>
+            </div>
+
+            <div class="symbol-card weapon">
+                <div class="symbol-icon">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="24" cy="24" r="10" fill="none" stroke="#888" stroke-width="2"/>
+                        <path d="M20 20L28 28M28 20L20 28" stroke="#e74c3c" stroke-width="3"/>
+                        <path d="M34 18C38 14 42 14 44 16" stroke="#888" stroke-width="2" fill="none"/>
+                        <path d="M34 30C38 34 42 34 44 32" stroke="#888" stroke-width="2" fill="none"/>
+                    </svg>
+                </div>
+                <div class="symbol-info">
+                    <div class="symbol-name">Silent (Crossed Speaker)</div>
+                    <div class="symbol-desc">Does not add peg to hostility tracker when fired.</div>
+                </div>
+            </div>
+
+            <div class="symbol-card weapon">
+                <div class="symbol-icon">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="24" cy="24" r="14" fill="none" stroke="#e74c3c" stroke-width="2"/>
+                        <circle cx="24" cy="24" r="8" fill="none" stroke="#e74c3c" stroke-width="2"/>
+                        <circle cx="24" cy="24" r="3" fill="#e74c3c"/>
+                        <path d="M24 6V12M24 36V42M6 24H12M36 24H42" stroke="#e74c3c" stroke-width="2"/>
+                    </svg>
+                </div>
+                <div class="symbol-info">
+                    <div class="symbol-name">Target Lock (Crosshair)</div>
+                    <div class="symbol-desc">Lock onto target for attack bonus. Used with targeting devices.</div>
+                </div>
+            </div>
+
+            <div class="symbol-card weapon">
+                <div class="symbol-icon">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 24C12 18 18 14 24 14C30 14 34 18 34 24" stroke="#3498db" stroke-width="3" fill="none"/>
+                        <path d="M30 20L34 24L30 28" stroke="#3498db" stroke-width="3" fill="none"/>
+                        <path d="M34 24C34 30 30 34 24 34C18 34 14 30 14 24" stroke="#3498db" stroke-width="3" fill="none" stroke-dasharray="4 2"/>
+                    </svg>
+                </div>
+                <div class="symbol-info">
+                    <div class="symbol-name">Ammo Returns (Curved Arrow)</div>
+                    <div class="symbol-desc">Ammunition returns after use - doesn't consume ammo pegs.</div>
+                </div>
+            </div>
+
+            <div class="symbol-card weapon">
+                <div class="symbol-icon">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8 24C8 24 8 44 8 44" stroke="#2ecc71" stroke-width="4" stroke-linecap="round"/>
+                        <text x="28" y="30" font-size="18" font-weight="bold" fill="#2ecc71">∞</text>
+                    </svg>
+                </div>
+                <div class="symbol-info">
+                    <div class="symbol-name">Infinite (∞ Symbol)</div>
+                    <div class="symbol-desc">Never runs out of ammunition. Unlimited shots.</div>
+                </div>
+            </div>
+
+            <div class="symbol-card weapon">
+                <div class="symbol-icon">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <ellipse cx="24" cy="32" rx="10" ry="8" fill="#555" stroke="#333" stroke-width="2"/>
+                        <rect x="20" y="12" width="8" height="16" rx="2" fill="#666" stroke="#333" stroke-width="2"/>
+                        <rect x="30" y="28" width="12" height="6" rx="2" fill="#777" stroke="#333"/>
+                        <text x="38" y="34" font-size="8" font-weight="bold" fill="#fff">m</text>
+                    </svg>
+                </div>
+                <div class="symbol-info">
+                    <div class="symbol-name">Grenade Launcher</div>
+                    <div class="symbol-desc">Can launch grenades. Shows range (s/m/l) for grenade attacks.</div>
+                </div>
+            </div>
+
+            <div class="symbol-card weapon">
+                <div class="symbol-icon">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="24" cy="26" r="10" fill="none" stroke="#e74c3c" stroke-width="2"/>
+                        <circle cx="24" cy="26" r="5" fill="none" stroke="#e74c3c" stroke-width="2"/>
+                        <circle cx="24" cy="26" r="2" fill="#e74c3c"/>
+                        <path d="M14 26H18M30 26H34M24 16V20M24 32V36" stroke="#e74c3c" stroke-width="2"/>
+                    </svg>
+                </div>
+                <div class="symbol-info">
+                    <div class="symbol-name">Re-roll Ranged (Target Circle)</div>
+                    <div class="symbol-desc">Re-roll dice on ranged attacks only. Circular target icon.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DEFENSE SYMBOLS -->
+        <div class="category-header">
+            <h2>Defense & Armor Symbols</h2>
+            <span class="category-badge armor">Armor</span>
+        </div>
+
+        <div class="symbol-grid">
+            <div class="symbol-card armor">
+                <div class="symbol-icon">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M24 6L8 14V26C8 34 14 42 24 46C34 42 40 34 40 26V14L24 6Z" fill="#f1c40f" stroke="#d4a00a" stroke-width="2"/>
+                        <text x="24" y="32" text-anchor="middle" font-size="16" font-weight="bold" fill="#333">1</text>
+                    </svg>
+                </div>
+                <div class="symbol-info">
+                    <div class="symbol-name">Physical Armour (Solid Shield)</div>
+                    <div class="symbol-desc">Reduces incoming damage. Permanent protection - doesn't deplete.</div>
+                </div>
+            </div>
+
+            <div class="symbol-card armor">
+                <div class="symbol-icon">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M24 6L8 14V26C8 34 14 42 24 46C34 42 40 34 40 26V14L24 6Z" fill="none" stroke="#3498db" stroke-width="2"/>
+                        <path d="M24 10L12 16V26C12 32 16 38 24 42C32 38 36 32 36 26V16L24 10Z" fill="none" stroke="#3498db" stroke-width="2"/>
+                        <text x="24" y="32" text-anchor="middle" font-size="14" font-weight="bold" fill="#3498db">2</text>
+                    </svg>
+                </div>
+                <div class="symbol-info">
+                    <div class="symbol-name">Energy Shield (Double Line Shield)</div>
+                    <div class="symbol-desc">Absorbs damage but overloads if any damage gets through. Must recharge.</div>
+                </div>
+            </div>
+
+            <div class="symbol-card armor">
+                <div class="symbol-icon">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M24 6L8 14V26C8 34 14 42 24 46C34 42 40 34 40 26V14L24 6Z" fill="#f1c40f" stroke="#d4a00a" stroke-width="2"/>
+                        <path d="M16 16L32 36" stroke="#e74c3c" stroke-width="4"/>
+                    </svg>
+                </div>
+                <div class="symbol-info">
+                    <div class="symbol-name">Ignore Armour (Shield + Slash)</div>
+                    <div class="symbol-desc">Attack bypasses physical armour completely.</div>
+                </div>
+            </div>
+
+            <div class="symbol-card armor">
+                <div class="symbol-icon">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M24 6L8 14V26C8 34 14 42 24 46C34 42 40 34 40 26V14L24 6Z" fill="none" stroke="#3498db" stroke-width="2"/>
+                        <circle cx="24" cy="26" r="8" fill="#3498db" opacity="0.3"/>
+                        <path d="M16 16L32 36" stroke="#e74c3c" stroke-width="4"/>
+                    </svg>
+                </div>
+                <div class="symbol-info">
+                    <div class="symbol-name">Ignore Shield (Blue Shield + Slash)</div>
+                    <div class="symbol-desc">Attack bypasses energy shields completely.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- EQUIPMENT ACTIONS -->
+        <div class="category-header">
+            <h2>Equipment & Action Symbols</h2>
+            <span class="category-badge equipment">Equipment</span>
+        </div>
+
+        <div class="symbol-grid">
+            <div class="symbol-card equipment">
+                <div class="symbol-icon">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 24L20 32L36 16" stroke="#2ecc71" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="symbol-info">
+                    <div class="symbol-name">Effortless (Checkmark)</div>
+                    <div class="symbol-desc">Use as a free effortless action. One effortless action per turn.</div>
+                </div>
+            </div>
+
+            <div class="symbol-card equipment">
+                <div class="symbol-icon">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M14 18C14 14 18 10 24 10C30 10 34 14 34 18" stroke="#9b59b6" stroke-width="3" fill="none"/>
+                        <path d="M30 14L34 18L30 22" stroke="#9b59b6" stroke-width="3" fill="none"/>
+                        <path d="M34 30C34 34 30 38 24 38C18 38 14 34 14 30" stroke="#9b59b6" stroke-width="3" fill="none"/>
+                        <path d="M18 34L14 30L18 26" stroke="#9b59b6" stroke-width="3" fill="none"/>
+                    </svg>
+                </div>
+                <div class="symbol-info">
+                    <div class="symbol-name">Flip (Two-Way Arrow)</div>
+                    <div class="symbol-desc">Token can be flipped to show different ability/state. Rotating item.</div>
+                </div>
+            </div>
+
+            <div class="symbol-card equipment">
+                <div class="symbol-icon">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18 10H30L32 16H36V38H12V16H16L18 10Z" fill="#888" stroke="#666" stroke-width="2"/>
+                        <path d="M20 20L28 28M28 20L20 28" stroke="#fff" stroke-width="2"/>
+                    </svg>
+                </div>
+                <div class="symbol-info">
+                    <div class="symbol-name">Discard (Trash Can)</div>
+                    <div class="symbol-desc">Single use item. Discard after using.</div>
+                </div>
+            </div>
+
+            <div class="symbol-card equipment">
+                <div class="symbol-icon">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 36L12 28L16 24L8 16L16 8L24 16L28 12L36 20L28 28L32 32L24 40L20 36Z" fill="#e67e22" stroke="#d35400" stroke-width="2"/>
+                    </svg>
+                </div>
+                <div class="symbol-info">
+                    <div class="symbol-name">Repair (Wrench)</div>
+                    <div class="symbol-desc">Repair damaged items or heal mechanical characters.</div>
+                </div>
+            </div>
+
+            <div class="symbol-card equipment">
+                <div class="symbol-icon">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="20" cy="20" r="10" fill="none" stroke="#3498db" stroke-width="3"/>
+                        <path d="M28 28L40 40" stroke="#3498db" stroke-width="4" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <div class="symbol-info">
+                    <div class="symbol-name">Search (Magnifying Glass)</div>
+                    <div class="symbol-desc">Enhanced search ability. May also appear as "SEARCH" text label.</div>
+                </div>
+            </div>
+
+            <div class="symbol-card equipment">
+                <div class="symbol-icon">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="8" y="18" width="12" height="12" rx="2" fill="#e67e22" stroke="#d35400" stroke-width="2"/>
+                        <rect x="28" y="18" width="12" height="12" rx="2" fill="#e67e22" stroke="#d35400" stroke-width="2"/>
+                        <path d="M20 22L28 26M20 26L28 22" stroke="#fff" stroke-width="2"/>
+                    </svg>
+                </div>
+                <div class="symbol-info">
+                    <div class="symbol-name">Swap (Exchange Icon)</div>
+                    <div class="symbol-desc">Swap items with another trader at any distance (walkie talkie).</div>
+                </div>
+            </div>
+
+            <div class="symbol-card equipment">
+                <div class="symbol-icon">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16" y="16" width="16" height="20" rx="2" fill="#2ecc71" stroke="#27ae60" stroke-width="2"/>
+                        <path d="M24 12V16" stroke="#27ae60" stroke-width="2"/>
+                        <path d="M20 22H28M24 22V30" stroke="#fff" stroke-width="3"/>
+                        <text x="24" y="44" text-anchor="middle" font-size="10" font-weight="bold" fill="#2ecc71">+4</text>
+                    </svg>
+                </div>
+                <div class="symbol-info">
+                    <div class="symbol-name">Heal (Cross + Number)</div>
+                    <div class="symbol-desc">Restore health points. Number shows amount healed.</div>
+                </div>
+            </div>
+
+            <div class="symbol-card equipment">
+                <div class="symbol-icon">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="10" y="14" width="28" height="20" rx="4" fill="#555" stroke="#333" stroke-width="2"/>
+                        <rect x="14" y="18" width="8" height="6" fill="#f1c40f"/>
+                        <rect x="14" y="26" width="8" height="4" fill="#f1c40f"/>
+                        <rect x="26" y="18" width="8" height="6" fill="#f1c40f"/>
+                        <rect x="26" y="26" width="8" height="4" fill="#f1c40f"/>
+                    </svg>
+                </div>
+                <div class="symbol-info">
+                    <div class="symbol-name">Ammo (Ammo Box)</div>
+                    <div class="symbol-desc">Reload weapon. Restores ammo pegs to weapons.</div>
+                </div>
+            </div>
+
+            <div class="symbol-card equipment">
+                <div class="symbol-icon">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16 34L8 26L16 18" stroke="#3498db" stroke-width="3" fill="none"/>
+                        <path d="M32 34L40 26L32 18" stroke="#3498db" stroke-width="3" fill="none"/>
+                        <text x="24" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#3498db">3</text>
+                    </svg>
+                </div>
+                <div class="symbol-info">
+                    <div class="symbol-name">Scramble (Movement Arrows)</div>
+                    <div class="symbol-desc">Special movement. Numbers show squares moved. Jump packs use this.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- EXPLOSIVE SYMBOLS -->
+        <div class="category-header">
+            <h2>Explosive Symbols</h2>
+            <span class="category-badge explosive">Explosives</span>
+        </div>
+
+        <div class="symbol-grid">
+            <div class="symbol-card explosive">
+                <div class="symbol-icon">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M24 8L28 16L38 16L30 22L34 32L24 26L14 32L18 22L10 16L20 16L24 8Z" fill="#e74c3c" stroke="#c0392b" stroke-width="2"/>
+                        <text x="24" y="24" text-anchor="middle" font-size="10" font-weight="bold" fill="#fff">4</text>
+                    </svg>
+                </div>
+                <div class="symbol-info">
+                    <div class="symbol-name">Grenade Damage (Burst Shape)</div>
+                    <div class="symbol-desc">Center damage value. Three numbers show: center / adjacent / 2 squares.</div>
+                </div>
+            </div>
+
+            <div class="symbol-card explosive">
+                <div class="symbol-icon">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <ellipse cx="24" cy="28" rx="14" ry="10" fill="#555" stroke="#333" stroke-width="2"/>
+                        <ellipse cx="24" cy="26" rx="10" ry="6" fill="#666"/>
+                        <circle cx="24" cy="24" r="4" fill="#2ecc71"/>
+                    </svg>
+                </div>
+                <div class="symbol-info">
+                    <div class="symbol-name">Mine (Disc Shape)</div>
+                    <div class="symbol-desc">Placed explosive. Detonates when enemy moves adjacent.</div>
+                </div>
+            </div>
+
+            <div class="symbol-card explosive">
+                <div class="symbol-icon">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 24L24 12L36 24L24 36L12 24Z" fill="#9b59b6" stroke="#8e44ad" stroke-width="2"/>
+                        <text x="24" y="28" text-anchor="middle" font-size="10" font-weight="bold" fill="#fff">2</text>
+                    </svg>
+                </div>
+                <div class="symbol-info">
+                    <div class="symbol-name">Freeze (Diamond/Snowflake)</div>
+                    <div class="symbol-desc">Freezes targets. Number shows range and/or effect value.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FIRST BORN TECH -->
+        <div class="category-header">
+            <h2>First Born Technology</h2>
+            <span class="category-badge firstborn">Alien Tech</span>
+        </div>
+
+        <div class="symbol-grid">
+            <div class="symbol-card firstborn">
+                <div class="symbol-icon">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="24" cy="24" r="14" fill="none" stroke="#2ecc71" stroke-width="2" stroke-dasharray="6 3"/>
+                        <circle cx="24" cy="24" r="8" fill="none" stroke="#2ecc71" stroke-width="2"/>
+                        <text x="24" y="28" text-anchor="middle" font-size="12" font-weight="bold" fill="#2ecc71">5</text>
+                    </svg>
+                </div>
+                <div class="symbol-info">
+                    <div class="symbol-name">Dyson Energy (Dashed Circle)</div>
+                    <div class="symbol-desc">Dyson energy value. Used for First Born tech attacks.</div>
+                </div>
+            </div>
+
+            <div class="symbol-card firstborn">
+                <div class="symbol-icon">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="24" cy="24" r="10" fill="#e74c3c"/>
+                        <circle cx="24" cy="24" r="6" fill="#f39c12"/>
+                        <circle cx="24" cy="24" r="3" fill="#f1c40f"/>
+                    </svg>
+                </div>
+                <div class="symbol-info">
+                    <div class="symbol-name">Dyson Throw (Fireball)</div>
+                    <div class="symbol-desc">Thrown Dyson energy attack. Ranged First Born assault.</div>
+                </div>
+            </div>
+
+            <div class="symbol-card firstborn">
+                <div class="symbol-icon">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="24" cy="24" r="12" fill="none" stroke="#2ecc71" stroke-width="2" stroke-dasharray="4 2"/>
+                        <path d="M36 24L44 24M40 20L44 24L40 28" stroke="#2ecc71" stroke-width="2"/>
+                    </svg>
+                </div>
+                <div class="symbol-info">
+                    <div class="symbol-name">Dyson Range (Circle + Arrow)</div>
+                    <div class="symbol-desc">Dyson energy ranged attack. Projects energy at distance.</div>
+                </div>
+            </div>
+
+            <div class="symbol-card firstborn">
+                <div class="symbol-icon">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M24 8C20 8 16 12 16 18C16 24 20 30 20 36C20 40 22 44 24 44C26 44 28 40 28 36C28 30 32 24 32 18C32 12 28 8 24 8Z" fill="#9b59b6" opacity="0.5" stroke="#8e44ad" stroke-width="2"/>
+                        <circle cx="24" cy="20" r="4" fill="#9b59b6"/>
+                    </svg>
+                </div>
+                <div class="symbol-info">
+                    <div class="symbol-name">Phase (Ghost Shape)</div>
+                    <div class="symbol-desc">Phase through walls/obstacles. Ignores terrain for movement.</div>
+                </div>
+            </div>
+
+            <div class="symbol-card firstborn">
+                <div class="symbol-icon">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="24" cy="24" r="10" fill="none" stroke="#2ecc71" stroke-width="2"/>
+                        <path d="M24 14C24 14 18 20 18 24C18 28 24 34 24 34" stroke="#2ecc71" stroke-width="2"/>
+                        <path d="M18 18L14 14M30 18L34 14M18 30L14 34M30 30L34 34" stroke="#2ecc71" stroke-width="2"/>
+                    </svg>
+                </div>
+                <div class="symbol-info">
+                    <div class="symbol-name">Scatter (Teleport Circle)</div>
+                    <div class="symbol-desc">Teleport/scatter to new location. Random or controlled displacement.</div>
+                </div>
+            </div>
+
+            <div class="symbol-card firstborn">
+                <div class="symbol-icon">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 24C12 18 18 14 24 14C30 14 34 18 34 24" stroke="#2ecc71" stroke-width="3" fill="none"/>
+                        <path d="M30 20L34 24L30 28" stroke="#2ecc71" stroke-width="3" fill="none"/>
+                        <path d="M34 24C34 30 30 34 24 34C18 34 14 30 14 24" stroke="#2ecc71" stroke-width="3" fill="none"/>
+                        <path d="M18 28L14 24L18 20" stroke="#2ecc71" stroke-width="3" fill="none"/>
+                    </svg>
+                </div>
+                <div class="symbol-info">
+                    <div class="symbol-name">Boomerang (Return Path)</div>
+                    <div class="symbol-desc">Thrown item returns to user. Doesn't consume the item.</div>
+                </div>
+            </div>
+
+            <div class="symbol-card firstborn">
+                <div class="symbol-icon">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <ellipse cx="24" cy="16" rx="12" ry="8" fill="#2ecc71" opacity="0.3"/>
+                        <circle cx="18" cy="14" r="3" fill="#fff"/>
+                        <circle cx="30" cy="14" r="3" fill="#fff"/>
+                        <circle cx="18" cy="14" r="1.5" fill="#000"/>
+                        <circle cx="30" cy="14" r="1.5" fill="#000"/>
+                        <path d="M16 26C16 26 20 32 24 32C28 32 32 26 32 26" stroke="#2ecc71" stroke-width="2"/>
+                        <path d="M20 36L24 44L28 36" fill="#2ecc71"/>
+                    </svg>
+                </div>
+                <div class="symbol-info">
+                    <div class="symbol-name">First Born (Alien Face)</div>
+                    <div class="symbol-desc">First Born technology indicator. Item has alien origin/properties.</div>
+                </div>
+            </div>
+
+            <div class="symbol-card firstborn">
+                <div class="symbol-icon">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="24" cy="24" r="12" fill="none" stroke="#9b59b6" stroke-width="2"/>
+                        <path d="M16 32L32 16" stroke="#9b59b6" stroke-width="2"/>
+                        <path d="M24 14V22M24 26V34M14 24H22M26 24H34" stroke="#9b59b6" stroke-width="2" stroke-dasharray="2 2"/>
+                    </svg>
+                </div>
+                <div class="symbol-info">
+                    <div class="symbol-name">Deflect (Bouncing Lines)</div>
+                    <div class="symbol-desc">Deflect incoming attacks back at attacker or redirect.</div>
+                </div>
+            </div>
+
+            <div class="symbol-card firstborn">
+                <div class="symbol-icon">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="12" y="14" width="24" height="20" rx="2" fill="#333" stroke="#2ecc71" stroke-width="2"/>
+                        <ellipse cx="24" cy="24" rx="6" ry="8" fill="#2ecc71" opacity="0.5"/>
+                        <circle cx="24" cy="20" r="2" fill="#2ecc71"/>
+                        <path d="M20 28L24 32L28 28" stroke="#2ecc71" stroke-width="2"/>
+                    </svg>
+                </div>
+                <div class="symbol-info">
+                    <div class="symbol-name">Fade to Black (Monitor + Figure)</div>
+                    <div class="symbol-desc">Become invisible/hidden. Enemies cannot target you.</div>
+                </div>
+            </div>
+
+            <div class="symbol-card firstborn">
+                <div class="symbol-icon">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="24" cy="24" r="10" fill="#2ecc71" stroke="#27ae60" stroke-width="2"/>
+                        <circle cx="24" cy="24" r="4" fill="#fff"/>
+                        <path d="M24 8V14M24 34V40" stroke="#2ecc71" stroke-width="2"/>
+                    </svg>
+                </div>
+                <div class="symbol-info">
+                    <div class="symbol-name">Infra Lens (Eye Icon)</div>
+                    <div class="symbol-desc">See through obstacles. Ignore cover for targeting.</div>
+                </div>
+            </div>
+
+            <div class="symbol-card firstborn">
+                <div class="symbol-icon">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M24 10L26 20L36 22L26 24L24 34L22 24L12 22L22 20L24 10Z" fill="#e74c3c" stroke="#c0392b" stroke-width="2"/>
+                    </svg>
+                </div>
+                <div class="symbol-info">
+                    <div class="symbol-name">Blast (Explosion Star)</div>
+                    <div class="symbol-desc">Area effect blast. Damages all models in range.</div>
+                </div>
+            </div>
+
+            <div class="symbol-card firstborn">
+                <div class="symbol-icon">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M24 12L20 24H14L18 32L14 44H20L24 36L28 44H34L30 32L34 24H28L24 12Z" fill="#2ecc71" stroke="#27ae60" stroke-width="2"/>
+                    </svg>
+                </div>
+                <div class="symbol-info">
+                    <div class="symbol-name">Auto Close Hit (Fist)</div>
+                    <div class="symbol-desc">Automatic hit in close combat. No roll needed.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CRYSTAL COSTS -->
+        <div class="category-header">
+            <h2>Crystal Requirements</h2>
+            <span class="category-badge crystal">Crafting</span>
+        </div>
+
+        <div class="info-box">
+            Some items require crystals to craft. Crystals are found on the board and each type has different rarity.
+        </div>
+
+        <div class="symbol-grid">
+            <div class="symbol-card crystal">
+                <div class="symbol-icon">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M24 8L32 18L32 32L24 42L16 32L16 18L24 8Z" fill="#2ecc71" stroke="#27ae60" stroke-width="2"/>
+                        <path d="M24 8L24 42M16 18L32 18M16 32L32 32" stroke="#27ae60" stroke-width="1" opacity="0.5"/>
+                    </svg>
+                </div>
+                <div class="symbol-info">
+                    <div class="symbol-name">Green Crystal</div>
+                    <div class="symbol-desc">Common crystal. Most frequently found. Basic crafting material.</div>
+                </div>
+            </div>
+
+            <div class="symbol-card crystal">
+                <div class="symbol-icon">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M24 8L32 18L32 32L24 42L16 32L16 18L24 8Z" fill="#e67e22" stroke="#d35400" stroke-width="2"/>
+                        <path d="M24 8L24 42M16 18L32 18M16 32L32 32" stroke="#d35400" stroke-width="1" opacity="0.5"/>
+                    </svg>
+                </div>
+                <div class="symbol-info">
+                    <div class="symbol-name">Orange Crystal</div>
+                    <div class="symbol-desc">Uncommon crystal. Moderately rare. Used for weapon upgrades.</div>
+                </div>
+            </div>
+
+            <div class="symbol-card crystal">
+                <div class="symbol-icon">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M24 8L32 18L32 32L24 42L16 32L16 18L24 8Z" fill="#9b59b6" stroke="#8e44ad" stroke-width="2"/>
+                        <path d="M24 8L24 42M16 18L32 18M16 32L32 32" stroke="#8e44ad" stroke-width="1" opacity="0.5"/>
+                    </svg>
+                </div>
+                <div class="symbol-info">
+                    <div class="symbol-name">Purple Crystal</div>
+                    <div class="symbol-desc">Rare crystal. Hard to find. Required for advanced First Born tech.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- EXAMPLE CARDS SECTION -->
+        <div class="category-header">
+            <h2>Example Item Cards</h2>
+        </div>
+
+        <div class="info-box">
+            <p>Here are example item cards showing how these symbols appear in practice:</p>
+        </div>
+
+        <div class="example-cards">
+            <div class="example-card">
+                <img src="images/tokens/first-born/combat-rifle-custom.png" alt="Combat Rifle Custom">
+                <div class="example-card-label">Combat Rifle: 2 short, 1 medium, reliable, burst</div>
+            </div>
+            <div class="example-card">
+                <img src="images/tokens/first-born/energy-pistol.png" alt="Energy Pistol">
+                <div class="example-card-label">Energy Pistol: 2/2 dice, full charge</div>
+            </div>
+            <div class="example-card">
+                <img src="images/tokens/first-born/combat-vest.png" alt="Combat Vest">
+                <div class="example-card-label">Combat Vest: 1 armour</div>
+            </div>
+            <div class="example-card">
+                <img src="images/tokens/first-born/jump-pack.png" alt="Jump Pack">
+                <div class="example-card-label">Jump Pack: scramble 3/5, effortless, flip</div>
+            </div>
+            <div class="example-card">
+                <img src="images/tokens/first-born/grenade.png" alt="Grenade">
+                <div class="example-card-label">Grenade: 4/3/1 damage, discard</div>
+            </div>
+            <div class="example-card">
+                <img src="images/tokens/first-born/bracer.png" alt="Bracer">
+                <div class="example-card-label">Bracer: 2/3 range, effortless, silent, infinite</div>
+            </div>
+        </div>
+
+        <!-- Quick Reference Table -->
+        <div class="section" style="margin-top: 30px;">
+            <div class="section-title">Quick Symbol Reference</div>
+            <table>
+                <tr>
+                    <th>Symbol</th>
+                    <th>Name</th>
+                    <th>Effect</th>
+                </tr>
+                <tr><td>✓</td><td>Effortless</td><td>Free action (one per turn)</td></tr>
+                <tr><td>⚙️</td><td>Reliable</td><td>Re-roll one miss</td></tr>
+                <tr><td>⚙️⚙️</td><td>Super Reliable</td><td>Re-roll all misses</td></tr>
+                <tr><td>⚡</td><td>Full Charge</td><td>No ammo needed</td></tr>
+                <tr><td>🔥</td><td>Burst</td><td>Extra shots (uses ammo)</td></tr>
+                <tr><td>🔇</td><td>Silent</td><td>No hostility peg</td></tr>
+                <tr><td>🎯</td><td>Target Lock</td><td>Lock on for bonus</td></tr>
+                <tr><td>↩️</td><td>Ammo Returns</td><td>Doesn't consume ammo</td></tr>
+                <tr><td>∞</td><td>Infinite</td><td>Unlimited ammo</td></tr>
+                <tr><td>↔️</td><td>Flip</td><td>Rotating ability</td></tr>
+                <tr><td>🗑️</td><td>Discard</td><td>Single use</td></tr>
+                <tr><td>🔧</td><td>Repair</td><td>Fix items/mechs</td></tr>
+                <tr><td>🛡️</td><td>Armour</td><td>Permanent damage reduction</td></tr>
+                <tr><td>🛡️🛡️</td><td>Shield</td><td>Absorbs but can overload</td></tr>
+                <tr><td>🔮</td><td>Dyson</td><td>First Born energy system</td></tr>
+                <tr><td>👻</td><td>Phase</td><td>Move through terrain</td></tr>
+                <tr><td>🪃</td><td>Boomerang</td><td>Returns after throw</td></tr>
+            </table>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <div style="margin-bottom: 10px; color: #53a8b6;">
+                📖 For complete item listings:
+            </div>
+            <div class="guide-links">
+                <a href="inventory.html" class="guide-link">📦 Full Inventory</a>
+                <a href="index.html" class="guide-link">🏠 Home</a>
+            </div>
+            <div style="margin-top: 15px; font-size: 0.75em; color: #888;">
+                Core Space © Battle Systems Ltd | Quick Reference Hub v2.0
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
