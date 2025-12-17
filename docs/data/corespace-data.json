@@ -1122,6 +1122,15 @@
           "isBetweenGame": true,
           "description": "Trade Phase: Perform one of the following: re-roll a Ship Repair cost result, re-roll a Raw Blue sale price result, or sell one item for its buy value (maximum 10UA).",
           "pegCost": 1
+        },
+        {
+          "level": 2,
+          "variant": "between-game",
+          "isPassive": false,
+          "isReaction": false,
+          "isBetweenGame": true,
+          "description": "Trade Phase: Deduct up to 2UA from the buy prices or add 2UA to the sale prices of up to three items, in any combination.",
+          "pegCost": 1
         }
       ],
       "summary": "Re-roll trade costs or sell items at better prices between games."
