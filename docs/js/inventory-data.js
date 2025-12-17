@@ -212,7 +212,7 @@ const INVENTORY_DATA = {
         { id: 'dyson-draw-3', name: 'Dyson Draw (3)', category: 'firstborn', subcategory: 'dyson', color: 'green', size: 'sm', product: 'first-born', count: 1, buy: null, sell: 5, stats: { dyson: 3 }, icons: ['dyson-throw'] },
         { id: 'dyson-vent-5', name: 'Dyson Vent (5)', category: 'firstborn', subcategory: 'dyson', color: 'green', size: 'sm', product: 'first-born', count: 1, buy: null, sell: 8, stats: { dyson: 5 }, icons: ['dyson-range'] },
         { id: 'dyson-vent-3', name: 'Dyson Vent (3)', category: 'firstborn', subcategory: 'dyson', color: 'green', size: 'sm', product: 'first-born', count: 1, buy: null, sell: 8, stats: { dyson: 3 }, icons: ['dyson-range'] },
-        { id: 'dyson-vent-8', name: 'Dyson Vent (8)', category: 'firstborn', subcategory: 'dyson', color: 'green', size: 'sm', product: 'first-born', count: 1, buy: null, sell: 14, stats: {}, icons: ['dyson', 'dyson-range'] },
+        { id: 'dyson-vent-8', name: 'Dyson Vent (8)', category: 'firstborn', subcategory: 'dyson', color: 'green', size: 'sm', product: 'first-born', count: 1, buy: null, sell: 14, stats: { dyson: 8 }, icons: ['dyson', 'dyson-range'] },
         { id: 'dyson-rod', name: 'Dyson Rod', category: 'firstborn', subcategory: 'dyson', color: 'green', size: 'nano', product: 'first-born', count: 5, buy: null, sell: [3, 5, 10], stats: {}, icons: [], description: ['dyson-rod'] },
         { id: 'dyson-core', name: 'Dyson Core', category: 'firstborn', subcategory: 'dyson', color: 'green', size: 'sm', product: 'first-born', count: 1, buy: null, sell: 11, stats: {}, icons: ['auto-close-hit', 'ignore-armour', 'discard'] },
 
@@ -239,7 +239,7 @@ const INVENTORY_DATA = {
         { id: 'repair-2', name: 'Fibril (2)', category: 'firstborn', subcategory: 'repair', color: 'green', size: 'sm', product: 'first-born', count: 1, buy: null, sell: 5, stats: {}, icons: ['repair', 'discard'] },
         { id: 'repair-1', name: 'Fibril (1)', category: 'firstborn', subcategory: 'repair', color: 'green', size: 'sm', product: 'first-born', count: 1, buy: null, sell: 3, stats: {}, icons: ['repair', 'discard'] },
         { id: 'necro-flask', name: 'Necro Flask', category: 'firstborn', subcategory: 'special', color: 'green', size: 'sm', product: 'first-born', count: 1, buy: null, sell: 5, stats: {}, icons: ['necro-flask'] },
-        { id: 'potent-fibril', name: 'Potent Fibril', category: 'firstborn', subcategory: 'repair', color: 'green', size: 'md', product: 'first-born', count: 1, buy: null, sell: 20, stats: {}, icons: ['repair'] },
+        { id: 'potent-fibril', name: 'Potent Fibril (8)', category: 'firstborn', subcategory: 'repair', color: 'green', size: 'md', product: 'first-born', count: 1, buy: null, sell: 20, stats: {}, icons: ['repair'] },
 
         // Larva
         { id: 'larva', name: 'Larva', category: 'firstborn', subcategory: 'special', color: 'green', size: 'sm', product: 'first-born', count: 2, buy: null, sell: null, stats: {}, icons: ['flip'], description: ['larva'] },
