@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Core Space First Born - Item Inventory</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Inventory-specific styles */
+        .inventory-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+            align-items: center;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 250px;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 15px 12px 40px;
+            border: 2px solid rgba(83, 168, 182, 0.3);
+            border-radius: 8px;
+            background: rgba(0, 0, 0, 0.3);
+            color: #fff;
+            font-size: 1em;
+            transition: all 0.3s;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--color-secondary);
+            box-shadow: 0 0 10px rgba(83, 168, 182, 0.3);
+        }
+
+        .search-box::before {
+            content: '🔍';
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.1em;
+        }
+
+        .filter-group {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 8px 14px;
+            border: 2px solid rgba(83, 168, 182, 0.3);
+            border-radius: 6px;
+            background: rgba(0, 0, 0, 0.2);
+            color: #bbb;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: all 0.25s;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--color-secondary);
+            color: #fff;
+        }
+
+        .filter-btn.active {
+            background: rgba(83, 168, 182, 0.3);
+            border-color: var(--color-secondary);
+            color: #fff;
+        }
+
+        .filter-btn[data-color="blue"] { border-left: 4px solid #3498db; }
+        .filter-btn[data-color="yellow"] { border-left: 4px solid #f1c40f; }
+        .filter-btn[data-color="orange"] { border-left: 4px solid #e67e22; }
+        .filter-btn[data-color="green"] { border-left: 4px solid #2ecc71; }
+
+        /* Category tabs */
+        .category-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(233, 69, 96, 0.2);
+        }
+
+        .category-tab {
+            padding: 10px 18px;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            background: linear-gradient(135deg, rgba(233, 69, 96, 0.15) 0%, rgba(83, 168, 182, 0.15) 100%);
+            color: #bbb;
+            cursor: pointer;
+            font-size: 0.95em;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .category-tab:hover {
+            border-color: rgba(233, 69, 96, 0.5);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        .category-tab.active {
+            background: linear-gradient(135deg, rgba(233, 69, 96, 0.3) 0%, rgba(83, 168, 182, 0.3) 100%);
+            border-color: var(--color-primary);
+            color: #fff;
+        }
+
+        .category-tab .tab-icon {
+            margin-right: 6px;
+        }
+
+        .category-tab .tab-count {
+            margin-left: 6px;
+            padding: 2px 6px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            font-size: 0.8em;
+        }
+
+        /* Results info */
+        .results-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 10px 15px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 6px;
+            font-size: 0.9em;
+            color: #bbb;
+        }
+
+        .results-count {
+            color: var(--color-secondary);
+            font-weight: bold;
+        }
+
+        .sort-select {
+            padding: 6px 10px;
+            border: 1px solid rgba(83, 168, 182, 0.3);
+            border-radius: 4px;
+            background: rgba(0, 0, 0, 0.3);
+            color: #fff;
+            cursor: pointer;
+        }
+
+        /* Item grid */
+        .item-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 15px;
+        }
+
+        /* Item card */
+        .item-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .item-card:hover {
+            border-color: rgba(83, 168, 182, 0.5);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .item-card.expanded {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: var(--color-secondary);
+        }
+
+        /* Color indicators */
+        .item-card[data-color="blue"] { border-left: 4px solid #3498db; }
+        .item-card[data-color="yellow"] { border-left: 4px solid #f1c40f; }
+        .item-card[data-color="orange"] { border-left: 4px solid #e67e22; }
+        .item-card[data-color="green"] { border-left: 4px solid #2ecc71; }
+        .item-card[data-color="brown"] { border-left: 4px solid #8b4513; }
+        .item-card[data-color="purple"] { border-left: 4px solid #9b59b6; }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .item-name {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #fff;
+            margin: 0;
+        }
+
+        .item-badges {
+            display: flex;
+            gap: 5px;
+        }
+
+        .item-badge {
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.75em;
+            font-weight: bold;
+        }
+
+        .badge-size {
+            background: rgba(155, 89, 182, 0.3);
+            color: #c39bd3;
+        }
+
+        .badge-count {
+            background: rgba(83, 168, 182, 0.3);
+            color: #76d7e8;
+        }
+
+        .badge-product {
+            background: rgba(46, 204, 113, 0.3);
+            color: #82e0aa;
+        }
+
+        /* Item stats */
+        .item-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .stat-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            background: rgba(233, 69, 96, 0.15);
+            border-radius: 4px;
+            font-size: 0.85em;
+        }
+
+        .stat-chip.combat { background: rgba(231, 76, 60, 0.2); }
+        .stat-chip.defense { background: rgba(241, 196, 15, 0.2); }
+        .stat-chip.utility { background: rgba(52, 152, 219, 0.2); }
+
+        .stat-label {
+            color: #aaa;
+            font-size: 0.9em;
+        }
+
+        .stat-value {
+            color: #fff;
+            font-weight: bold;
+        }
+
+        /* Item icons */
+        .item-icons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 10px;
+        }
+
+        .icon-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 3px 8px;
+            background: rgba(83, 168, 182, 0.2);
+            border: 1px solid rgba(83, 168, 182, 0.3);
+            border-radius: 4px;
+            font-size: 0.8em;
+            color: #76d7e8;
+        }
+
+        .icon-tag .icon-symbol {
+            font-size: 1.1em;
+        }
+
+        /* Item prices */
+        .item-prices {
+            display: flex;
+            gap: 15px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .price-tag {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .price-label {
+            font-size: 0.8em;
+            color: #888;
+        }
+
+        .price-value {
+            font-weight: bold;
+            color: #f1c40f;
+        }
+
+        .price-value.sell {
+            color: #2ecc71;
+        }
+
+        .price-value.na {
+            color: #666;
+        }
+
+        /* Crystals */
+        .item-crystals {
+            display: flex;
+            gap: 4px;
+            margin-top: 8px;
+        }
+
+        .crystal {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .crystal.green { background: linear-gradient(135deg, #2ecc71, #27ae60); }
+        .crystal.orange { background: linear-gradient(135deg, #e67e22, #d35400); }
+        .crystal.purple { background: linear-gradient(135deg, #9b59b6, #8e44ad); }
+
+        /* Expanded details */
+        .item-details {
+            display: none;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px dashed rgba(255, 255, 255, 0.1);
+        }
+
+        .item-card.expanded .item-details {
+            display: block;
+        }
+
+        .detail-section {
+            margin-bottom: 10px;
+        }
+
+        .detail-title {
+            font-size: 0.85em;
+            color: var(--color-secondary);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .detail-content {
+            font-size: 0.9em;
+            color: #ccc;
+            line-height: 1.5;
+        }
+
+        /* Empty state */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #888;
+        }
+
+        .empty-state-icon {
+            font-size: 4em;
+            margin-bottom: 15px;
+            opacity: 0.5;
+        }
+
+        .empty-state-text {
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+
+        .empty-state-hint {
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .inventory-controls {
+                flex-direction: column;
+            }
+
+            .search-box {
+                width: 100%;
+            }
+
+            .filter-group {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .category-tabs {
+                justify-content: center;
+            }
+
+            .item-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Quick reference legend */
+        .legend-section {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+
+        .legend-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9em;
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+        }
+
+        .legend-color.blue { background: #3498db; }
+        .legend-color.yellow { background: #f1c40f; }
+        .legend-color.orange { background: #e67e22; }
+        .legend-color.green { background: #2ecc71; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><a href="index.html">CORE SPACE</a></h1>
+            <div class="tagline">First Born - Item Inventory Reference</div>
+        </header>
+
+        <!-- Breadcrumb -->
+        <div class="breadcrumb">
+            <a href="index.html">Home</a>
+            <span>›</span>
+            <span style="color: var(--color-text);">Item Inventory</span>
+        </div>
+
+        <!-- Back button -->
+        <a href="index.html" class="back-btn">← Back to Hub</a>
+
+        <!-- Main inventory section -->
+        <div class="section">
+            <div class="section-title">Item Token Reference</div>
+
+            <!-- Search and filters -->
+            <div class="inventory-controls">
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="Search items by name, type, or ability...">
+                </div>
+                <div class="filter-group">
+                    <button class="filter-btn active" data-size="all">All Sizes</button>
+                    <button class="filter-btn" data-size="nano">Nano</button>
+                    <button class="filter-btn" data-size="sm">Small</button>
+                    <button class="filter-btn" data-size="md">Medium</button>
+                    <button class="filter-btn" data-size="lg">Large</button>
+                </div>
+            </div>
+
+            <!-- Category tabs -->
+            <div class="category-tabs" id="category-tabs">
+                <button class="category-tab active" data-category="all">
+                    <span class="tab-icon">📦</span>All Items<span class="tab-count" id="count-all">0</span>
+                </button>
+                <button class="category-tab" data-category="weapons">
+                    <span class="tab-icon">⚔️</span>Weapons<span class="tab-count" id="count-weapons">0</span>
+                </button>
+                <button class="category-tab" data-category="armor">
+                    <span class="tab-icon">🛡️</span>Armor<span class="tab-count" id="count-armor">0</span>
+                </button>
+                <button class="category-tab" data-category="equipment">
+                    <span class="tab-icon">🎒</span>Equipment<span class="tab-count" id="count-equipment">0</span>
+                </button>
+                <button class="category-tab" data-category="explosives">
+                    <span class="tab-icon">💣</span>Explosives<span class="tab-count" id="count-explosives">0</span>
+                </button>
+                <button class="category-tab" data-category="firstborn">
+                    <span class="tab-icon">🔮</span>First Born<span class="tab-count" id="count-firstborn">0</span>
+                </button>
+                <button class="category-tab" data-category="consumables">
+                    <span class="tab-icon">💊</span>Consumables<span class="tab-count" id="count-consumables">0</span>
+                </button>
+                <button class="category-tab" data-category="mission">
+                    <span class="tab-icon">🎯</span>Mission<span class="tab-count" id="count-mission">0</span>
+                </button>
+                <button class="category-tab" data-category="materials">
+                    <span class="tab-icon">💎</span>Materials<span class="tab-count" id="count-materials">0</span>
+                </button>
+            </div>
+
+            <!-- Results info -->
+            <div class="results-info">
+                <span>Showing <span class="results-count" id="results-count">0</span> items</span>
+                <select class="sort-select" id="sort-select">
+                    <option value="name">Sort by Name</option>
+                    <option value="buy-asc">Sort by Buy Price (Low)</option>
+                    <option value="buy-desc">Sort by Buy Price (High)</option>
+                    <option value="sell-asc">Sort by Sell Price (Low)</option>
+                    <option value="sell-desc">Sort by Sell Price (High)</option>
+                    <option value="size">Sort by Size</option>
+                </select>
+            </div>
+
+            <!-- Item grid -->
+            <div class="item-grid" id="item-grid">
+                <!-- Items will be rendered here by JavaScript -->
+            </div>
+
+            <!-- Empty state -->
+            <div class="empty-state" id="empty-state" style="display: none;">
+                <div class="empty-state-icon">🔍</div>
+                <div class="empty-state-text">No items found</div>
+                <div class="empty-state-hint">Try adjusting your search or filters</div>
+            </div>
+        </div>
+
+        <!-- Token Color Legend -->
+        <div class="section legend-section">
+            <div class="section-title">Token Color Guide</div>
+            <div class="legend-grid">
+                <div class="legend-item">
+                    <div class="legend-color blue"></div>
+                    <span><strong>Blue</strong> - Weapons (ranged & melee)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color yellow"></div>
+                    <span><strong>Yellow</strong> - Armor & Shields</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color orange"></div>
+                    <span><strong>Orange</strong> - Equipment & Tools</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color green"></div>
+                    <span><strong>Green</strong> - First Born Tech & Alien Items</span>
+                </div>
+            </div>
+            <div class="info-box" style="margin-top: 15px;">
+                <strong>Tip:</strong> Click any item card to expand and see full details including icon descriptions and special abilities.
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <div style="margin-bottom: 10px; color: #53a8b6;">
+                Item data sourced from the open-source Core Space community project
+            </div>
+            <div style="margin-top: 15px; font-size: 0.75em; color: #888;">
+                Core Space First Born data is from First Born base game and Yamato expansion<br>
+                Core Space and all associated IP are trademarks of Battle Systems Ltd
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/inventory-data.js"></script>
+    <script src="js/inventory.js"></script>
+</body>
+</html>
