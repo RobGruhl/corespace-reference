@@ -126,7 +126,7 @@ const INVENTORY_DATA = {
         { id: 'outland-gun', name: 'Outland Gun', category: 'weapons', subcategory: 'rifle', color: 'blue', size: 'md', product: 'first-born', count: 1, buy: 22, sell: 10, stats: { short: 2, medium: 2 }, icons: ['burst-1', 'super-reliable'], crystals: ['orange', 'green'] },
         { id: 'machine-rifle-grenade-launcher', name: 'Machine Rifle w/ Grenade Launcher', category: 'weapons', subcategory: 'rifle', color: 'blue', size: 'md', product: 'first-born', count: 1, buy: 25, sell: 17, stats: { short: 3, medium: 2, range: 'm' }, icons: ['grenade-launcher'] },
         { id: 'smart-shot-energy-rifle', name: 'Smart Shot Energy Rifle', category: 'weapons', subcategory: 'rifle', color: 'blue', size: 'md', product: 'first-born', count: 1, buy: 23, sell: 10, stats: { short: 3, medium: 2 }, icons: ['target-lock', 'full-charge'], crystals: ['green'] },
-        { id: 'caaligorn-hunt-rifle', name: 'Caaligorn Hunt Rifle', category: 'weapons', subcategory: 'rifle', color: 'blue', size: 'lg', product: 'first-born', count: 1, buy: null, sell: 24, stats: { short: 3, medium: 3, long: 3 }, icons: ['super-reliable'], description: ['caaligorn'] },
+        { id: 'caaligorn-hunt-rifle', name: 'Caaligorn Hunt Rifle', category: 'weapons', subcategory: 'rifle', color: 'blue', size: 'lg', product: 'first-born', count: 1, buy: null, sell: 24, stats: { short: 3, medium: 3, long: 2 }, icons: ['super-reliable'], description: ['caaligorn'] },
 
         // ============================================
         // WEAPONS - MELEE (Blue tokens)
