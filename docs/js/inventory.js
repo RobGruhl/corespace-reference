@@ -556,13 +556,13 @@
             `);
         }
 
-        // Crystals info
+        // Crystals info (ore cost to craft the item)
         if (item.crystals && item.crystals.length > 0) {
             const crystalText = item.crystals.map(c => c.charAt(0).toUpperCase() + c.slice(1)).join(', ');
             sections.push(`
                 <div class="detail-section">
-                    <div class="detail-title">Crystal Requirements</div>
-                    <div class="detail-content">Requires ${crystalText} crystal slot(s) to equip</div>
+                    <div class="detail-title">Ore Cost</div>
+                    <div class="detail-content">Requires ${crystalText} crystal(s) to craft</div>
                 </div>
             `);
         }
